@@ -1,7 +1,7 @@
 <template>
   <div>
     <div>
-      <form>
+      <form v-on:submit.prevent="saveBase">
         Plan Name:
         <input type="text" v-model="planBase.name" />
         <label for="house-types">Select House Type:</label>
@@ -18,13 +18,14 @@
           <option value="Midwest">Midwest</option>
           <option value="West">West</option>
         </select>
-        <input type="button" value="Next" />
+        <button>Next</button>
       </form>
     </div>
   </div>
 </template>
 
 <script>
+import planService from "@/services/PlanService";
 export default {
   data() {
     return {
@@ -37,7 +38,21 @@ export default {
   },
   methods: {
     saveBase() {
-      console.log("b");
+      const newPlan = {
+        name:this.planBase.name,
+        houseType: this.planBase.houseType,
+        region:this.planBase.region,
+      }
+      console.log(newPlan)
+      planService
+      .create(newPlan)
+      .then(
+        this.planBase = {
+        name: '',
+        houseType: '',
+        region: ''},
+        this.$router.push("/plan-builder")
+      )
     },
   },
 };
