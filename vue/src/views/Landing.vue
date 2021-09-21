@@ -2,8 +2,8 @@
   <div class="landing">
     <h1>Welcome!</h1>
     <p>Please select from an option below</p>
-    <div>
-      <router-link v-bind:to="{name: 'details'}">New Plan</router-link> 
+    <div class="links">
+      <router-link v-bind:to="{name: 'details'}">New Plan</router-link> <br>
       <router-link v-bind:to="{name: 'savedplans'}">Saved Plans</router-link>
     </div>
   </div>
@@ -15,8 +15,8 @@ export default {
 };
 </script>
 <style scoped>
-router-link{
+.links{
   padding: 5px;
-  margin: 10px;
+  margin: 5px;
 }
 </style>
