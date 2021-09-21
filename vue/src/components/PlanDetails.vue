@@ -10,13 +10,24 @@
           <option value="detached">Detached</option>
           <option value="townhouse">Townhouse</option>
         </select>
-        <label for="region-types">Select Region:</label>
+        <!-- <label for="region-types">Select Region:</label>
         <select name="region-types" v-model="planBase.region">
           <option value="Northeast">Northeast</option>
           <option value="South">South</option>
           <option value="Southwest">Southwest</option>
           <option value="Midwest">Midwest</option>
           <option value="West">West</option>
+        </select> -->
+        <label for="City">Select City:</label>
+        <select name="city" v-model="planBase.city">
+          <option value="Cleveland">Cleveland</option>
+          <option value="Cincinnati">Cincinnati</option>
+          <option value="Columbus">Columbus</option>
+          <option value="Toledo">Toledo</option>
+        </select>
+        <label for="State">Select State:</label>
+        <select name="state" v-model="planBase.state">
+          <option value="Ohio">OH</option>
         </select>
         <label for="square-foot">Select Square Footage:</label>
         <select name="square-foot" v-model="planBase.size">
@@ -39,7 +50,8 @@ export default {
       planBase: {
         name: "",
         houseType: "",
-        region: "",
+        city: "",
+        state: "",
         size: ""
       },
     };
@@ -49,8 +61,9 @@ export default {
       const newPlan = {
         name:this.planBase.name,
         houseType: this.planBase.houseType,
-        region:this.planBase.region,
-        size: this.newPlan.size,
+        city:this.planBase.city,
+        state: this.planBase.state,
+        size: this.planBase.size
       }
       console.log(newPlan)
       planService
@@ -59,7 +72,9 @@ export default {
         this.planBase = {
         name: '',
         houseType: '',
-        region: ''},
+        city: '',
+        state:'',
+        size: ''},
         this.$router.push("/plan-builder")
       )
     },
