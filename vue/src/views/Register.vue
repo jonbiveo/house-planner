@@ -68,28 +68,35 @@ export default {
   },
   methods: {
     register() {
+      let passStr = this.user.password;
+
       if (this.user.password != this.user.confirmPassword) {
         this.registrationErrors = true;
         this.registrationErrorMsg = 'Password & Confirm Password do not match.';
       } else {
-        authService
-          .register(this.user)
-          .then((response) => {
-            if (response.status == 201) {
-              this.$router.push({
-                path: '/login',
-                query: { registration: 'success' },
-              });
-            }
-          })
-          .catch((error) => {
-            const response = error.response;
-            this.registrationErrors = true;
-            window.alert("error");
-            if (response.status === 400) {
-              this.registrationErrorMsg = 'Bad Request: Validation Errors';
-            } 
-          });
+        //Validating that password contains at least 8 characters, 1 uppercase, and 1 number.
+        if (passStr.match(/[A-Z]/g) && passStr.match(/[0-9]/g) && passStr.length >= 8) {
+          authService
+            .register(this.user)
+            .then((response) => {
+              if (response.status == 201) {
+                this.$router.push({
+                  path: '/login',
+                  query: { registration: 'success' },
+                });
+              }
+            })
+            .catch((error) => {
+              const response = error.response;
+              this.registrationErrors = true;
+              if (response.status === 400) {
+                this.registrationErrorMsg = 'Error: User already exists.';
+              } 
+            });
+        } else {
+          this.registrationErrors = true;
+          this.registrationErrorMsg = 'Password needs at least 8 characters, 1 uppercase letter, and 1 number.';
+        }
       }
     },
     clearErrors() {
