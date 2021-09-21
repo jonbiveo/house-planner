@@ -1,49 +1,50 @@
 <template>
   <div id="register" class="text-center">
     <form class="form-register" @submit.prevent="register">
-      <h1 class="h3 mb-3 font-weight-normal">Create Account</h1>
+      <h1 class="h3 mb-3 font-weight-normal header">Register</h1>
       <div class="alert alert-danger" role="alert" v-if="registrationErrors">
         {{ registrationErrorMsg }}
       </div>
-      <label for="username" class="sr-only">Username</label>
-      <input
-        type="text"
-        id="username"
+      <div class="inputs">
+        <input
+          type="text"
+          id="username"
+          class="form-control"
+          placeholder=" Username"
+          v-model="user.username"
+          required
+          autofocus
+        />
+        <input type="text"
+        id="email"
         class="form-control"
-        placeholder="Username"
-        v-model="user.username"
+        placeholder=" Email Address"
+        v-model="user.email"
         required
-        autofocus
-      />
-      <label for="email" class="sr-only">Email Address</label>
-      <input type="text"
-      id="email"
-      class="form-control"
-      placeholder="Email Address"
-      v-model="user.email"
-      required
-      />
-      <label for="password" class="sr-only">Password</label>
-      <input
-        type="password"
-        id="password"
-        class="form-control"
-        placeholder="Password"
-        v-model="user.password"
-        required
-      />
-      <input
-        type="password"
-        id="confirmPassword"
-        class="form-control"
-        placeholder="Confirm Password"
-        v-model="user.confirmPassword"
-        required
-      />
-      <router-link :to="{ name: 'login' }">Have an account?</router-link>
-      <button class="btn btn-lg btn-primary btn-block" type="submit">
-        Create Account
-      </button>
+        />
+        <input
+          type="password"
+          id="password"
+          class="form-control"
+          placeholder=" Password"
+          v-model="user.password"
+          required
+        />
+        <input
+          type="password"
+          id="confirmPassword"
+          class="form-control"
+          placeholder=" Confirm Password"
+          v-model="user.confirmPassword"
+          required
+        />
+        <button class="btn btn-lg btn-primary btn-block" type="submit">
+          Sign Up
+        </button>
+      </div>
+      <span class="loginLink">Already have an account?
+        <router-link :to="{ name: 'login' }">Click here to login</router-link>
+      </span>
     </form>
   </div>
 </template>
@@ -107,4 +108,63 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+  .text-center {
+    display: grid;
+    height: 90vh;
+    grid-template-columns: 1fr;
+    grid-template-areas: "form";
+    justify-items: center;
+    align-items: center;
+  }
+
+  .form-register {
+    display: grid;
+    grid-area: form;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+    "header"
+    "inputs"
+    "loginLink";
+    width: 400px;
+    height: 450px;
+    background-color: greenyellow;
+    border-radius: 10px;
+  }
+
+  .inputs {
+    display: flex;
+    grid-area: inputs;
+    flex-direction: column;
+    min-height: 350px;
+    max-width: 400px;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .form-register input {
+    height: 30px;
+    min-width: 350px;
+    font-size: 18px;
+  }
+
+  .btn {
+    height: 35px;
+    width: 100px;
+    font-weight: bold;
+    font-size: 18px;
+    border-radius: 15px;
+    border: none;
+  }
+
+  .loginLink {
+    grid-area: loginLink;
+    justify-self: center;
+  }
+
+  .header {
+    grid-area: header;
+    justify-self: center;
+  }
+
+</style>
