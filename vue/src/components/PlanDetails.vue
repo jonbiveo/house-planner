@@ -18,6 +18,13 @@
           <option value="Midwest">Midwest</option>
           <option value="West">West</option>
         </select>
+        <label for="square-foot">Select Region:</label>
+        <select name="square-foot" v-model="planBase.size">
+          <option value="1000">1000</option>
+          <option value="1500">1500</option>
+          <option value="2000">2000</option>
+          <option value="2500">2500</option>
+        </select>
         <button>Next</button>
       </form>
     </div>
@@ -33,6 +40,7 @@ export default {
         name: "",
         houseType: "",
         region: "",
+        size: ""
       },
     };
   },
@@ -42,6 +50,7 @@ export default {
         name:this.planBase.name,
         houseType: this.planBase.houseType,
         region:this.planBase.region,
+        size: this.newPlan.size,
       }
       console.log(newPlan)
       planService
