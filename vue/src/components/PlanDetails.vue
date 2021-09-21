@@ -18,7 +18,7 @@
           <option value="Midwest">Midwest</option>
           <option value="West">West</option>
         </select>
-        <label for="square-foot">Select Region:</label>
+        <label for="square-foot">Select Square Footage:</label>
         <select name="square-foot" v-model="planBase.size">
           <option value="1000">1000</option>
           <option value="1500">1500</option>
