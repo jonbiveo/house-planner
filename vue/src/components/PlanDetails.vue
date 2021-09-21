@@ -1,10 +1,10 @@
 <template>
-  <div>
+  <div class = 'plan-details'>
     <div>
-      <form v-on:submit.prevent="saveBase">
+      <form v-on:submit.prevent="saveBase" class='form-plan'>
         Plan Name:
-        <input type="text" v-model="planBase.name" />
-        <label for="house-types">Select House Type:</label>
+        <input type="text" class='plan-name' v-model="planBase.name" />
+        <label for="house-types" class='house-types'>Select House Type:</label>
         <select name="house-types" v-model="planBase.houseType">
           <option value="single">Single-Family</option>
           <option value="detached">Detached</option>
@@ -18,18 +18,18 @@
           <option value="Midwest">Midwest</option>
           <option value="West">West</option>
         </select> -->
-        <label for="City">Select City:</label>
+        <label for="City" class='city'>Select City:</label>
         <select name="city" v-model="planBase.city">
           <option value="Cleveland">Cleveland</option>
           <option value="Cincinnati">Cincinnati</option>
           <option value="Columbus">Columbus</option>
           <option value="Toledo">Toledo</option>
         </select>
-        <label for="State">Select State:</label>
+        <label for="State" class='state'>Select State:</label>
         <select name="state" v-model="planBase.state">
           <option value="Ohio">OH</option>
         </select>
-        <label for="square-foot">Select Square Footage:</label>
+        <label for="square-foot" class='size'>Select Square Footage:</label>
         <select name="square-foot" v-model="planBase.size">
           <option value="1000">1000</option>
           <option value="1500">1500</option>
@@ -82,5 +82,5 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 </style>

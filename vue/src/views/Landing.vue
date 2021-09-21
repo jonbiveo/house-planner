@@ -15,8 +15,4 @@ export default {
 };
 </script>
 <style scoped>
-.links{
-  padding: 5px;
-  margin: 5px;
-}
 </style>
