@@ -128,8 +128,9 @@ export default {
     "loginLink";
     width: 400px;
     height: 450px;
-    background-color: greenyellow;
+    background-color: #00AFB9;
     border-radius: 10px;
+    padding: 16px;
   }
 
   .inputs {
@@ -146,6 +147,8 @@ export default {
     height: 30px;
     min-width: 350px;
     font-size: 18px;
+    border-radius: 4px;
+    border: none;
   }
 
   .btn {
