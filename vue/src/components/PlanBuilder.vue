@@ -1,21 +1,21 @@
 <template>
   <div class='main'>
   <div class='plan-builder'>
-      <form>
+      <form> 
           <h1>Room Types</h1>
          <label for="livingRoom" class="living-room"> Select Living Room Size: </label>
-         <select name ="living-room">
+         <select name ="living-room" v-model="floorPlan.livingRoom" required>
              <option value = "10x13">10x13</option>
              <option value = "12x18">12x18</option>
              <option value = "15x20">15x20</option>
          </select> <br>
          <label for="kitchen" class="kitchen"> Select Kitchen Size: </label>
-         <select name ="kitchen">
+         <select name ="kitchen" v-model="floorPlan.kitchen" required>
              <option value = "10x10">10x10</option>
              <option value = "20x20">20x20</option>
          </select><br>
          <label for="bedroom" class="bedroom"> Select Number of Bedrooms: </label>
-         <select name ="bedroom">
+         <select name ="bedroom" v-model="floorPlan.bedrooms" required>
              <option value = "1">1</option>
              <option value = "2">2</option>
              <option value = "3">3</option>
@@ -27,7 +27,7 @@
              <option value = "standardBed">Standard Bedroom: 11x12</option>
          </select><br>
          <label for="bathroom" class="bathroom"> Select Number of Bathrooms:</label>
-         <select name ="bathroom">
+         <select name ="bathroom" v-model="floorPlan.bathrooms" required>
              <option value = "1">1</option>
              <option value = "2">2</option>
              <option value = "3">3</option>
@@ -56,6 +56,8 @@ export default {
             }
 
             }   
+    },
+    methods: {
     }
 
 }
@@ -64,6 +66,8 @@ export default {
 <style scoped>
 .main{
  text-align: center;
+ background: #264653;
+ color: white;
 }
 h1{
     text-emphasis: bold;
