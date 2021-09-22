@@ -9,7 +9,7 @@
              <option value = "12x18">12x18</option>
              <option value = "15x20">15x20</option>
          </select> <br>
-         <label for="kitchen" class="kitchen"> Select Living Room Size: </label>
+         <label for="kitchen" class="kitchen"> Select Kitchen Size: </label>
          <select name ="kitchen">
              <option value = "10x10">10x10</option>
              <option value = "20x20">20x20</option>
