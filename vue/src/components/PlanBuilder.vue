@@ -1,6 +1,6 @@
 <template>
   <div>
-      
+      Builder
   </div>
 </template>
 
@@ -11,7 +11,4 @@ export default {
 </script>
 
 <style scoped>
-div{
-    background-color: blue;
-}
 </style>

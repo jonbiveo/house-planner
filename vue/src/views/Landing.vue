@@ -1,18 +1,16 @@
 <template>
   <div class="landing">
-    <h1>Welcome!</h1>
-    <p>Please select an option below</p>
-    <div class="links">
-      <router-link v-bind:to="{name: 'details'}">New Plan</router-link> <br>
-      <router-link v-bind:to="{name: 'savedplans'}">Saved Plans</router-link>
-    </div>
+    <h1>Welcome</h1>
+      <div class = "plans">
+        <plan-list/>
+      </div>
   </div>
 </template>
 
 <script>
+import PlanList from '../components/PlanList.vue';
 export default {
+  components: { PlanList },
   name: "landing",
 };
 </script>
-<style scoped>
-</style>

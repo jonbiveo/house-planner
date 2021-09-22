@@ -64,6 +64,14 @@ const router = new Router({
       }
     },
     {
+      path: "/plans",
+      name: "plans",
+      component: Landing,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
       path: "/plan-builder",
       name: "plan-builder",
       component: Builder,

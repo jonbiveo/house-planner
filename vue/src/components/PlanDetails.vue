@@ -3,9 +3,9 @@
     <div>
       <form v-on:submit.prevent="saveBase" class='form-plan'>
         Plan Name:
-        <input type="text" class='plan-name' v-model="planBase.name" />
+        <input type="text" class='plan-name' v-model="planBase.planName" />
         <label for="house-types" class='house-types'>Select House Type:</label>
-        <select name="house-types" v-model="planBase.houseType" required>
+        <select name="house-types" v-model="planBase.houseType">
           <option value="single">Single-Family</option>
           <option value="detached">Detached</option>
           <option value="townhouse">Townhouse</option>
@@ -19,7 +19,17 @@
           <option value="Midwest">Midwest</option>
           <option value="West">West</option>
         </select> -->
-        <label for="City" class='city'>Select City:</label>
+
+        <!-- <label for="state">Select State:</label>
+        <select name="state" v-model="planBase.state">
+          <option value="Ohio">Ohio</option>
+        </select>
+      
+        <label for="city">Select City:</label>
+        <select name="city" v-model="planBase.city">
+          <option value="Cincinati">Cincinati</option>
+        </select> -->
+<label for="City" class='city'>Select City:</label>
         <select name="city" v-model="planBase.city" required>
           <option value="Cleveland">Cleveland</option>
           <option value="Cincinnati">Cincinnati</option>
@@ -31,23 +41,23 @@
           <option value="Ohio">OH</option>
         </select>
         <label for="square-foot" class='size'>Select Minimum Square Footage:</label>
-        <select v-if="planBase.houseType !== 'land'" name="square-foot" v-model="planBase.size" required>
+        <select v-if="planBase.houseType !== 'land'" name="square-foot" v-model="planBase.size" v-on:change="viewRange" required >
           <option value="1000">1000</option>
           <option value="1500">1500</option>
           <option value="2000">2000</option>
           <option value="2500">2500</option>
         </select>
-        <select v-if="planBase.houseType === 'land'" name="square-foot" v-model="planBase.size" required>
+        <select v-if="planBase.houseType === 'land'" name="square-foot" v-model="planBase.size" v-on:change="viewRange" required>
           <option value="2000">2000</option>
           <option value="4000">4000</option>
           <option value="5000">5000</option>
           <option value="7500">7500</option>
         </select>
-        <button>Next</button>
-      </form>
       <div v-if="priceCeiling !== -1">
         <h3>${{priceFloor}} - ${{priceCeiling}}</h3>
       </div>
+        <button>Next</button>
+      </form>
     </div>
   </div>
 </template>
@@ -58,7 +68,8 @@ export default {
   data() {
     return {
       planBase: {
-        name: "",
+        userId:"",
+        planName: "",
         houseType: "",
         city: "",
         state: "",
@@ -69,7 +80,8 @@ export default {
     };
   },
   methods: {
-    saveBase() {
+    viewRange(){
+    
       let options = {};
       this.priceFloor = -1;
       this.priceCeiling = -1;
@@ -96,9 +108,32 @@ export default {
         }
       );
     },
+    saveBase() {
+      const newPlan = {
+        userId: JSON.stringify(JSON.parse(localStorage.getItem('user')).id),
+        planName:this.planBase.planName,
+        houseType: this.planBase.houseType,
+        city:this.planBase.city,
+        state:this.planBase.state,
+        size:this.planBase.size
+      }
+      console.log(newPlan)
+      planService
+      .create(newPlan)
+      .then((response)=>{
+        console.log(response.data),
+        this.planBase = {
+        planName: '',
+        houseType: '',
+        city:'',
+        state: '',
+        size:''},
+        this.$router.push("/plan-builder")
+      })
+    },
   },
 };
 </script>
 
-<style scoped>
+<style>
 </style>
