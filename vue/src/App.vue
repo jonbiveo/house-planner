@@ -1,9 +1,18 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link v-bind:to="{ name: 'landing' }">Landing</router-link>&nbsp;|&nbsp;
-      <router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout</router-link>
-    </div>
+    <header-nav />
     <router-view />
   </div>
 </template>
+
+<script>
+import HeaderNav from '@/components/HeaderNav.vue'
+export default {
+  components: { HeaderNav },
+}
+</script>
+
+<style scoped>
+
+
+</style>

@@ -7,6 +7,7 @@ import Register from '../views/Register.vue'
 import store from '../store/index'
 import Details from '../views/Details.vue'
 import Builder from '../views/Builder.vue'
+import Plans from '../views/Plans.vue'
 
 Vue.use(Router)
 
@@ -66,7 +67,7 @@ const router = new Router({
     {
       path: "/plans",
       name: "plans",
-      component: Landing,
+      component: Plans,
       meta: {
         requiresAuth: true
       }

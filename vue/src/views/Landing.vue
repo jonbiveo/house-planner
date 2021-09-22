@@ -1,16 +1,13 @@
 <template>
   <div class="landing">
     <h1>Welcome</h1>
-      <div class = "plans">
-        <plan-list/>
-      </div>
+      <p>A useful website to help pick out and design a floor plan!</p>
   </div>
 </template>
 
 <script>
-import PlanList from '../components/PlanList.vue';
 export default {
-  components: { PlanList },
+  components: {  },
   name: "landing",
 };
 </script>
