@@ -5,7 +5,7 @@
         Plan Name:
         <input type="text" class='plan-name' v-model="planBase.planName" />
         <label for="house-types" class='house-types'>Select House Type:</label>
-        <select name="house-types" v-model="planBase.houseType">
+        <select name="house-types" v-model="planBase.houseType" v-on:change="viewRange">
           <option value="single">Single-Family</option>
           <option value="detached">Detached</option>
           <option value="townhouse">Townhouse</option>
@@ -30,14 +30,14 @@
           <option value="Cincinati">Cincinati</option>
         </select> -->
 <label for="City" class='city'>Select City:</label>
-        <select name="city" v-model="planBase.city" required>
+        <select name="city" v-model="planBase.city" required v-on:change="viewRange">
           <option value="Cleveland">Cleveland</option>
           <option value="Cincinnati">Cincinnati</option>
           <option value="Columbus">Columbus</option>
           <option value="Toledo">Toledo</option>
         </select>
         <label for="State" class='state'>Select State:</label>
-        <select name="state" v-model="planBase.state" required>
+        <select name="state" v-model="planBase.state" required v-on:change="viewRange">
           <option value="Ohio">OH</option>
         </select>
         <label for="square-foot" class='size'>Select Minimum Square Footage:</label>
@@ -79,34 +79,40 @@ export default {
       priceCeiling: -1
     };
   },
+  computed: {
+    optionsSelected() {
+      return (this.planBase.houseType !== "" && this.planBase.city !== "" && this.planBase.state !== "");
+    }
+  },
   methods: {
     viewRange(){
-    
       let options = {};
       this.priceFloor = -1;
       this.priceCeiling = -1;
-      if (this.planBase.houseType !== "land") {
-        options = planService.setPropertyInfo({offset: '0', limit: '10', sort: 'newest', state_code: this.planBase.state, 
-        city: this.planBase.city, property_type: this.planBase.houseType, home_size_min: this.planBase.size});
-      } else {
-        options = planService.setPropertyInfo({offset: '0', limit: '10', sort: 'newest', state_code: this.planBase.state, 
-        city: this.planBase.city, property_type: this.planBase.houseType, lot_size_min: this.planBase.size});
-      }
-      planService.getProperties(options).then(
-        (response) => {
-          let results = response.data.data.home_search.results;
-          results.forEach(
-            (element) => {
-              if (element.list_price > this.priceCeiling) {
-                this.priceCeiling = element.list_price;
-              }
-              if (element.list_price < this.priceFloor || this.priceFloor === -1) {
-                this.priceFloor = element.list_price;
-              } 
-              console.log(element.list_price);
-          });
+      if (this.optionsSelected) {
+        if (this.planBase.houseType !== "land") {
+          options = planService.setPropertyInfo({offset: '0', limit: '10', sort: 'newest', state_code: this.planBase.state, 
+          city: this.planBase.city, property_type: this.planBase.houseType, home_size_min: this.planBase.size});
+        } else {
+          options = planService.setPropertyInfo({offset: '0', limit: '10', sort: 'newest', state_code: this.planBase.state, 
+          city: this.planBase.city, property_type: this.planBase.houseType, lot_size_min: this.planBase.size});
         }
-      );
+        planService.getProperties(options).then(
+          (response) => {
+            let results = response.data.data.home_search.results;
+            results.forEach(
+              (element) => {
+                if (element.list_price > this.priceCeiling) {
+                  this.priceCeiling = element.list_price;
+                }
+                if (element.list_price < this.priceFloor || this.priceFloor === -1) {
+                  this.priceFloor = element.list_price;
+                } 
+                console.log(element.list_price);
+            });
+          }
+        );
+      }
     },
     saveBase() {
       const newPlan = {
