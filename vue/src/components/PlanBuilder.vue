@@ -21,7 +21,6 @@
              <option value = "3">3</option>
              <option value = "4">4</option>
          </select><br>
-         <!-- need drop downs for each bedroom selected -->
           <label for="bedroom-size" class="bedroom-size"> Select Bedroom Size:</label>
          <select name ="bedroom-size">
              <option value = "masterBed">Master Bedroom: 14x16</option>
@@ -33,7 +32,6 @@
              <option value = "2">2</option>
              <option value = "3">3</option>
          </select><br>
-         <!-- need drop downs for each bathroom selected -->
           <label for="bathroom-size" class="bathroom-size"> Select Bathroom Size: </label>
          <select name ="bathroom-size">
              <option value = "masterBath">Master Bathroom: 6x12</option>
