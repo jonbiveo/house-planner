@@ -3,8 +3,8 @@
     <div
       class="plan-icon"
       v-for="plan in plans"
-      v-bind:key="plan.id"
-      v-on:click="viewPlanDetails(plan.id)"
+      v-bind:key="plan.planId"
+      v-on:click="viewPlanDetails(plan.planId)"
     >
       <div class="plan-image">plan icon</div>
       <p class="plan-name">{{ plan.planName }}</p>
@@ -21,20 +21,24 @@ import planService from "@/services/PlanService";
 export default {
   data() {
     return {
+      userId: JSON.stringify(JSON.parse(localStorage.getItem("user")).id),
       planName: "",
       plans: [],
     };
   },
   created() {
-    planService.getPlans(this.$route.params.id).then((response) => {
-      this.planName = response.data.planName;
-      this.plans = response.data;
-    });
+      planService
+      .getPlans(this.$route.params.id)
+      .then((response) => {
+        this.planName = response.data.planName;
+        this.plans = response.data;
+        console.log(response.data)
+      });
   },
   methods: {
-    // viewPlanDetails(planId) {
-    //   this.$router.push(`/plan/${this.planId}/card/${planId}`);
-    // },
+    viewPlanDetails(planId) {
+       this.$router.push(`/plans/${planId}`);
+     },
   },
 };
 </script>
@@ -58,9 +62,10 @@ export default {
   margin: 0 0 70px 0;
 }
 
-.plan-name{
-    max-width: 80px;
-    text-align: center;
+.plan-name {
+  max-width: 80px;
+  text-align: center;
+  cursor: default;
 }
 
 .plan-image,
@@ -74,10 +79,18 @@ export default {
 
 .plan-image {
   background-color: gray;
+  border-radius: 3px;
+}
+
+.plan-image:hover{
+  background-color: darkgrey;
+  cursor: default;
 }
 
 .new-plan {
   background-color: white;
   text-align: center;
+  border-radius: 3px;
 }
+
 </style>
