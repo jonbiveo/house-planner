@@ -37,8 +37,8 @@
         <button>Next</button>
       </form>
       <div class="costDisplay">
-        <span>Price Range For Current Listings:<h3 v-if="priceCeiling !== -1"> ${{priceFloor}} - ${{priceCeiling}}</h3></span>
-        <span>Average Cost For Current Listings:<h3 v-if="priceFloor !== -1">${{averagePrice}}</h3></span>
+        <span>Price Range For Current Listings:<h3 class="priceRange" v-if="priceCeiling !== -1">{{priceFloor}} - {{priceCeiling}}</h3></span>
+        <span>Average Cost For Current Listings:<h3 v-if="priceFloor !== -1">{{averagePrice}}</h3></span>
       </div>
     </div>
   </div>
@@ -101,8 +101,14 @@ export default {
                   return sum + num;
                 }
               );
-              this.averagePrice = this.averagePrice / prices.length;
-              this.averagePrice = this.averagePrice.toFixed(0);
+              let formatter = new Intl.NumberFormat("en-US", {
+                style: "currency",
+                  currency: "USD",
+                  maximumFractionDigits: 0
+              });
+              this.priceCeiling = formatter.format(this.priceCeiling);
+              this.priceFloor = formatter.format(this.priceFloor);
+              this.averagePrice = formatter.format(this.averagePrice / prices.length);
           }
         );
       }
@@ -198,16 +204,22 @@ padding: 15px;
   height: 100px;
 }
 
-.costDisplay h3 {
+.costDisplay span h3{
   display: inline;
   margin-top: 0;
   margin-left: 25px;
+  font-size: 16pt;
 }
 
 .costDisplay span {
   display: block;
   color: #E76F51;
   font-size: 16pt;
+  margin-bottom: 15px;
+}
+
+.priceRange {
+  padding-left: 12px;
 }
 
 </style>
