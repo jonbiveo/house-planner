@@ -8,6 +8,7 @@ import store from '../store/index'
 import Details from '../views/Details.vue'
 import Builder from '../views/Builder.vue'
 import Plans from '../views/Plans.vue'
+import Card from '../views/Card.vue'
 
 Vue.use(Router)
 
@@ -68,6 +69,14 @@ const router = new Router({
       path: "/plans",
       name: "plans",
       component: Plans,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: "/plans/:id",
+      name: "plans-by-id",
+      component: Card,
       meta: {
         requiresAuth: true
       }

@@ -1,17 +1,19 @@
 <template>
-  <div class="plans">
-    <div
-      class="plan-icon"
-      v-for="plan in plans"
-      v-bind:key="plan.planId"
-      v-on:click="viewPlanDetails(plan.planId)"
-    >
-      <div class="plan-image">plan icon</div>
-      <p class="plan-name">{{ plan.planName }}</p>
+  <div>
+    <div class="plans">
+      <div
+        class="plan-icon"
+        v-for="plan in plans"
+        v-bind:key="plan.planId"
+        v-on:click="viewPlanDetails(plan.planId)"
+      >
+        <div class="plan-image">plan icon</div>
+        <p class="plan-name">{{ plan.planName }}</p>
+      </div>
+      <router-link v-bind:to="{ name: 'details' }">
+        <div class="new-plan">+<br />New Plan</div>
+      </router-link>
     </div>
-    <router-link v-bind:to="{ name: 'details' }">
-      <div class="new-plan">New Plan</div>
-    </router-link>
   </div>
 </template>
 
@@ -27,18 +29,15 @@ export default {
     };
   },
   created() {
-      planService
-      .getPlans(this.$route.params.id)
-      .then((response) => {
-        this.planName = response.data.planName;
-        this.plans = response.data;
-        console.log(response.data)
-      });
+    planService.getPlans(this.$route.params.id).then((response) => {
+      this.planName = response.data.planName;
+      this.plans = response.data;
+    });
   },
   methods: {
-    viewPlanDetails(planId) {
-       this.$router.push(`/plans/${planId}`);
-     },
+    viewPlanDetails(plandId) {
+      this.$router.push(`plans/${plandId}`);
+    },
   },
 };
 </script>
@@ -82,8 +81,12 @@ export default {
   border-radius: 3px;
 }
 
-.plan-image:hover{
+.plan-image:hover {
   background-color: darkgrey;
+  border: 1px solid black;
+  width: 78px;
+  height: 78px;
+  box-shadow: 0 0 10px gray;
   cursor: default;
 }
 
@@ -93,4 +96,17 @@ export default {
   border-radius: 3px;
 }
 
+.new-plan:hover {
+  border: 1px solid skyblue;
+  width: 78px;
+  height: 78px;
+  box-shadow: 0 0 10px lightskyblue;
+}
+
+a {
+  text-decoration: none;
+}
+.new-plan {
+  color: rgb(13, 175, 216);
+}
 </style>
