@@ -1,7 +1,7 @@
 <template>
   <div class='main'>
   <div class='plan-builder'>
-      <form> 
+      <form > <!--submit? method to save? -->
           <h2>Floors</h2>
           <label for="floors" class="floors"> Select Number of Floors: </label>
           <select name="floors" v-model="floorPlan.floors" required>
@@ -41,26 +41,28 @@
              <option value = "3">3</option>
              <option value = "4">4</option>
          </select><br> -->
-         <button id="add-room" v-on:click.prevent="addBedroom">Add Bedroom</button><br>
-          <!-- <label for="bedroom-size" class="bedroom-size"> Select Bedroom Size:</label>
-         <select name ="bedroom-size">
-             <option value = "masterBed">Master Bedroom: 14x16</option>
-             <option value = "standardBed">Standard Bedroom: 11x12</option>
-         </select><br> -->
+    
+          <label for="bedroom-size" class="bedroom-size"> Select Bedroom Size:</label>
+         <select name ="bedroom-size" v-model="floorPlan.bedrooms" required>
+             <option value = "14x16">Master Bedroom: 14x16</option>
+             <option value = "11x12">Standard Bedroom: 11x12</option>
+         </select><br>
+        <button id="add-room" v-on:click.prevent="addBedroom">Add Bedroom</button><br>
          <!-- <label for="bathroom" class="bathroom"> Select Number of Bathrooms:</label> -->
          <!-- <select name ="bathroom" v-model="floorPlan.bathrooms" required>
              <option value = "1">1</option>
              <option value = "2">2</option>
              <option value = "3">3</option>
          </select><br> -->
-         <button id="add-bathroom" v-on:click.prevent="addBathroom">Add Bathroom</button><br>
+        
+        <label for="bathroom-size" class="bathroom-size"> Select Bathroom Size: </label>
+         <select name ="bathroom-size" v-model="floorPlan.bathrooms" required>
+             <option value = "6x12">Master Bathroom: 6x12</option>
+             <option value = "5x8">Standard Bathroom: 5x8</option>
+             <option value = "4x6">Half Bath: 4x6</option>
+         </select><br>
 
-          <!-- <label for="bathroom-size" class="bathroom-size"> Select Bathroom Size: </label>
-         <select name ="bathroom-size">
-             <option value = "masterBath">Master Bathroom: 6x12</option>
-             <option value = "standardBath">Standard Bathroom: 5x8</option>
-             <option value = "halfBath">Half Bath: 4x6</option>
-         </select><br> -->
+          <button id="add-bathroom" v-on:click.prevent="addBathroom">Add Bathroom</button><br>
          <button>Next</button>
          </form>
   </div> 
@@ -94,16 +96,18 @@ export default {
 
 
 
-        roomSelection.innerHTML="<option value = 'masterBed'> Master Bedroom: 14x16 </option>"+
-                                "<option value = 'standardBed'>Standard Bedroom: 11x12</option>"+
-                                "<option value='smallBed'>Smalll Bedroom: 10x10</option>"
+        roomSelection.innerHTML="<option value = '14x16'> Master Bedroom: 14x16 </option>"+
+                                "<option value = '11x12'>Standard Bedroom: 11x12</option>"+
+                                "<option value='10x10'>Smalll Bedroom: 10x10</option>"
         
         const roomToAdd = document.getElementById("add-room")
         
         roomToAdd.parentNode.insertBefore(label, roomToAdd)
         roomToAdd.parentNode.insertBefore(roomSelection, roomToAdd)
-        roomToAdd.parentNode.insertBefore(lineBreak, roomToAdd)
-        console.log(this.floorPlan)
+        roomToAdd.parentNode.insertBefore(lineBreak, roomToAdd);
+        console.log(this.floorPlan);
+        console.log(roomSelection.value);
+        this.bedrooms.push(roomSelection.value);
       },
       addBathroom(){
         this.bathroomCount++
