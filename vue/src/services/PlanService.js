@@ -4,6 +4,9 @@ export default{
     getPlans(){
         return axios.get(`/plans`)
     },
+    getPlan(planId){
+        return axios.get(`/plans/${planId}`)
+    },
     create(planBase) {
         return axios.post('/newPlan', planBase);
       },

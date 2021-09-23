@@ -18,9 +18,15 @@ public class PlannerController {
     PlanDao planDao;
 
     @GetMapping("/plans")
-    public List<Plan> getAllPlans(){
-        List<Plan> allPlans = planDao.getPlansByUser();
+    public List<Plan> getAllPlans(Principal principal){
+        List<Plan> allPlans = planDao.getPlansByUser(principal);
         return allPlans;
+    }
+
+    @GetMapping("/plans/{id}")
+    public Plan planById(@PathVariable int id, Principal principal){
+        Plan plan = planDao.getPlanByPlanId(id, principal);
+        return plan;
     }
 
     @PostMapping("/newPlan")

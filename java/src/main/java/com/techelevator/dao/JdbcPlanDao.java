@@ -4,9 +4,11 @@ import com.techelevator.model.Plan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import javax.sql.DataSource;
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,15 +24,26 @@ public class JdbcPlanDao implements PlanDao{
     }
 
     @Override
-    public List<Plan> getPlansByUser(){
+    public List<Plan> getPlansByUser(Principal principal){
         List<Plan> planList= new ArrayList<>();
 
-        String sql = "SELECT * FROM plans;";
-        SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
+        String sql = "SELECT * FROM plans WHERE user_id = (SELECT user_id FROM users WHERE username = ?);";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, principal.getName());
         while(results.next()){
             planList.add(mapResultToPlan(results));
         }
         return  planList;
+    }
+
+    @Override
+    public Plan getPlanByPlanId(int id, Principal principal){
+        Plan plan = new Plan();
+        String sql = "SELECT * FROM plans WHERE user_id = (SELECT user_id FROM users WHERE username = ?) and plan_id = ?;";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, principal.getName(), id);
+        if(results.next()){
+            plan = mapResultToPlan(results);
+        }
+        return  plan;
     }
 
     @Override
