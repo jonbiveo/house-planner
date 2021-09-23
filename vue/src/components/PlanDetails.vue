@@ -1,44 +1,25 @@
 <template>
   <div class = 'plan-details'>
-    <div>
+    <div class="background">
       <form v-on:submit.prevent="saveBase" class='form-plan'>
-        Plan Name:
-        <input type="text" class='plan-name' v-model="planBase.planName" />
-        <label for="house-types" class='house-types'>Select House Type:</label>
-        <select name="house-types" v-model="planBase.houseType" v-on:change="viewRange">
-          <option value="single">Single-Family</option>
-          <option value="detached">Detached</option>
-          <option value="townhouse">Townhouse</option>
-          <option value="land">Empty Lot</option>
+        <h3>Enter your desired home information below.</h3>
+        <input type="text" class='plan-name' placeholder="Plan Name" v-model="planBase.planName" />
+        <label for="State" class='state'>Select State:</label>
+        <select name="state" v-model="planBase.state" required v-on:change="viewRange">
+          <option value="Ohio">OH</option>
         </select>
-        <!-- <label for="region-types">Select Region:</label>
-        <select name="region-types" v-model="planBase.region">
-          <option value="Northeast">Northeast</option>
-          <option value="South">South</option>
-          <option value="Southwest">Southwest</option>
-          <option value="Midwest">Midwest</option>
-          <option value="West">West</option>
-        </select> -->
-
-        <!-- <label for="state">Select State:</label>
-        <select name="state" v-model="planBase.state">
-          <option value="Ohio">Ohio</option>
-        </select>
-      
-        <label for="city">Select City:</label>
-        <select name="city" v-model="planBase.city">
-          <option value="Cincinati">Cincinati</option>
-        </select> -->
-<label for="City" class='city'>Select City:</label>
+        <label for="City" class='city'>Select City:</label>
         <select name="city" v-model="planBase.city" required v-on:change="viewRange">
           <option value="Cleveland">Cleveland</option>
           <option value="Cincinnati">Cincinnati</option>
           <option value="Columbus">Columbus</option>
           <option value="Toledo">Toledo</option>
         </select>
-        <label for="State" class='state'>Select State:</label>
-        <select name="state" v-model="planBase.state" required v-on:change="viewRange">
-          <option value="Ohio">OH</option>
+        <label for="house-types" class='house-types'>Select House Type:</label>
+        <select name="house-types" v-model="planBase.houseType" v-on:change="viewRange">
+          <option value="single_family">Single-Family</option>
+          <option value="multi_family">Multi-Family</option>
+          <option value="land">Empty Lot</option>
         </select>
         <label for="square-foot" class='size'>Select Minimum Square Footage:</label>
         <select v-if="planBase.houseType !== 'land'" name="square-foot" v-model="planBase.size" v-on:change="viewRange" required >
@@ -53,11 +34,12 @@
           <option value="5000">5000</option>
           <option value="7500">7500</option>
         </select>
-      <div v-if="priceCeiling !== -1">
-        <h3>${{priceFloor}} - ${{priceCeiling}}</h3>
-      </div>
         <button>Next</button>
       </form>
+      <div class="costDisplay">
+        <span>Price Range For Current Listings:<h3 v-if="priceCeiling !== -1"> ${{priceFloor}} - ${{priceCeiling}}</h3></span>
+        <span>Average Cost For Current Listings:<h3 v-if="priceFloor !== -1">${{averagePrice}}</h3></span>
+      </div>
     </div>
   </div>
 </template>
@@ -76,12 +58,13 @@ export default {
         size: ""
       },
       priceFloor: -1,
-      priceCeiling: -1
+      priceCeiling: -1,
+      averagePrice: -1
     };
   },
   computed: {
     optionsSelected() {
-      return (this.planBase.houseType !== "" && this.planBase.city !== "" && this.planBase.state !== "");
+      return (this.planBase.houseType !== "" && this.planBase.city !== "" && this.planBase.state !== "" && this.planBase.size);
     }
   },
   methods: {
@@ -89,12 +72,14 @@ export default {
       let options = {};
       this.priceFloor = -1;
       this.priceCeiling = -1;
+      let prices = [];
+      
       if (this.optionsSelected) {
         if (this.planBase.houseType !== "land") {
-          options = planService.setPropertyInfo({offset: '0', limit: '10', sort: 'newest', state_code: this.planBase.state, 
+          options = planService.setPropertyInfo({offset: '0', limit: '150', sort: 'newest', state_code: this.planBase.state, 
           city: this.planBase.city, property_type: this.planBase.houseType, home_size_min: this.planBase.size});
         } else {
-          options = planService.setPropertyInfo({offset: '0', limit: '10', sort: 'newest', state_code: this.planBase.state, 
+          options = planService.setPropertyInfo({offset: '0', limit: '150', sort: 'newest', state_code: this.planBase.state, 
           city: this.planBase.city, property_type: this.planBase.houseType, lot_size_min: this.planBase.size});
         }
         planService.getProperties(options).then(
@@ -102,14 +87,22 @@ export default {
             let results = response.data.data.home_search.results;
             results.forEach(
               (element) => {
-                if (element.list_price > this.priceCeiling) {
-                  this.priceCeiling = element.list_price;
+                let currentPrice = element.list_price;
+                prices.push(currentPrice);
+                if (currentPrice > this.priceCeiling) {
+                  this.priceCeiling = currentPrice;
                 }
-                if (element.list_price < this.priceFloor || this.priceFloor === -1) {
-                  this.priceFloor = element.list_price;
+                if ((currentPrice < this.priceFloor || this.priceFloor === -1) && typeof currentPrice === "number" ) {
+                  this.priceFloor = currentPrice;
                 } 
-                console.log(element.list_price);
             });
+              this.averagePrice = prices.reduce(
+                (sum, num) => {
+                  return sum + num;
+                }
+              );
+              this.averagePrice = this.averagePrice / prices.length;
+              this.averagePrice = this.averagePrice.toFixed(0);
           }
         );
       }
@@ -141,5 +134,80 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.plan-details {
+  display: grid;
+  height: 75vh;
+  margin-top: 50px;
+  grid-template-columns: 1fr;
+  grid-template-areas: 
+  "form"
+  "costDisplay";
+  justify-items: center;
+  align-items: center;
+}
+
+.background {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-areas: 
+  "form"
+  "costDisplay";
+  justify-items: center;
+  align-items: center;
+  width: 60vw;
+  background-color: #264653;
+  border-radius: 10px;
+  padding: 16px;
+}
+
+.form-plan {
+margin-top: 20px;
+grid-area: form;  
+display: grid;
+justify-content: center;
+width: 55%;
+padding: 15px;
+}
+
+ .form-plan input {
+  min-width: 450px;
+  font-size: 16pt;
+}
+
+.form-plan select, .form-plan label, .form-plan h3 {
+  min-width: 300px;
+  font-size: 16pt;
+  color: #E76F51;
+}
+
+.form-plan button {
+  margin: 15px auto;
+  min-width: 150px;
+  height: 35px;
+  font-size: 16pt;
+  border-radius: 15px;
+  border: none;
+  background-color: #E76F51;
+}
+
+.costDisplay {
+  margin-left: 135px;
+  justify-self: start;
+  grid-area: costDisplay;
+  height: 100px;
+}
+
+.costDisplay h3 {
+  display: inline;
+  margin-top: 0;
+  margin-left: 25px;
+}
+
+.costDisplay span {
+  display: block;
+  color: #E76F51;
+  font-size: 16pt;
+}
+
 </style>
