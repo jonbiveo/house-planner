@@ -30,7 +30,7 @@ const router = new Router({
       name: 'landing',
       component: Landing,
       meta: {
-        requiresAuth: true
+        requiresAuth: false
       }
     },
     {

@@ -1,13 +1,20 @@
 <template>
   <div class="landing">
-    <h1>Welcome</h1>
-      <p>A useful website to help pick out and design a floor plan!</p>
+    <hero/>
+    <slideshow/>
+    <about/>
+    <contact/>
   </div>
 </template>
 
 <script>
+import About from '../components/About.vue';
+import Contact from '../components/Contact.vue';
+import Hero from '../components/Hero.vue';
+import Slideshow from '../components/Slideshow.vue';
+
 export default {
-  components: {  },
+  components: {Hero, Slideshow, About, Contact},
   name: "landing",
 };
 </script>

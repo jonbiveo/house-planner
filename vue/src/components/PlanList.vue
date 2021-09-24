@@ -32,6 +32,7 @@ export default {
     planService.getPlans(this.$route.params.id).then((response) => {
       this.planName = response.data.planName;
       this.plans = response.data;
+      console.log(JSON.stringify(JSON.parse(localStorage.getItem("user"))))
     });
   },
   methods: {
@@ -65,6 +66,8 @@ export default {
   max-width: 80px;
   text-align: center;
   cursor: default;
+  font-size: 14px;
+  font-weight: bold;
 }
 
 .plan-image,

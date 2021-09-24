@@ -17,7 +17,7 @@ export default{
           params: info,
           headers: {
           'x-rapidapi-host': 'us-real-estate.p.rapidapi.com',
-          'x-rapidapi-key': 'babb77fc36msh84d572d81feb391p146b30jsn26eca0abd8f0'
+          'x-rapidapi-key': 'd5236fb9cbmsh60dcb773a1e88a9p1584f2jsna89aa9fc2c95'
           }
         };
       },  

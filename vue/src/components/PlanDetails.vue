@@ -36,7 +36,12 @@
         </select>
         <button>Next</button>
       </form>
-      <div class="costDisplay">
+          <img
+            class="loading"
+            src="https://i.gifer.com/ZZ5H.gif"
+            v-if="isLoading"
+          />
+      <div class="costDisplay" v-else v-show="optionsSelected">
         <span>Price Range For Current Listings:<h3 class="priceRange" v-if="priceCeiling !== -1">{{priceFloor}} - {{priceCeiling}}</h3></span>
         <span>Average Cost For Current Listings:<h3 v-if="priceFloor !== -1">{{averagePrice}}</h3></span>
       </div>
@@ -59,7 +64,9 @@ export default {
       },
       priceFloor: -1,
       priceCeiling: -1,
-      averagePrice: -1
+      averagePrice: -1,
+
+      isLoading: false,
     };
   },
   computed: {
@@ -69,6 +76,9 @@ export default {
   },
   methods: {
     viewRange(){
+      if (this.optionsSelected){
+      this.isLoading=true
+      }
       let options = {};
       this.priceFloor = -1;
       this.priceCeiling = -1;
@@ -84,6 +94,7 @@ export default {
         }
         planService.getProperties(options).then(
           (response) => {
+          this.isLoading=false;
             let results = response.data.data.home_search.results;
             results.forEach(
               (element) => {
@@ -220,6 +231,10 @@ padding: 15px;
 
 .priceRange {
   padding-left: 12px;
+}
+
+.loading {
+  max-height: 30px;
 }
 
 </style>
