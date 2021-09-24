@@ -4,6 +4,7 @@
 
 <script>
 import PlanDetails from '../components/PlanDetails.vue'
+
 export default {
   components: { PlanDetails },
 

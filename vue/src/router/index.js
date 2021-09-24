@@ -9,6 +9,7 @@ import Details from '../views/Details.vue'
 import Builder from '../views/Builder.vue'
 import Plans from '../views/Plans.vue'
 import Card from '../views/Card.vue'
+import CostBreakdown from "../views/CostBreakdown.vue"
 
 Vue.use(Router)
 
@@ -85,6 +86,14 @@ const router = new Router({
       path: "/plan-builder",
       name: "plan-builder",
       component: Builder,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: "/cost-breakdown/:id",
+      name: "cost-breakdown",
+      component: CostBreakdown,
       meta: {
         requiresAuth: true
       }
