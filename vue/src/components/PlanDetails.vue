@@ -3,8 +3,7 @@
     <div class="background">
       <form v-on:submit.prevent="saveBase" class='form-plan'>
         <h3>Enter your desired home information below.</h3>
-        <label for="plan-name" class='plan-name'>Plan Name:</label>
-        <input name="plan-name" type="text" class='plan-name' v-model="planBase.planName" />
+        <input type="text" class='plan-name' placeholder="Plan Name" v-model="planBase.planName" />
         <label for="State" class='state'>Select State:</label>
         <select name="state" v-model="planBase.state" required v-on:change="viewRange">
           <option value="Ohio">OH</option>
@@ -37,12 +36,7 @@
         </select>
         <button>Next</button>
       </form>
-          <img
-            class="loading"
-            src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/04de2e31234507.564a1d23645bf.gif"
-            v-if="isLoading"
-          />
-      <div class="costDisplay" v-else v-show="optionsSelected">
+      <div class="costDisplay">
         <span>Price Range For Current Listings:<h3 class="priceRange" v-if="priceCeiling !== -1">{{priceFloor}} - {{priceCeiling}}</h3></span>
         <span>Average Cost For Current Listings:<h3 v-if="priceFloor !== -1">{{averagePrice}}</h3></span>
       </div>
@@ -65,9 +59,7 @@ export default {
       },
       priceFloor: -1,
       priceCeiling: -1,
-      averagePrice: -1,
-
-      isLoading: false,
+      averagePrice: -1
     };
   },
   computed: {
@@ -77,9 +69,6 @@ export default {
   },
   methods: {
     viewRange(){
-      if (this.optionsSelected){
-      this.isLoading=true
-      }
       let options = {};
       this.priceFloor = -1;
       this.priceCeiling = -1;
@@ -95,7 +84,6 @@ export default {
         }
         planService.getProperties(options).then(
           (response) => {
-          this.isLoading=false;
             let results = response.data.data.home_search.results;
             results.forEach(
               (element) => {
@@ -232,10 +220,6 @@ padding: 15px;
 
 .priceRange {
   padding-left: 12px;
-}
-
-.loading {
-  max-height: 100px;
 }
 
 </style>
