@@ -3,7 +3,8 @@
     <div class="background">
       <form v-on:submit.prevent="saveBase" class='form-plan'>
         <h3>Enter your desired home information below.</h3>
-        <input type="text" class='plan-name' placeholder="Plan Name" v-model="planBase.planName" />
+        <label for="plan-name" class='plan-name'>Plan Name:</label>
+        <input name="plan-name" type="text" class='plan-name' v-model="planBase.planName" />
         <label for="State" class='state'>Select State:</label>
         <select name="state" v-model="planBase.state" required v-on:change="viewRange">
           <option value="Ohio">OH</option>
@@ -38,7 +39,7 @@
       </form>
           <img
             class="loading"
-            src="https://i.gifer.com/ZZ5H.gif"
+            src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/04de2e31234507.564a1d23645bf.gif"
             v-if="isLoading"
           />
       <div class="costDisplay" v-else v-show="optionsSelected">
@@ -234,7 +235,7 @@ padding: 15px;
 }
 
 .loading {
-  max-height: 30px;
+  max-height: 100px;
 }
 
 </style>

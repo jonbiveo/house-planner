@@ -8,7 +8,7 @@
         v-on:click="viewPlanDetails(plan.planId)"
       >
         <div class="plan-image">plan icon</div>
-        <p class="plan-name">{{ plan.planName }}</p>
+        <p class="list-plan-name">{{ plan.planName }}</p>
       </div>
       <router-link v-bind:to="{ name: 'details' }">
         <div class="new-plan">+<br />New Plan</div>
@@ -62,7 +62,7 @@ export default {
   margin: 0 0 70px 0;
 }
 
-.plan-name {
+.list-plan-name {
   max-width: 80px;
   text-align: center;
   cursor: default;
