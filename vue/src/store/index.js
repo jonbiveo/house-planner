@@ -32,6 +32,52 @@ export default new Vuex.Store({
       kitchen: "",
       bedrooms:[],
       bathrooms:[]
+    },
+    costLow: {
+      lumber: 16.2,
+      concrete: 1.98,
+      drywall: 1.8,
+      flooring: 2.7,
+      siding: 7.65,
+      constructionManager: 8.46,
+      electrician: 2.7,
+      roofer: 3.3,
+      plumber: 2.03,
+      concreteContractor: 3.05,
+      framer: 13.5,
+      other: 27
+    },
+    costHigh: {
+      lumber: 19.8,
+      concrete: 2.42,
+      drywall: 2.2,
+      flooring: 3.3,
+      siding: 9.35,
+      constructionManager: 10.34,
+      electrician: 3.3,
+      roofer: 3.3,
+      plumber: 2.48,
+      concreteContractor: 3.75,
+      framer: 16.5,
+      other: 27
+    },
+    specialFeaturesLow: {
+      pool: 50000,
+      heatedFloor: 12,
+      basement: 18000,
+      outdoorDeck: 6900
+    },
+    specialFeaturesHigh: {
+      pool: 53000,
+      heatedFloor: 14,
+      basement: 22000,
+      outdoorDeck: 8100
+    },
+    multiplier: {
+      cleveland: 0.72,
+      cincinnati: 1.66,
+      columbus: 1.98,
+      toledo: 0.84
     }
   },
   mutations: {

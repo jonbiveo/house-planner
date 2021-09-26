@@ -3,6 +3,7 @@
     <div class="background">
       <form v-on:submit.prevent="saveBase" class='form-plan'>
         <h3>Enter your desired home information below.</h3>
+        <input type="text" class='plan-name' placeholder="Plan Name" v-model="floorPlan.planName" />
         <label for="plan-name" class='plan-name'>Plan Name:</label>
         <input type="text" class='plan-name' placeholder="Plan Name" v-model="planBase.planName" />
         <label for="State" class='state'>Select State:</label>
@@ -37,7 +38,12 @@
         </select>
         <button>Next</button>
       </form>
-      <div class="costDisplay">
+      <img
+        class="loading"
+        src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/04de2e31234507.564a1d23645bf.gif"
+        v-if="isLoading"
+      />
+      <div class="costDisplay" v-else v-show="optionsSelected">
         <span>Price Range For Current Listings:<h3 class="priceRange" v-if="priceCeiling !== -1">{{priceFloor}} - {{priceCeiling}}</h3></span>
         <span>Average Cost For Current Listings:<h3 v-if="priceFloor !== -1">{{averagePrice}}</h3></span>
       </div>
@@ -73,12 +79,14 @@ export default {
     },
       priceFloor: -1,
       priceCeiling: -1,
-      averagePrice: -1
+      averagePrice: -1,
+
+      isLoading: false,
     };
   },
   computed: {
     optionsSelected() {
-      return (this.planBase.houseType !== "" && this.planBase.city !== "" && this.planBase.state !== "" && this.planBase.size);
+      return (this.floorPlan.houseType !== "" && this.floorPlan.city !== "" && this.floorPlan.state !== "" && this.floorPlan.squareFootage);
     }
   },
   methods: {
@@ -89,15 +97,17 @@ export default {
       let prices = [];
       
       if (this.optionsSelected) {
-        if (this.planBase.houseType !== "land") {
-          options = planService.setPropertyInfo({offset: '0', limit: '150', sort: 'newest', state_code: this.planBase.state, 
-          city: this.planBase.city, property_type: this.planBase.houseType, home_size_min: this.planBase.size});
+        this.isLoading = true;
+        if (this.floorPlan.houseType !== "land") {
+          options = planService.setPropertyInfo({offset: '0', limit: '150', sort: 'newest', state_code: this.floorPlan.state, 
+          city: this.floorPlan.city, property_type: this.floorPlan.houseType, home_size_min: this.floorPlan.size});
         } else {
-          options = planService.setPropertyInfo({offset: '0', limit: '150', sort: 'newest', state_code: this.planBase.state, 
-          city: this.planBase.city, property_type: this.planBase.houseType, lot_size_min: this.planBase.size});
+          options = planService.setPropertyInfo({offset: '0', limit: '150', sort: 'newest', state_code: this.floorPlan.state, 
+          city: this.floorPlan.city, property_type: this.floorPlan.houseType, lot_size_min: this.floorPlan.size});
         }
         planService.getProperties(options).then(
           (response) => {
+            this.isLoading = false;
             let results = response.data.data.home_search.results;
             results.forEach(
               (element) => {
@@ -130,18 +140,18 @@ export default {
     saveBase() {
       const newPlan = {
         userId: JSON.stringify(JSON.parse(localStorage.getItem('user')).id),
-        planName:this.planBase.planName,
-        houseType: this.planBase.houseType,
-        city:this.planBase.city,
-        state:this.planBase.state,
-        size:this.planBase.size
+        planName:this.floorPlan.planName,
+        houseType: this.floorPlan.houseType,
+        city:this.floorPlan.city,
+        state:this.floorPlan.state,
+        size:this.floorPlan.size
       }
       console.log(newPlan)
       planService
       .create(newPlan)
       .then((response)=>{
         console.log(response.data),
-        this.planBase = {
+        this.floorPlan = {
         planName: '',
         houseType: '',
         city:'',
@@ -157,14 +167,10 @@ export default {
 <style scoped>
 .plan-details {
   display: grid;
-  height: 75vh;
-  margin-top: 50px;
+  height: 50vh;
+  margin-top: 30px;
   grid-template-columns: 1fr;
-  grid-template-areas: 
-  "form"
-  "costDisplay";
   justify-items: center;
-  align-items: center;
 }
 
 .background {
@@ -176,29 +182,30 @@ export default {
   justify-items: center;
   align-items: center;
   width: 60vw;
-  background-color: #264653;
+  min-height: 550px;
+  background-color: #ffe9b3;
   border-radius: 10px;
-  padding: 16px;
+  padding: 10px;
+  box-shadow: 5px 5px 5px #264653;
 }
 
 .form-plan {
-margin-top: 20px;
+margin-top: 15px;
 grid-area: form;  
 display: grid;
 justify-content: center;
 width: 55%;
-padding: 15px;
 }
 
  .form-plan input {
   min-width: 450px;
-  font-size: 16pt;
+  font-size: 14px;
 }
 
 .form-plan select, .form-plan label, .form-plan h3 {
   min-width: 300px;
-  font-size: 16pt;
-  color: #E76F51;
+  font-size: 14pt;
+  color: #264653;
 }
 
 .form-plan button {
@@ -206,6 +213,7 @@ padding: 15px;
   min-width: 150px;
   height: 35px;
   font-size: 16pt;
+  color: white;
   border-radius: 15px;
   border: none;
   background-color: #E76F51;
@@ -215,25 +223,28 @@ padding: 15px;
   margin-left: 135px;
   justify-self: start;
   grid-area: costDisplay;
-  height: 100px;
 }
 
 .costDisplay span h3{
   display: inline;
   margin-top: 0;
   margin-left: 25px;
-  font-size: 16pt;
+  font-size: 14pt;
 }
 
 .costDisplay span {
   display: block;
-  color: #E76F51;
-  font-size: 16pt;
-  margin-bottom: 15px;
+  color: #264653;
+  font-size: 14pt;
+  margin-bottom: 12px;
 }
 
 .priceRange {
   padding-left: 12px;
+}
+
+.loading {
+  max-height: 80px;
 }
 
 </style>
