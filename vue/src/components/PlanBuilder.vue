@@ -81,6 +81,45 @@
             <option value = "11x12">Standard Bedroom: 11x12</option>
         </select>
 
+        <!-- First Floor Bathrooms -->
+
+          <label for="f1bathroom" class="bathooms">Select Floor 1 Bathrooms</label>
+        <select name ="f1bathroom" v-model="floorPlan.floorOne.bathrooms" required>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+        </select>
+
+        <label for="f1bathroom-size" class="bathroom-size"> Select Master Bathroom Size: </label>
+        <select name ="f1bathroom1-size" v-model="floorPlan.floorOne.ba1" required>
+             <option value = "8x12">8x12</option>
+             <option value = "6x12">6x12</option>
+             <option value = "6x10">6x10</option>
+         </select><br>
+
+        <label for="f1bathroom2-size" class="bathroom-size" v-if="floorPlan.floorOne.bathrooms > 1"> Select Bathroom Size:</label>
+        <select name ="bathroom-size" v-model="floorPlan.floorOne.ba2" v-if="floorPlan.floorOne.bathrooms > 1" required>
+              <option value = "6x10">Large Bathroom: 6x10</option>
+             <option value = "5x8">Standard Bathroom: 5x8</option>
+             <option value = "4x6">Half Bath: 4x6</option>
+         </select><br>
+
+        <label for="f1bathroom2-size" class="bathroom-size" v-if="floorPlan.floorOne.bathrooms > 2"> Select Bathroom Size: </label>
+        <select name ="bathroom-size" v-model="floorPlan.floorOne.ba3"  v-if="floorPlan.floorOne.bathrooms > 2" required>
+               <option value = "6x10">Large Bathroom: 6x10</option>
+             <option value = "5x8">Standard Bathroom: 5x8</option>
+             <option value = "4x6">Half Bath: 4x6</option>
+         </select><br>
+
+        <label for="f1bathroom3-size" class="bathroom-size" v-if="floorPlan.floorOne.bathrooms > 3"> Select Bathroom Size: </label>
+        <select name ="bathroom-size" v-model="floorPlan.floorOne.ba4" v-if="floorPlan.floorOne.bathrooms > 3" required>
+               <option value = "6x10">Large Bathroom: 6x10</option>
+             <option value = "5x8">Standard Bathroom: 5x8</option>
+             <option value = "4x6">Half Bath: 4x6</option>
+         </select><br>
+
+      
           <!--  -->
           <!-- Second Floor -->
           <!--  -->
@@ -125,6 +164,46 @@
              <option value = "11x12">Standard Bedroom: 11x12</option>
          </select>
 
+
+        <!-- Second Floor Bathrooms -->
+
+          <label for="f2bathroom" class="bathooms" v-if="floorPlan.floors > 1">Select Floor 2 Bathrooms</label>
+        <select name ="f2bathrooms" v-model="floorPlan.floorTwo.bathrooms" v-if="floorPlan.floors > 1" required>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+        </select>
+
+        
+        <label for="f2bathroom-size" class="bathroom-size" v-if="floorPlan.floors > 1"> Select Bathroom Size: </label>
+        <select name ="f2bathroom1-size" v-model="floorPlan.floorTwo.ba1" v-if="floorPlan.floors > 1" required>
+             <option value = "6x10">Large Bathroom: 6x10</option>
+             <option value = "5x8">Standard Bathroom: 5x8</option>
+            <option value = "4x6">Half Bath: 4x6</option>
+         </select><br>
+
+        <label for="f2bathroom2-size" class="bathroom-size" v-if="floorPlan.floorTwo.bathrooms > 1"> Select Bathroom Size:</label>
+        <select name ="f2bathroom2-size" v-model="floorPlan.floorTwo.ba2" v-if="floorPlan.floorTwo.bathrooms > 1" required>
+           <option value = "6x10">Large Bathroom: 6x10</option>
+             <option value = "5x8">Standard Bathroom: 5x8</option>
+             <option value = "4x6">Half Bath: 4x6</option>
+         </select><br>
+
+        <label for="f2bathroom3-size" class="bathroom-size" v-if="floorPlan.floorTwo.bathrooms > 2"> Select Bathroom Size: </label>
+        <select name ="f2bathroom3-size" v-model="floorPlan.floorTwo.ba3"  v-if="floorPlan.floorTwo.bathrooms > 2" required>
+           <option value = "6x10">Large Bathroom: 6x10</option>
+             <option value = "5x8">Standard Bathroom: 5x8</option>
+             <option value = "4x6">Half Bath: 4x6</option>
+         </select><br>
+
+        <label for="f2bathroom4-size" class="bathroom-size" v-if="floorPlan.floorTwo.bathrooms > 3"> Select Bathroom Size: </label>
+        <select name ="f2bathroom4-size" v-model="floorPlan.floorTwo.ba4" v-if="floorPlan.floorTwo.bathrooms > 3" required>
+           <option value = "6x10">Large Bathroom: 6x10</option>
+             <option value = "5x8">Standard Bathroom: 5x8</option>
+             <option value = "4x6">Half Bath: 4x6</option>
+         </select><br>
+
          <!--  -->
          <!-- Third Floor -->
          <!--  -->
@@ -168,6 +247,45 @@
              <option value = "14x16">Large Bedroom: 14x16</option>
              <option value = "11x12">Standard Bedroom: 11x12</option>
          </select>
+
+         <!--Third Floor Bathrooms -->
+
+ <label for="f3bathrooms" class="bathooms" v-if="floorPlan.floors > 2">Select Floor 3 Bathrooms</label>
+        <select name ="f3bathrooms" v-model="floorPlan.floorThree.bathrooms" v-if="floorPlan.floors > 2" required>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+        </select>
+
+        
+        <label for="f3bathroom-size" class="bathroom-size" v-if="floorPlan.floors > 2"> Select Bathroom Size: </label>
+        <select name ="f3bathroom1-size" v-model="floorPlan.floorThree.ba1" v-if="floorPlan.floors > 2" required>
+           <option value = "6x10">Large Bathroom: 6x10</option>
+             <option value = "5x8">Standard Bathroom: 5x8</option>
+             <option value = "4x6">Half Bath: 4x6</option>
+         </select><br>
+
+        <label for="f3bathroom2-size" class="bathroom-size" v-if="floorPlan.floorThree.bathrooms > 1"> Select Bathroom Size:</label>
+        <select name ="f3bathroom2-size" v-model="floorPlan.floorThree.ba2" v-if="floorPlan.floorThree.bathrooms > 1" required>
+          <option value = "6x10">Large Bathroom: 6x10</option>
+             <option value = "5x8">Standard Bathroom: 5x8</option>
+             <option value = "4x6">Half Bath: 4x6</option>
+         </select><br>
+
+        <label for="f3bathroom3-size" class="bathroom-size" v-if="floorPlan.floorThree.bathrooms > 2"> Select Bathroom Size: </label>
+        <select name ="f3bathroom3-size" v-model="floorPlan.floorThree.ba3"  v-if="floorPlan.floorThree.bathrooms > 2" required>
+           <option value = "6x10">Large Bathroom: 6x10</option>
+             <option value = "5x8">Standard Bathroom: 5x8</option>
+             <option value = "4x6">Half Bath: 4x6</option>
+         </select><br>
+
+        <label for="f3bathroom4-size" class="bathroom-size" v-if="floorPlan.floorThree.bathrooms > 3"> Select Bathroom Size: </label>
+        <select name ="f3bathroom4-size" v-model="floorPlan.floorThree.ba4" v-if="floorPlan.floorThree.bathrooms > 3" required>
+         <option value = "6x10">Large Bathroom: 6x10</option>
+             <option value = "5x8">Standard Bathroom: 5x8</option>
+             <option value = "4x6">Half Bath: 4x6</option>
+         </select><br>
 
         <!-- <label for="bedroom1Size" class="bedroom"> Select Bedroom Size: </label>
         <select name ="bedroom1Size" v-model="floorPlan.bedrooms" required>
@@ -218,12 +336,17 @@ export default {
         livingRoom: "",
         kitchen: "",
         floorOne: {
-          bedrooms: 1,
-          b1: "",
-          b2: "",
-          b3: "",
-          b4: "",
-          b5: "",
+            bedrooms: "",
+            b1: "",
+            b2: "",
+            b3: "",
+            b4: "",
+            b5: "",
+            bathrooms: "",
+            ba1: "",
+            ba2: "",
+            ba3: "",
+            ba4: ""
         },
         floorTwo: {
           bedrooms: "",
@@ -232,6 +355,11 @@ export default {
           b3: "",
           b4: "",
           b5: "",
+          bathrooms: "",
+          ba1: "",
+          ba2: "",
+          ba3: "",
+          ba4: ""
         },
         floorThree: {
           bedrooms: "",
@@ -240,6 +368,11 @@ export default {
           b3: "",
           b4: "",
           b5: "",
+          bathrooms: "",
+          ba1: "",
+          ba2: "",
+          ba3: "",
+          ba4: ""
         },
         bedrooms: [],
         bathrooms: [],
