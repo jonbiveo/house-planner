@@ -55,6 +55,7 @@ import planService from "@/services/PlanService";
 export default {
   data() {
     return {
+      multiplier: 0,
       planBase: {
         userId:"",
         planName: "",
@@ -62,20 +63,9 @@ export default {
         city: "",
         state: "",
         size: "",
+        costHigh: "",
+        costLow: ""
       },
-    floorPlan: {
-      userId:"",
-      planName: "",
-      houseType: "",
-      city: "",
-      state: "",
-      squareFootage: "",
-      floors: "",
-      livingRoom: "",
-      kitchen: "",
-      bedrooms:[],
-      bathrooms:[]
-    },
       priceFloor: -1,
       priceCeiling: -1,
       averagePrice: -1,
@@ -85,7 +75,7 @@ export default {
   },
   computed: {
     optionsSelected() {
-      return (this.floorPlan.houseType !== "" && this.floorPlan.city !== "" && this.floorPlan.state !== "" && this.floorPlan.squareFootage);
+      return (this.planBase.houseType !== "" && this.planBase.city !== "" && this.planBase.state !== "" && this.planBase.size);
     }
   },
   methods: {
@@ -97,13 +87,14 @@ export default {
       
       if (this.optionsSelected) {
         this.isLoading = true;
-        if (this.floorPlan.houseType !== "land") {
-          options = planService.setPropertyInfo({offset: '0', limit: '150', sort: 'newest', state_code: this.floorPlan.state, 
-          city: this.floorPlan.city, property_type: this.floorPlan.houseType, home_size_min: this.floorPlan.size});
+        if (this.planBase.houseType !== "land") {
+          options = planService.setPropertyInfo({offset: '0', limit: '150', sort: 'newest', state_code: this.planBase.state, 
+          city: this.planBase.city, property_type: this.planBase.houseType, home_size_min: this.planBase.size});
         } else {
-          options = planService.setPropertyInfo({offset: '0', limit: '150', sort: 'newest', state_code: this.floorPlan.state, 
-          city: this.floorPlan.city, property_type: this.floorPlan.houseType, lot_size_min: this.floorPlan.size});
+          options = planService.setPropertyInfo({offset: '0', limit: '150', sort: 'newest', state_code: this.planBase.state, 
+          city: this.planBase.city, property_type: this.planBase.houseType, lot_size_min: this.planBase.size});
         }
+
         planService.getProperties(options).then(
           (response) => {
             this.isLoading = false;
@@ -137,27 +128,53 @@ export default {
       }
     },
     saveBase() {
+      if (this.planBase.city === "Cleveland") {
+          this.multiplier = this.$store.state.multiplier.cleveland;
+      } else if (this.planBase.city === "Cincinnati") {
+          this.multiplier = this.$store.state.multiplier.cincinnati;
+      } else if (this.planBase.city === "Columbus") {
+          this.multiplier = this.$store.state.multiplier.columbus;
+      } else if (this.planBase.city === "Toledo") {
+          this.multiplier = this.$store.state.multiplier.toledo;
+      }
+
       const newPlan = {
         userId: JSON.stringify(JSON.parse(localStorage.getItem('user')).id),
-        planName:this.floorPlan.planName,
-        houseType: this.floorPlan.houseType,
-        city:this.floorPlan.city,
-        state:this.floorPlan.state,
-        size:this.floorPlan.size
+        planName: this.planBase.planName,
+        houseType: this.planBase.houseType,
+        city: this.planBase.city,
+        state: this.planBase.state,
+        size: this.planBase.size,
+        costHigh: (this.planBase.size * this.multiplier * this.$store.state.costHigh.total),
+        costLow: (this.planBase.size * this.multiplier * this.$store.state.costLow.total)
       }
-      console.log(newPlan)
-      planService
-      .create(newPlan)
-      .then((response)=>{
-        console.log(response.data),
-        this.floorPlan = {
-        planName: '',
-        houseType: '',
-        city:'',
-        state: '',
-        size:''},
-        this.$router.push("/plan-builder")
-      })
+
+      this.$store.commit("PLAN_DETAILS", newPlan);
+      this.$router.push("/plan-builder");
+      // this.planBase = {
+      //   planName: '',
+      //   houseType: '',
+      //   city:'',
+      //   state: '',
+      //   size:'',
+      //   costHigh: "",
+      //   costLow: ""
+      //   }
+
+      //this.$store.state.floorPlan.planName = this.planBase.planName;
+      //console.log(newPlan)
+      //planService
+      //.create(newPlan)
+      //.then((response)=>{
+        //console.log(response.data),
+        // this.planBase = {
+        // planName: '',
+        // houseType: '',
+        // city:'',
+        // state: '',
+        // size:''},
+        // this.$router.push("/plan-builder")
+      // })
     },
   },
 };

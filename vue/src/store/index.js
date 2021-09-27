@@ -24,14 +24,16 @@ export default new Vuex.Store({
       userId:"",
       planName: "",
       houseType: "",
-      city: "cleveland",
-      state: "OH",
-      squareFootage: 2000,
+      city: "",
+      state: "",
+      squareFootage: "",
       floors: "",
       livingRoom: "",
       kitchen: "",
       bedrooms:[],
-      bathrooms:[]
+      bathrooms:[],
+      costHigh: "",
+      costLow: ""
     },
     costLow: {
       lumber: 16.2,
@@ -98,6 +100,16 @@ export default new Vuex.Store({
       state.token = '';
       state.user = {};
       axios.defaults.headers.common = {};
+    },
+    PLAN_DETAILS(state, newPlan) {
+      state.floorPlan.userId = newPlan.userId;
+      state.floorPlan.planName = newPlan.planName;
+      state.floorPlan.houseType = newPlan.houseType;
+      state.floorPlan.city = newPlan.city;
+      state.floorPlan.state = newPlan.state;
+      state.floorPlan.squareFootage = newPlan.size;
+      state.floorPlan.costHigh = newPlan.costHigh;
+      state.floorPlan.costLow = newPlan.costLow;
     }
   }
 })

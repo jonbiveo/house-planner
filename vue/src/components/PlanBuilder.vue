@@ -335,6 +335,8 @@ export default {
         floors: 1,
         livingRoom: "",
         kitchen: "",
+        costHigh: 0,
+        costLow: 0,
         floorOne: {
             bedrooms: "",
             b1: "",
@@ -440,6 +442,17 @@ export default {
       });
     },
   },
+  created() {
+      console.log(this.$store.state.floorPlan);
+      this.floorPlan.userId = this.$store.state.floorPlan.userId;
+      this.floorPlan.planName = this.$store.state.floorPlan.planName;
+      this.floorPlan.houseType = this.$store.state.floorPlan.houseType;
+      this.floorPlan.city = this.$store.state.floorPlan.city;
+      this.floorPlan.state = this.$store.state.floorPlan.state;
+      this.floorPlan.squareFootage = this.$store.state.floorPlan.squareFootage;
+      this.floorPlan.costHigh = this.$store.state.floorPlan.costHigh;
+      this.floorPlan.costLow = this.$store.state.floorPlan.costLow;
+    }
 };
 </script>
 
