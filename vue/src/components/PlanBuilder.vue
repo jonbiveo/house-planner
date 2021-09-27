@@ -581,6 +581,8 @@
 
         <button class="next-btn" @click="goToRoomDesign"> Next
         </button>
+        <button class="bck-btn" @click="goToPlanDetails"> Previous
+          </button>
       </form>
     </div>
   </div>
@@ -654,64 +656,10 @@ export default {
   methods: {
     goToRoomDesign(){
       this.$router.push('/room-design'); 
-     }
-    ,
-    saveRooms() {
-      this.floorPlan.bedrooms = this.bedrooms;
-      this.floorPlan.bathrooms = this.bathrooms;
-    },
-    addBedroom() {
-      this.bedroomCount++;
-      const label = document.createElement("label");
-      const roomSelection = document.createElement("select");
-      const lineBreak = document.createElement("br");
-      roomSelection.className = "new-bedroom";
-      label.innerText = "Bedroom " + this.bedroomCount + ": ";
-
-      roomSelection.innerHTML =
-        "<option value = ''/>" +
-        "<option value = '14x16'> Master Bedroom: 14x16 </option>" +
-        "<option value = '11x12'>Standard Bedroom: 11x12</option>" +
-        "<option value='10x10'>Smalll Bedroom: 10x10</option>";
-
-      const roomToAdd = document.getElementById("add-room");
-
-      roomToAdd.parentNode.insertBefore(label, roomToAdd);
-      roomToAdd.parentNode.insertBefore(roomSelection, roomToAdd);
-      roomToAdd.parentNode.insertBefore(lineBreak, roomToAdd);
-      console.log(this.floorPlan);
-      roomSelection.addEventListener("change", (event) => {
-        console.log(event.target.value);
-        this.bedrooms.push(event.target.value);
-      });
-    },
-    addBathroom() {
-      this.bathroomCount++;
-      const label = document.createElement("label");
-      const roomSelection = document.createElement("select");
-      const lineBreak = document.createElement("br");
-      roomSelection.className = "new-bathroom";
-
-      label.innerText = "Bathroom " + this.bathroomCount + ": ";
-
-      roomSelection.innerHTML =
-        "<option value = ''/>" +
-        "<option value = 'masterBath'>Master Bathroom: 6x12</option>" +
-        "<option value = 'standardBath'>Standard Bathroom: 5x8</option>" +
-        "<option value = 'halfBath'>Half Bath: 4x6</option>";
-
-      const roomToAdd = document.getElementById("add-bathroom");
-
-      roomToAdd.parentNode.insertBefore(label, roomToAdd);
-      roomToAdd.parentNode.insertBefore(roomSelection, roomToAdd);
-      roomToAdd.parentNode.insertBefore(lineBreak, roomToAdd);
-      console.log(this.floorPlan);
-      roomSelection.addEventListener("change", (event) => {
-        console.log(event.target.value);
-        this.bathrooms.push(event.target.value);
-      });
-    },
-  },
+     },
+     goToPlanDetails(){
+       this.$router.push('/details')
+     },
   created() {
       console.log(this.$store.state.floorPlan);
       this.floorPlan.userId = this.$store.state.floorPlan.userId;
@@ -723,7 +671,8 @@ export default {
       this.floorPlan.costHigh = this.$store.state.floorPlan.costHigh;
       this.floorPlan.costLow = this.$store.state.floorPlan.costLow;
     }
-};
+}
+}
 </script>
 
 <style scoped>
@@ -767,44 +716,106 @@ h1 {
   padding: 10px;
 } */
 
-.next-btn {
-  margin: 15px auto;
+button {
+  margin: 10px auto;
+  padding: 1-px;
   min-width: 150px;
-  height: 35px;
+  height: 25px;
   font-size: 16pt;
   border-radius: 15px;
   border: none;
   background-color: #e76f51;
+  color: black;
 }
 </style>
 
-<!-- </div> -->
-        <!-- <label for="bedroom1Size" class="bedroom"> Select Bedroom Size: </label>
-        <select name ="bedroom1Size" v-model="floorPlan.bedrooms" required>
-             <option value = "1">1</option>
-             <option value = "2">2</option>
-             <option value = "3">3</option>
-             <option value = "4">4</option>
-         </select><br> -->
+// <!-- </div> -->
+//         <!-- <label for="bedroom1Size" class="bedroom"> Select Bedroom Size: </label>
+//         <select name ="bedroom1Size" v-model="floorPlan.bedrooms" required>
+//              <option value = "1">1</option>
+//              <option value = "2">2</option>
+//              <option value = "3">3</option>
+//              <option value = "4">4</option>
+//          </select><br> -->
 
-        <!-- <button id="add-room" v-on:click.prevent="addBedroom">
-          Add Bedroom</button
-        ><br> -->
-        <!-- <label for="bathroom" class="bathroom"> Select Number of Bathrooms:</label> -->
-        <!-- <select name ="bathroom" v-model="floorPlan.bathrooms" required>
-             <option value = "1">1</option>
-             <option value = "2">2</option>
-             <option value = "3">3</option>
-         </select><br> -->
+//         <!-- <button id="add-room" v-on:click.prevent="addBedroom">
+//           Add Bedroom</button
+//         ><br> -->
+//         <!-- <label for="bathroom" class="bathroom"> Select Number of Bathrooms:</label> -->
+//         <!-- <select name ="bathroom" v-model="floorPlan.bathrooms" required>
+//              <option value = "1">1</option>
+//              <option value = "2">2</option>
+//              <option value = "3">3</option>
+//          </select><br> -->
 
-        <!-- <label for="bathroom-size" class="bathroom-size"> Select Bathroom Size: </label> -->
-        <!-- <select name ="bathroom-size" v-model="floorPlan.bathrooms" required>
-             <option value = "6x12">Master Bathroom: 6x12</option>
-             <option value = "5x8">Standard Bathroom: 5x8</option>
-             <option value = "4x6">Half Bath: 4x6</option>
-         </select><br> -->
+//         <!-- <label for="bathroom-size" class="bathroom-size"> Select Bathroom Size: </label> -->
+//         <!-- <select name ="bathroom-size" v-model="floorPlan.bathrooms" required>
+//              <option value = "6x12">Master Bathroom: 6x12</option>
+//              <option value = "5x8">Standard Bathroom: 5x8</option>
+//              <option value = "4x6">Half Bath: 4x6</option>
+//          </select><br> -->
 
-        <!-- <button id="add-bathroom" v-on:click.prevent="addBathroom">
-          Add Bathroom</button
-        ><br /> -->
-        <!-- <div class="optional-rooms"> -->
+//         <!-- <button id="add-bathroom" v-on:click.prevent="addBathroom">
+//           Add Bathroom</button
+//         ><br /> -->
+//         <!-- <div class="optional-rooms"> -->
+//             ,
+
+
+
+//     saveRooms() {
+//       this.floorPlan.bedrooms = this.bedrooms;
+//       this.floorPlan.bathrooms = this.bathrooms;
+//     },
+//     addBedroom() {
+//       this.bedroomCount++;
+//       const label = document.createElement("label");
+//       const roomSelection = document.createElement("select");
+//       const lineBreak = document.createElement("br");
+//       roomSelection.className = "new-bedroom";
+//       label.innerText = "Bedroom " + this.bedroomCount + ": ";
+
+//       roomSelection.innerHTML =
+//         "<option value = ''/>" +
+//         "<option value = '14x16'> Master Bedroom: 14x16 </option>" +
+//         "<option value = '11x12'>Standard Bedroom: 11x12</option>" +
+//         "<option value='10x10'>Smalll Bedroom: 10x10</option>";
+
+//       const roomToAdd = document.getElementById("add-room");
+
+//       roomToAdd.parentNode.insertBefore(label, roomToAdd);
+//       roomToAdd.parentNode.insertBefore(roomSelection, roomToAdd);
+//       roomToAdd.parentNode.insertBefore(lineBreak, roomToAdd);
+//       console.log(this.floorPlan);
+//       roomSelection.addEventListener("change", (event) => {
+//         console.log(event.target.value);
+//         this.bedrooms.push(event.target.value);
+//       });
+//     },
+//     addBathroom() {
+//       this.bathroomCount++;
+//       const label = document.createElement("label");
+//       const roomSelection = document.createElement("select");
+//       const lineBreak = document.createElement("br");
+//       roomSelection.className = "new-bathroom";
+
+//       label.innerText = "Bathroom " + this.bathroomCount + ": ";
+
+//       roomSelection.innerHTML =
+//         "<option value = ''/>" +
+//         "<option value = 'masterBath'>Master Bathroom: 6x12</option>" +
+//         "<option value = 'standardBath'>Standard Bathroom: 5x8</option>" +
+//         "<option value = 'halfBath'>Half Bath: 4x6</option>";
+
+//       const roomToAdd = document.getElementById("add-bathroom");
+
+//       roomToAdd.parentNode.insertBefore(label, roomToAdd);
+//       roomToAdd.parentNode.insertBefore(roomSelection, roomToAdd);
+//       roomToAdd.parentNode.insertBefore(lineBreak, roomToAdd);
+//       console.log(this.floorPlan);
+//       roomSelection.addEventListener("change", (event) => {
+//         console.log(event.target.value);
+//         this.bathrooms.push(event.target.value);
+//       });
+//     },
+//   },
