@@ -31,7 +31,9 @@ export default new Vuex.Store({
       livingRoom: "",
       kitchen: "",
       bedrooms:[],
-      bathrooms:[]
+      bathrooms:[],
+      costHigh: "",
+      costLow: ""
     },
     costLow: {
       lumber: 16.2,
@@ -45,7 +47,8 @@ export default new Vuex.Store({
       plumber: 2.03,
       concreteContractor: 3.05,
       framer: 13.5,
-      other: 27
+      other: 27,
+      total: 89.78
     },
     costHigh: {
       lumber: 19.8,
@@ -59,7 +62,8 @@ export default new Vuex.Store({
       plumber: 2.48,
       concreteContractor: 3.75,
       framer: 16.5,
-      other: 27
+      other: 33,
+      total: 109.74
     },
     specialFeaturesLow: {
       pool: 50000,
@@ -96,6 +100,16 @@ export default new Vuex.Store({
       state.token = '';
       state.user = {};
       axios.defaults.headers.common = {};
+    },
+    PLAN_DETAILS(state, newPlan) {
+      state.floorPlan.userId = newPlan.userId;
+      state.floorPlan.planName = newPlan.planName;
+      state.floorPlan.houseType = newPlan.houseType;
+      state.floorPlan.city = newPlan.city;
+      state.floorPlan.state = newPlan.state;
+      state.floorPlan.squareFootage = newPlan.size;
+      state.floorPlan.costHigh = newPlan.costHigh;
+      state.floorPlan.costLow = newPlan.costLow;
     }
   }
 })

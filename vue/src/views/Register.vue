@@ -126,8 +126,8 @@ export default {
       }
 
       if (
-        this.usernameCheckPass &&
-        this.emailCheckPass &&
+        // this.usernameCheckPass &&
+        // this.emailCheckPass &&
         this.passwordCheckPass &&
         this.confirmCheckPass
       ) {
