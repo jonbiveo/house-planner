@@ -24,9 +24,9 @@ export default new Vuex.Store({
       userId:"",
       planName: "",
       houseType: "",
-      city: "",
-      state: "",
-      squareFootage: "",
+      city: "cleveland",
+      state: "OH",
+      squareFootage: 2000,
       floors: "",
       livingRoom: "",
       kitchen: "",
@@ -45,7 +45,8 @@ export default new Vuex.Store({
       plumber: 2.03,
       concreteContractor: 3.05,
       framer: 13.5,
-      other: 27
+      other: 27,
+      total: 89.78
     },
     costHigh: {
       lumber: 19.8,
@@ -59,7 +60,8 @@ export default new Vuex.Store({
       plumber: 2.48,
       concreteContractor: 3.75,
       framer: 16.5,
-      other: 27
+      other: 33,
+      total: 109.74
     },
     specialFeaturesLow: {
       pool: 50000,
