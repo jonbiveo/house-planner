@@ -10,6 +10,7 @@ import Builder from '../views/Builder.vue'
 import Plans from '../views/Plans.vue'
 import Card from '../views/Card.vue'
 import CostBreakdown from "../views/CostBreakdown.vue"
+import RoomDesign from "../views/Design.vue"
 
 Vue.use(Router)
 
@@ -98,6 +99,14 @@ const router = new Router({
         requiresAuth: true
       }
     },
+    {
+      path:"/room-design",
+      name:"room-design",
+      component: RoomDesign,
+      meta: {
+        requiresAuth: false,
+      }
+    }
   ]
 })
 
