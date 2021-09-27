@@ -83,7 +83,7 @@
 
         <!-- First Floor Bathrooms -->
 
-          <label for="f1bathroom" class="bathooms">Select Floor 1 bathrooms</label>
+          <label for="f1bathroom" class="bathooms">Select Floor 1 Bathrooms</label>
         <select name ="f1bathroom" v-model="floorPlan.floorOne.bathrooms" required>
           <option value="1">1</option>
           <option value="2">2</option>
@@ -167,7 +167,7 @@
 
         <!-- Second Floor Bathrooms -->
 
-          <label for="f2bathroom" class="bathooms" v-if="floorPlan.floors > 1">Select Floor 2 bathrooms</label>
+          <label for="f2bathroom" class="bathooms" v-if="floorPlan.floors > 1">Select Floor 2 Bathrooms</label>
         <select name ="f2bathrooms" v-model="floorPlan.floorTwo.bathrooms" v-if="floorPlan.floors > 1" required>
           <option value="1">1</option>
           <option value="2">2</option>
@@ -250,7 +250,7 @@
 
          <!--Third Floor Bathrooms -->
 
- <label for="f3bathrooms" class="bathooms" v-if="floorPlan.floors > 2">Select Floor 2 bathrooms</label>
+ <label for="f3bathrooms" class="bathooms" v-if="floorPlan.floors > 2">Select Floor 3 Bathrooms</label>
         <select name ="f3bathrooms" v-model="floorPlan.floorThree.bathrooms" v-if="floorPlan.floors > 2" required>
           <option value="1">1</option>
           <option value="2">2</option>
