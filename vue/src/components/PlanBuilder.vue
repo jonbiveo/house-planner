@@ -40,8 +40,8 @@
         <!-- First Floor -->
         <!--  -->
 
-        <label for="bedroom1" class="bedrooms">Select Floor 1 Bedrooms</label>
-        <select name ="bedroom1" v-model="floorPlan.floorOne.bedrooms" required>
+        <label for="f1bedroom" class="bedrooms">Select Floor 1 Bedrooms</label>
+        <select name ="f1bedroom" v-model="floorPlan.floorOne.bedrooms" required>
           <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>
@@ -129,8 +129,8 @@
          <!-- Third Floor -->
          <!--  -->
 
-        <label for="f3bedroom2" class="bedrooms" v-if="floorPlan.floors > 2">Select Floor 3 Bedrooms</label>
-        <select name ="f3bedroom1" v-model="floorPlan.floorThree.bedrooms" v-if="floorPlan.floors > 2">
+        <label for="f3bedroom" class="bedrooms" v-if="floorPlan.floors > 2">Select Floor 3 Bedrooms</label>
+        <select name ="f3bedroom" v-model="floorPlan.floorThree.bedrooms" v-if="floorPlan.floors > 2">
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -218,12 +218,12 @@ export default {
         livingRoom: "",
         kitchen: "",
         floorOne: {
-            bedrooms: "",
-            b1: "",
-            b2: "",
-            b3: "",
-            b4: "",
-            b5: "",
+          bedrooms: 1,
+          b1: "",
+          b2: "",
+          b3: "",
+          b4: "",
+          b5: "",
         },
         floorTwo: {
           bedrooms: "",
