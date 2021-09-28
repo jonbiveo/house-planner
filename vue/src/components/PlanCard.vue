@@ -17,7 +17,9 @@
           <span v-on:click="copyPlan">Share Plan</span>
         </div>
       </div>
-      <div class="card-image">image</div>
+      <div class="card-image">
+        <img src="@/assets/Floorplan.jpg" alt="Floor Plan" class="card-image">
+      </div>
       <div class="card-details">
         <strong>Plan Name</strong>: {{ planName }} <br />
         <br />
@@ -181,10 +183,9 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: darkgray;
-  height: 200px;
-  width: 200px;
-  margin: 5% 10% 0 25%;
+  height: 280px;
+  width: 320px;
+  margin: 5% 10% 15% 15%;
 }
 
 .card-details {
