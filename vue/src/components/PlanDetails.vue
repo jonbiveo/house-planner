@@ -4,7 +4,7 @@
       <form v-on:submit.prevent="saveBase" class='form-plan'>
         <h3>Enter your desired home information below.</h3>
         <label for="plan-name" class='plan-name'>Plan Name:</label>
-        <input type="text" class='plan-name' placeholder="Plan Name" v-model="planBase.planName" />
+        <input type="text" class='plan-name' v-model="planBase.planName" />
         <label for="State" class='state'>Select State:</label>
         <select name="state" v-model="planBase.state" required v-on:change="viewRange">
           <option value="Ohio">OH</option>
@@ -215,7 +215,7 @@ width: 55%;
 
  .form-plan input {
   min-width: 450px;
-  font-size: 14px;
+  font-size: 14pt;
 }
 
 .form-plan select, .form-plan label, .form-plan h3 {

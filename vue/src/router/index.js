@@ -92,7 +92,7 @@ const router = new Router({
       }
     },
     {
-      path: "/cost-breakdown/:id",
+      path: "/cost-breakdown",
       name: "cost-breakdown",
       component: CostBreakdown,
       meta: {

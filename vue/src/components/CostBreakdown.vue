@@ -68,13 +68,13 @@
                         <td>{{costs.other[0]}} - {{costs.other[1]}}</td>
                         <td>{{costs.other[2]}} - {{costs.other[3]}}</td>
                     </tr>
-                    <tr>
+                    <!-- <tr>
                         <td>Total</td>
                         <td>{{costs.total[0]}} - {{costs.total[1]}}</td>
                         <td>{{costs.total[2]}} - {{costs.total[3]}}</td>
-                    </tr>
+                    </tr> -->
                 </table>
-                <h3>Total Cost {{costs.total[0]}} - {{costs.total[1]}} {{costs.total[2]}} - {{costs.total[3]}}</h3>
+                <h3>Total Cost: {{costs.total[0]}} - {{costs.total[1]}}</h3>
             </div>
         </div>
     </div>
@@ -177,8 +177,8 @@ export default {
         this.costs.other.push(formatter.format(this.size * this.multiplier * this.$store.state.costLow.other));
         this.costs.other.push(formatter.format(this.size * this.multiplier * this.$store.state.costHigh.other));
         
-        this.costs.total.push(formatter.format(this.multiplier * this.$store.state.costLow.total));
-        this.costs.total.push(formatter.format(this.multiplier * this.$store.state.costHigh.total));
+        // this.costs.total.push(formatter.format(this.multiplier * this.$store.state.costLow.total));
+        // this.costs.total.push(formatter.format(this.multiplier * this.$store.state.costHigh.total));
         this.costs.total.push(formatter.format(this.size * this.multiplier * this.$store.state.costLow.total));
         this.costs.total.push(formatter.format(this.size * this.multiplier * this.$store.state.costHigh.total));
         // Again, sorry for this mess. I will fix it eventually. Maybe.

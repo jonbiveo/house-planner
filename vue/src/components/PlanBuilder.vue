@@ -483,7 +483,7 @@ export default {
         houseType: "",
         city: "",
         state: "",
-        squareFootage: 1000,
+        squareFootage: "",
         floors: 1,
         livingRoom: "",
         kitchen: "",
@@ -545,6 +545,7 @@ export default {
      goToPlanDetails(){
        this.$router.push('/details')
      },
+  },
   created() {
       console.log(this.$store.state.floorPlan);
       this.floorPlan.userId = this.$store.state.floorPlan.userId;
@@ -556,7 +557,6 @@ export default {
       this.floorPlan.costHigh = this.$store.state.floorPlan.costHigh;
       this.floorPlan.costLow = this.$store.state.floorPlan.costLow;
     }
-}
 }
 </script>
 
