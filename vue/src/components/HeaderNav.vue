@@ -2,16 +2,16 @@
   <div class="banner">
     <router-link :to="{name:'landing'}" v-if="$store.state.token === ''">
       <div class="logo">
-        <h1 class="name">LMTV</h1>
-        <label class="tag">House Planner</label>
+        <h1 class="logo-name">LMTV</h1>
+        <span class="tag">House Planner</span>
         <i class="fas fa-home"></i>
         <img src="../../public/home-solid.svg" />
       </div>
     </router-link>
     <router-link :to="{name:'plans'}" v-if="$store.state.token !== ''">
       <div class="logo">
-        <h1 class="name">LMTV</h1>
-        <label class="tag">House Planner</label>
+        <h1 class="logo-name">LMTV</h1>
+        <span class="tag">House Planner</span>
         <i class="fas fa-home"></i>
         <img src="../../public/home-solid.svg" />
       </div>
@@ -23,8 +23,8 @@
       <router-link class="btn register" :to="{ name: 'register' }">Register</router-link>
     </div>
     <div class="nav-logged-in" v-if="$store.state.token !== ''">
-      <router-link class="btn register" :to="{ name: 'logout'}">Logout</router-link> | 
-      <router-link :to="{name:'plans'}"> {{currentUser}} </router-link>
+      <router-link class="btn register" :to="{ name: 'logout'}">Log Out</router-link> | 
+      <router-link :to="{name:'plans'}"> {{$store.state.user.username}} </router-link>
     </div>
   </div>
 </template>
@@ -32,11 +32,6 @@
 <script>
 export default {
   name: "header-nav",
-  data() {
-    return {
-      currentUser: JSON.parse(localStorage.getItem("user")).username,
-    };
-  },
   computed: {
     currentPage() {
       console.log(this.$route.fullPath);
@@ -57,9 +52,7 @@ export default {
   margin: 0;
   background-color: #2a9d8f;
   padding: 20px 15% 0;
-  color: white;
   min-width: 600px;
-  color: #264653;
 }
 
 .logo {
@@ -68,21 +61,21 @@ export default {
   flex-wrap: wrap;
   height: 80px;
   cursor: pointer;
+  color: white;
 }
 
 .logo > img {
   max-height: 60px;
   padding: 2px 7px;
-  color: #264653;
 }
 
-.name,
+.logo-name,
 .tag,
 .logo > img {
   margin: 0;
 }
 
-.name{
+.logo-name{
   letter-spacing: 6px;
 }
 
@@ -94,7 +87,7 @@ export default {
 }
 
 .nav-logged-in {
-  width: 20%;
+  width: 30%;
   display: flex;
   justify-content: space-evenly;
   min-width: 70px;

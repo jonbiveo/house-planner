@@ -14,7 +14,7 @@ export default {
 
 <style>
 @import url("https://fonts.googleapis.com/css2?family=Nunito&display=swap");
-body{
+body, select, input{
   margin:0;
   font-family: "Nunito", sans-serif;
   color: #264653;
