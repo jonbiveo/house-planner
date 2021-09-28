@@ -518,10 +518,14 @@
           <option value="16x18">Study</option>
         </select>
 
+       <span>
+         <button class="bck-btn" @click="goToPlanDetails"> Previous
+          </button>
+
         <button class="next-btn" @click="goToRoomDesign"> Next
         </button>
-        <button class="bck-btn" @click="goToPlanDetails"> Previous
-          </button>
+          </span>
+
       </form>
     </div>
   </div>
@@ -696,6 +700,14 @@ button {
   background-color: #e76f51;
   color: black;
 }
+
+span{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-area: "button" "button";
+  justify-content: center;
+  gap: 10px;
+  }
 </style>
 
 // <!-- </div> -->
