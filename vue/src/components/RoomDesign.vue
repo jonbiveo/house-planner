@@ -123,45 +123,45 @@
 
 <script>
 export default {
-    data(){
-        return{
-            roomDesign: {
-                layout: "",
-                staircase: "",
-                flooring: {
-                    bedrooms: "",
-                    bathrooms: "",
-                    livingRoom: "",
-                    kitchen: "",
-                    basement: "",
-                    entertainmentRoom: "",
-                    spareRoom: "",                    
-                },
-                kitchenCabinets: "",
-                island: "",
-                kitchenCounters: "",
-                bathroomCounters: "",
-                bathroomSink: "",
-                bathroomTub: "",
-                bathroomShower: "",
-            }
-        }
+  name: "roomDesign",
+  data() {
+    return {
+      roomDesign: {
+        layout: "",
+        staircase: "",
+        flooring: {
+          bedrooms: "",
+          bathrooms: "",
+          livingRoom: "",
+          kitchen: "",
+          basement: "",
+          entertainmentRoom: "",
+          spareRoom: "",
+        },
+        kitchenCabinets: "",
+        island: "",
+        kitchenCounters: "",
+        bathroomCounters: "",
+        bathroomSink: "",
+        bathroomTub: "",
+        bathroomShower: "",
+      },
+    };
+  },
+  methods: {
+    goToPlanBuilder() {
+      this.$router.push("/plan-builder");
     },
-    methods:{
-        goToPlanBuilder(){
-      this.$router.push('/plan-builder'); 
-     },
-        created(){
-
-        }
-    }
-
-}
+  },
+  created() {
+        console.log(this.$store.state.floorPlan.kitchen)
+  },
+};
 </script>
 
 <style>
-div{
-    color: black;
+div {
+  color: black;
 }
 button {
   margin: 10px auto;

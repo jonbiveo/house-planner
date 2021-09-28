@@ -15,7 +15,7 @@
               required
               autofocus
             />
-            <div class="alert" v-show="usernameCheckPass !== true">
+            <div id="user-err" v-show="usernameCheckPass !== true">
               {{ usernameMsg }}
             </div>
           </div>
@@ -29,7 +29,7 @@
               v-model="user.email"
               required
             />
-            <div class="alert" v-show="emailCheckPass !== true">
+            <div class="alert email" v-show="emailCheckPass !== true">
               {{ emailMsg }}
             </div>
           </div>
@@ -42,11 +42,7 @@
               v-model="user.password"
               required
             />
-            <div
-              id="pass"
-              class="alert"
-              v-show="passwordCheckPass !== true"
-            ></div>
+            <div id="pass-err" v-show="passwordCheckPass !== true"></div>
           </div>
           <div>
             <label>confirm password</label>
@@ -57,7 +53,7 @@
               v-model="user.confirmPassword"
               required
             />
-            <div class="alert" v-show="confirmCheckPass !== true">
+            <div id="conf-err" v-show="confirmCheckPass !== true">
               {{ confirmMsg }}
             </div>
           </div>
@@ -86,6 +82,10 @@ export default {
   name: "register",
   data() {
     return {
+      userList: [],
+      usernameMatch: false,
+      emailMatch: false,
+      matchCounter: 0,
       user: {
         username: "",
         email: "",
@@ -114,19 +114,60 @@ export default {
         passStr.length >= 8
       ) {
         this.passwordCheckPass = true;
+        document.getElementById("pass-err").classList.remove("alert");
       } else {
-        document.getElementById("pass").innerHTML =
+        this.passwordCheckPass = false;
+        document.getElementById("pass-err").innerHTML =
           "Password needs at least:<ul><li>eight characters</li><li>one uppercase letter (A-Z)</li><li>one number (0-9)</li></ul>";
+        document.getElementById("pass-err").classList.add("alert");
       }
 
       if (this.user.password !== this.user.confirmPassword) {
+        this.confirmCheckPass = false;
         this.confirmMsg = "Password and Confirm Password do not match.";
+        document.getElementById("conf-err").classList.add("alert");
       } else {
         this.confirmCheckPass = true;
+        document.getElementById("conf-err").classList.remove("alert");
       }
 
+      authService.getUserList(this.$route.params.id).then((response) => {
+        this.userList = response.data;
+        console.log(this.userList);
+      });
+
+      for (let i = 0; i < this.userList.length; i++) {
+        while (this.usernameMatch === false) {
+          if (this.userList[i].username === this.user.username) {
+            this.usernameMatch = true;
+            this.usernameCheckPass = false;
+            this.usernameMsg = "User already exists";
+            document.getElementById("user-err").classList.add("alert");
+          }
+          this.matchCounter++;
+        }
+      }
+
+      if (this.matchCounter >= this.userList.length) {
+        this.usernameMatch = false;
+        this.usernameCheckPass = true;
+        document.getElementById("user-err").classList.remove("alert");
+      }
+      // .then((response) => {
+      //   console.log(response)
+      //   if (response.status == 200) {
+      //       this.usernameMsg = "User already exists";
+      //     document.getElementById("user-err").classList.add("alert");
+      //   }
+      // })
+      // .catch((error) => {
+      //     console.log(error.response)
+      //   this.usernameCheckPass = true;
+      //   document.getElementById("user-err").classList.remove("alert");
+      // });
+
       if (
-        // this.usernameCheckPass &&
+        this.usernameCheckPass &&
         // this.emailCheckPass &&
         this.passwordCheckPass &&
         this.confirmCheckPass
@@ -144,8 +185,8 @@ export default {
           .catch((error) => {
             const response = error.response;
             this.usernameCheckPass = true;
-            if (response.status ===400) {
-              this.usernameMsg = "Error: User already exists.";
+            if (response.status === 400) {
+              console.log("peace");
             }
           });
       }
@@ -270,10 +311,18 @@ a:hover {
 label {
   display: flex;
   align-self: flex-start;
+  color: white;
 }
 
-#pass {
+#pass-err {
   text-align: left;
   padding-left: 20px;
+}
+
+.alert {
+  color: rgb(206, 0, 0);
+  border: 1px solid red;
+  box-shadow: 0 0 10px red;
+  margin: 5px 0 0;
 }
 </style>
