@@ -519,13 +519,14 @@
         </select>
 
        <span>
-         <button class="bck-btn" @click="goToPlanDetails"> Previous
+         <button class="bck-btn" @click.prevent="goToPlanDetails"> Previous
           </button>
 
-        <button class="next-btn" @click="goToRoomDesign"> Next
+        <button class="next-btn" @click.prevent="goToRoomDesign"> Next
         </button>
-          </span>
-
+        <p class="sizeError" v-if="this.sqFtUsed >= this.floorPlan.squareFootage">You will not have enough space to fit all of these rooms.
+        You are currently at {{this.sqFtUsed}} of a possible square feet.{{this.floorPlan.squareFootage}}</p>
+        </span>
       </form>
     </div>
   </div>
@@ -613,7 +614,9 @@ export default {
   },
   methods: {
     goToRoomDesign() {
-      this.$router.push('/room-design'); 
+      if (this.sqFtUsed <= this.floorPlan.squareFootage) {
+        this.$router.push('/room-design'); 
+      }
      },
      goToPlanDetails() {
       this.$router.push('/details')
@@ -622,14 +625,7 @@ export default {
       let room = document.getElementById(id);
       let dimensions = room.value.split("x");
       let roomSize = parseInt(dimensions[0]) * parseInt(dimensions[1]);
-      let newSqFtUsed = this.sqFtUsed + roomSize;
-      if (newSqFtUsed >= this.floorPlan.squareFootage) {
-        window.alert(`You will not have enough space to fit all of these rooms.\n
-        You are currently at ${newSqFtUsed} of a possible ${this.floorPlan.squareFootage}`)
-        return false;
-      } else {
-        this.sqFtUsed = newSqFtUsed;
-      }
+      this.sqFtUsed += roomSize; 
      }
   },
   created() {
@@ -704,10 +700,16 @@ button {
 span{
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-area: "button" "button";
+  grid-template-areas: "button button"
+  "sizeError sizeError";
   justify-content: center;
   gap: 10px;
   }
+
+.sizeError {
+  align-self: center;
+  grid-area: sizeError;
+}  
 </style>
 
 // <!-- </div> -->
