@@ -30,7 +30,7 @@
             role="alert"
             v-if="invalidCredentials"
           >
-            Invalid username and password
+            Invalid username or password
           </div>
           <div
             class="alert alert-success"
@@ -196,5 +196,16 @@ a:visited {
 }
 a:hover {
   color: #e9c46a;
+}
+
+.alert{
+  color: rgb(206, 0, 0);
+  border: 1px solid red  ;
+  box-shadow: 0 0 10px red;
+  padding:0 10px;
+}
+
+label{
+  color: white;
 }
 </style>

@@ -35,7 +35,9 @@ export default {
     };
   },
   created() {
-    planService.getPlans(this.$route.params.id).then((response) => {
+    planService
+    .getPlans(this.$route.params.id)
+    .then((response) => {
       this.planName = response.data.planName;
       this.plans = response.data;
       console.log(JSON.stringify(JSON.parse(localStorage.getItem("user"))));

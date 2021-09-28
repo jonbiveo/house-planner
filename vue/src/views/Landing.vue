@@ -2,19 +2,17 @@
   <div class="landing">
     <hero/>
     <slideshow/>
-    <about/>
     <contact/>
   </div>
 </template>
 
 <script>
-import About from '../components/About.vue';
-import Contact from '../components/Contact.vue';
-import Hero from '../components/Hero.vue';
-import Slideshow from '../components/Slideshow.vue';
+import Contact from '../components/TheContact.vue';
+import Hero from '../components/TheHero.vue';
+import Slideshow from '../components/TheSlideshow.vue';
 
 export default {
-  components: {Hero, Slideshow, About, Contact},
+  components: {Hero, Slideshow, Contact},
   name: "landing",
 };
 </script>
