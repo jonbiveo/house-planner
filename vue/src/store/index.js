@@ -114,6 +114,14 @@ export default new Vuex.Store({
     },
     SQ_FT_USAGE(state, roomSize) {
       state.squareFootageRemaining -= roomSize;
+    },
+    SAVE_BUILDER(state, builderPlan){
+      state.floorPlan.floors = builderPlan.floors;
+      state.floorPlan.livingRoom = builderPlan.livingRoom;
+      state.floorPlan.kitchen = builderPlan.kitchen;
+      state.floorPlan.basement = builderPlan.basement;
+      state.floorPlan.diningRoom = builderPlan.diningRoom;
+      state.floorPlan.spareRoom = builderPlan.spareRoom;
     }
   }
 })

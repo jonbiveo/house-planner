@@ -615,6 +615,7 @@ export default {
   methods: {
     goToRoomDesign() {
       if (this.sqFtUsed <= this.floorPlan.squareFootage) {
+      this.$store.commit("SAVE_BUILDER", this.floorPlan);
         this.$router.push('/room-design'); 
       }
      },
