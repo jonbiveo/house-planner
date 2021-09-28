@@ -26,14 +26,16 @@
         <label for="livingRoom" class="living-room"
           >Select Living Room Size:
         </label>
-        <select name="living-room" v-model="floorPlan.livingRoom" required>
+        <select name="living-room" v-model="floorPlan.livingRoom" required id="f1l"
+          v-on:change="updateSqFtUsage('f1l')">
           <option value="10x13">10x13</option>
           <option value="12x18">12x18</option>
           <option value="15x20">15x20</option>
         </select>
 
         <label for="kitchen" class="kitchen"> Select Kitchen Size: </label>
-        <select name="kitchen" v-model="floorPlan.kitchen" required>
+        <select name="kitchen" v-model="floorPlan.kitchen" required id="f1k"
+          v-on:change="updateSqFtUsage('f1k')">
           <option value="10x10">10x10</option>
           <option value="20x20">20x20</option>
         </select>
@@ -54,7 +56,7 @@
         <label for="f1bedroom1-size" class="bedroom-size">
           Select Master Bedroom Size:</label
         >
-        <select name="f1bedroom1-size" v-model="floorPlan.floorOne.b1" required>
+        <select name="f1bedroom1-size" id="f1r1" v-model="floorPlan.floorOne.b1" required v-on:change="updateSqFtUsage('f1r1')">
           <option value="20x24">20x24</option>
           <option value="16x18">16x18</option>
           <option value="14x16">14x16</option>
@@ -70,6 +72,8 @@
           name="f1bedroom2-size"
           v-model="floorPlan.floorOne.b2"
           v-if="floorPlan.floorOne.bedrooms > 1"
+          id="f1r2"
+          v-on:change="updateSqFtUsage('f1r2')"
         >
           <option selected value="">-- select an option --</option>
           <option value="14x16">Large Bedroom: 14x16</option>
@@ -86,6 +90,8 @@
           name="f1bedroom3-size"
           v-model="floorPlan.floorOne.b3"
           v-if="floorPlan.floorOne.bedrooms > 2"
+          id="f1r3"
+          v-on:change="updateSqFtUsage('f1r3')"
         >
           <option value="14x16">Large Bedroom: 14x16</option>
           <option value="11x12">Standard Bedroom: 11x12</option>
@@ -101,6 +107,8 @@
           name="f1bedroom4-size"
           v-model="floorPlan.floorOne.b4"
           v-if="floorPlan.floorOne.bedrooms > 3"
+          id="f1r4"
+          v-on:change="updateSqFtUsage('f1r4')"
         >
           <option value="14x16">Large Bedroom: 14x16</option>
           <option value="11x12">Standard Bedroom: 11x12</option>
@@ -116,6 +124,8 @@
           name="f1bedroom5-size"
           v-model="floorPlan.floorOne.b5"
           v-if="floorPlan.floorOne.bedrooms > 4"
+          id="f1r5"
+          v-on:change="updateSqFtUsage('f1r5')"
         >
           <option value="14x16">Large Bedroom: 14x16</option>
           <option value="11x12">Standard Bedroom: 11x12</option>
@@ -137,7 +147,9 @@
         <select
           name="f1bathroom1-size"
           v-model="floorPlan.floorOne.ba1"
-          required>
+          required
+          id="f1b1"
+          v-on:change="updateSqFtUsage('f1b1')">
           <option value="8x12">8x12</option>
           <option value="6x12">6x12</option>
           <option value="6x10">6x10</option></select
@@ -153,7 +165,9 @@
         <select
           name="bathroom-size"
           v-model="floorPlan.floorOne.ba2"
-          v-if="floorPlan.floorOne.bathrooms > 1" required>
+          v-if="floorPlan.floorOne.bathrooms > 1" required
+          id="f1b2"
+          v-on:change="updateSqFtUsage('f1b2')">
           <option value="6x10">Large Bathroom: 6x10</option>
           <option value="5x8">Standard Bathroom: 5x8</option>
           <option value="4x6">Half Bath: 4x6</option></select
@@ -162,7 +176,9 @@
         <label for="f1bathroom2-size" class="bathroom-size"  v-if="floorPlan.floorOne.bathrooms > 2">
           Select Bathroom Size:
         </label>
-        <select name="bathroom-size" v-model="floorPlan.floorOne.ba3" v-if="floorPlan.floorOne.bathrooms > 2" required>
+        <select name="bathroom-size" v-model="floorPlan.floorOne.ba3" v-if="floorPlan.floorOne.bathrooms > 2" required
+          id="f1b3"
+          v-on:change="updateSqFtUsage('f1b3')">
           <option value="6x10">Large Bathroom: 6x10</option>
           <option value="5x8">Standard Bathroom: 5x8</option>
           <option value="4x6">Half Bath: 4x6</option>
@@ -171,7 +187,9 @@
         <label for="f1bathroom3-size" class="bathroom-size" v-if="floorPlan.floorOne.bathrooms > 3">
         Select Bathroom Size:
         </label>
-        <select name="bathroom-size" v-model="floorPlan.floorOne.ba4" v-if="floorPlan.floorOne.bathrooms > 3" required>
+        <select name="bathroom-size" v-model="floorPlan.floorOne.ba4" v-if="floorPlan.floorOne.bathrooms > 3" required
+          id="f1b4"
+          v-on:change="updateSqFtUsage('f1b4')">
           <option value="6x10">Large Bathroom: 6x10</option>
           <option value="5x8">Standard Bathroom: 5x8</option>
           <option value="4x6">Half Bath: 4x6</option>
@@ -182,7 +200,8 @@
           <!--  -->
 
         <label for="f2bedroom" class="bedrooms" v-if="floorPlan.floors > 1">Select Floor 2 Bedrooms</label>
-        <select name ="f2bedroom" v-model="floorPlan.floorTwo.bedrooms" v-if="floorPlan.floors > 1">
+        <select name ="f2bedroom" v-model="floorPlan.floorTwo.bedrooms" v-if="floorPlan.floors > 1"
+          >
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -200,6 +219,8 @@
           name="f2bedroom4-size"
           v-model="floorPlan.floorTwo.b4"
           v-if="floorPlan.floorTwo.bedrooms > 3"
+          id="f2r1"
+          v-on:change="updateSqFtUsage('f2r1')"
         >
           <option value="14x16">Large Bedroom: 14x16</option>
           <option value="11x12">Standard Bedroom: 11x12</option>
@@ -215,6 +236,8 @@
           name="f2bedroom5-size"
           v-model="floorPlan.floorTwo.b5"
           v-if="floorPlan.floorTwo.bedrooms > 4"
+           id="f2r2"
+          v-on:change="updateSqFtUsage('f2r2')"
         >
           <option value="14x16">Large Bedroom: 14x16</option>
           <option value="11x12">Standard Bedroom: 11x12</option>
@@ -237,6 +260,8 @@
           v-model="floorPlan.floorTwo.ba1"
           v-if="floorPlan.floorTwo.bathrooms > 0"
           required
+          id="f2b1"
+          v-on:change="updateSqFtUsage('f2b1')"
         >
           <option value="6x10">Large Bathroom: 6x10</option>
           <option value="5x8">Standard Bathroom: 5x8</option>
@@ -255,6 +280,8 @@
           v-model="floorPlan.floorTwo.ba2"
           v-if="floorPlan.floorTwo.bathrooms > 1"
           required
+          id="f2b2"
+          v-on:change="updateSqFtUsage('f2b2')"
         >
           <option value="6x10">Large Bathroom: 6x10</option>
           <option value="5x8">Standard Bathroom: 5x8</option>
@@ -273,6 +300,8 @@
           v-model="floorPlan.floorTwo.ba3"
           v-if="floorPlan.floorTwo.bathrooms > 2"
           required
+          id="f2b3"
+          v-on:change="updateSqFtUsage('f2b3')"
         >
           <option value="6x10">Large Bathroom: 6x10</option>
           <option value="5x8">Standard Bathroom: 5x8</option>
@@ -291,6 +320,8 @@
           v-model="floorPlan.floorTwo.ba4"
           v-if="floorPlan.floorTwo.bathrooms > 3"
           required
+          id="f2b4"
+          v-on:change="updateSqFtUsage('f2b4')"
         >
           <option value="6x10">Large Bathroom: 6x10</option>
           <option value="5x8">Standard Bathroom: 5x8</option>
@@ -313,32 +344,42 @@
         </select>
 
         <label for="f3bedroom1-size" class="bedroom-size" v-if="floorPlan.floorTwo.bedrooms > 0"> Select Bedroom Size:</label>
-         <select name ="f3bedroom1-size" v-model="floorPlan.floorThree.b1" v-if="floorPlan.floorTwo.bedrooms > 0">
+         <select name ="f3bedroom1-size" v-model="floorPlan.floorThree.b1" v-if="floorPlan.floorTwo.bedrooms > 0"
+           id="f3r1"
+          v-on:change="updateSqFtUsage('f3r1')">
              <option value = "14x16">Large Bedroom: 14x16</option>
              <option value = "11x12">Standard Bedroom: 11x12</option>
          </select>
 
          <label for="f3bedroom2-size" class="bedroom-size" v-if="floorPlan.floorThree.bedrooms > 1">Select Bedroom Size:</label>
-         <select name ="f3bedroom2-size" v-model="floorPlan.floorThree.b2" v-if="floorPlan.floorThree.bedrooms > 1">
+         <select name ="f3bedroom2-size" v-model="floorPlan.floorThree.b2" v-if="floorPlan.floorThree.bedrooms > 1"
+            id="f3r2"
+            v-on:change="updateSqFtUsage('f3r2')">
              <option selected value> -- select an option -- </option>
              <option value = "14x16">Large Bedroom: 14x16</option>
              <option value = "11x12">Standard Bedroom: 11x12</option>
          </select>
 
          <label for="f3bedroom3-size" class="bedroom-size" v-if="floorPlan.floorThree.bedrooms > 2">Select Bedroom Size:</label>
-         <select name ="f3bedroom3-size" v-model="floorPlan.floorThree.b3" v-if="floorPlan.floorThree.bedrooms > 2">
+         <select name ="f3bedroom3-size" v-model="floorPlan.floorThree.b3" v-if="floorPlan.floorThree.bedrooms > 2"
+            id="f3r3"
+            v-on:change="updateSqFtUsage('f3r3')">
              <option value = "14x16">Large Bedroom: 14x16</option>
              <option value = "11x12">Standard Bedroom: 11x12</option>
          </select>
 
          <label for="f3bedroom4-size" class="bedroom-size" v-if="floorPlan.floorThree.bedrooms > 3">Select Bedroom Size:</label>
-         <select name ="f3bedroom4-size" v-model="floorPlan.floorThree.b4" v-if="floorPlan.floorThree.bedrooms > 3">
+         <select name ="f3bedroom4-size" v-model="floorPlan.floorThree.b4" v-if="floorPlan.floorThree.bedrooms > 3"
+            id="f3r4"
+            v-on:change="updateSqFtUsage('f3r4')">
              <option value = "14x16">Large Bedroom: 14x16</option>
              <option value = "11x12">Standard Bedroom: 11x12</option>
          </select>
 
          <label for="f3bedroom5-size" class="bedroom-size" v-if="floorPlan.floorThree.bedrooms > 4">Select Bedroom Size:</label>
-         <select name ="f3bedroom5-size" v-model="floorPlan.floorThree.b5" v-if="floorPlan.floorThree.bedrooms > 4">
+         <select name ="f3bedroom5-size" v-model="floorPlan.floorThree.b5" v-if="floorPlan.floorThree.bedrooms > 4"
+            id="f3r5"
+            v-on:change="updateSqFtUsage('f3r5')">
              <option value = "14x16">Large Bedroom: 14x16</option>
              <option value = "11x12">Standard Bedroom: 11x12</option>
          </select>
@@ -373,6 +414,8 @@
           v-model="floorPlan.floorThree.ba1"
           v-if="floorPlan.floorThree.bathrooms > 0"
           required
+          id="f3b1"
+          v-on:change="updateSqFtUsage('f3b1')"
         >
           <option value="6x10">Large Bathroom: 6x10</option>
           <option value="5x8">Standard Bathroom: 5x8</option>
@@ -391,6 +434,8 @@
           v-model="floorPlan.floorThree.ba2"
           v-if="floorPlan.floorThree.bathrooms > 1"
           required
+          id="f3b2"
+          v-on:change="updateSqFtUsage('f3b2')"
         >
           <option value="6x10">Large Bathroom: 6x10</option>
           <option value="5x8">Standard Bathroom: 5x8</option>
@@ -409,6 +454,8 @@
           v-model="floorPlan.floorThree.ba3"
           v-if="floorPlan.floorThree.bathrooms > 2"
           required
+          id="f3b3"
+          v-on:change="updateSqFtUsage('f3b3')"
         >
           <option value="6x10">Large Bathroom: 6x10</option>
           <option value="5x8">Standard Bathroom: 5x8</option>
@@ -427,6 +474,8 @@
           v-model="floorPlan.floorThree.ba4"
           v-if="floorPlan.floorThree.bathrooms > 3"
           required
+          id="f3b4"
+          v-on:change="updateSqFtUsage('f3b4')"
         >
           <option value="6x10">Large Bathroom: 6x10</option>
           <option value="5x8">Standard Bathroom: 5x8</option>
@@ -436,22 +485,26 @@
         <h2>Optional Rooms</h2>
 
         <label for="basement" class="basement"> Select Basement </label>
-        <select v-model="floorPlan.basement">
+        <select v-model="floorPlan.basement" id="b"
+          v-on:change="updateSqFtUsage('b')">
           <option value="0"> No basement </option>
-          <option value="1"> Unfinished Basement </option>
+          <option value="15x15"> Unfinished Basement </option>
           <!--idk value for finished vs unfinished? -->
-          <option value="1.5"> Finished Basement </option>
+          <option value="15*15"> Finished Basement </option>
           </select>
 
         <label for="dining-room" class="dining-room"> Select Dining Room</label>
-        <select v-model="floorPlan.diningRoom">
+        <select v-model="floorPlan.diningRoom"
+          id="dr"
+          v-on:change="updateSqFtUsage('dr')">
           <option value="16x18">Large Dining Room: 16x18</option>
           <option value="14x16">Standard Dining Room: 14x16</option>
           <option value="12x14">Small Dining Room: 12x14</option>
         </select>
 
         <label for="entertainment-room" class="entertainment-room"> Select Entertainment Space</label>
-        <select v-model="floorPlan.livingRoom">
+        <select v-model="floorPlan.livingRoom" id="er"
+          v-on:change="updateSqFtUsage('er')">
           <option value="14x16">Formal Living Room: 14x16</option>
           <option value="14x16">Family Room: 14x16</option>
           <option value="10x12">Sitting Room: 9x12 </option>
@@ -459,7 +512,8 @@
 
       <!--Add floor -->
         <label for="spare-room" class="spare-room"> Select ? Space</label>
-        <select v-model="floorPlan.spareRoom">
+        <select v-model="floorPlan.spareRoom" id="sr"
+          v-on:change="updateSqFtUsage('sr')">
           <option value="16x18">Den</option>
           <option value="16x18">Study</option>
         </select>
@@ -477,6 +531,7 @@
 export default {
   data() {
     return {
+      sqFtUsed: 0,
       floorPlan: {
         userId: "",
         planName: "",
@@ -553,12 +608,25 @@ export default {
     };
   },
   methods: {
-    goToRoomDesign(){
+    goToRoomDesign() {
       this.$router.push('/room-design'); 
      },
-     goToPlanDetails(){
-       this.$router.push('/details')
+     goToPlanDetails() {
+      this.$router.push('/details')
      },
+     updateSqFtUsage(id) {
+      let room = document.getElementById(id);
+      let dimensions = room.value.split("x");
+      let roomSize = parseInt(dimensions[0]) * parseInt(dimensions[1]);
+      let newSqFtUsed = this.sqFtUsed + roomSize;
+      if (newSqFtUsed >= this.floorPlan.squareFootage) {
+        window.alert(`You will not have enough space to fit all of these rooms.\n
+        You are currently at ${newSqFtUsed} of a possible ${this.floorPlan.squareFootage}`)
+        return false;
+      } else {
+        this.sqFtUsed = newSqFtUsed;
+      }
+     }
   },
   created() {
       console.log(this.$store.state.floorPlan);
@@ -570,6 +638,8 @@ export default {
       this.floorPlan.squareFootage = this.$store.state.floorPlan.squareFootage;
       this.floorPlan.costHigh = this.$store.state.floorPlan.costHigh;
       this.floorPlan.costLow = this.$store.state.floorPlan.costLow;
+
+      this.sqFtUsed = this.floorPlan.squareFootage * 0.05;
     }
 }
 </script>

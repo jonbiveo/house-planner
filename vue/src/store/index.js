@@ -110,6 +110,10 @@ export default new Vuex.Store({
       state.floorPlan.squareFootage = newPlan.size;
       state.floorPlan.costHigh = newPlan.costHigh;
       state.floorPlan.costLow = newPlan.costLow;
+      state.squareFootageRemaining = newPlan.size;
+    },
+    SQ_FT_USAGE(state, roomSize) {
+      state.squareFootageRemaining -= roomSize;
     }
   }
 })
