@@ -31,7 +31,7 @@ export default new Vuex.Store({
       livingRoom: "",
       kitchen: "",
       basement: "",
-      dinningRoom: "",
+      diningRoom: "",
       entertainmentRoom: "",
       spareRoom: "",
       floor: {
@@ -182,7 +182,7 @@ export default new Vuex.Store({
         }
       }
     },
-    storeDesigner(state, designer) {
+    STORE_DESIGNER(state, designer) {
       state.floorPlan.design.floorOneLayout = designer.floorOneLayout;
       state.floorPlan.design.doors = designer.doors;
       state.floorPlan.design.staircase = designer.staircase;

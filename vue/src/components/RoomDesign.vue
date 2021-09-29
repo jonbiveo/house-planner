@@ -6,7 +6,7 @@
       
       <h3> Layout </h3>
       <label for="f1layout" class="f1layout">Select Floor 1 Layout Design: </label>
-      <select name ="f1layout" v-model="floorOneLayout">
+      <select name ="f1layout" v-model="design.floorOneLayout">
       <option value="open"> Open Floor Plan</option>
       <option value="traditional">Traditional Floor Plan</option>
       </select>
@@ -14,7 +14,7 @@
 
       <h3> Doors </h3>
       <label for="doorway" class="doors">Select Door Style: </label>
-      <select name="doors" v-model="doors">
+      <select name="doors" v-model="design.doors">
       <option value="wood"> Standard Wood Doors </option>
       <option value = "pocket"> Pocket Doors </option>
       <option value = "french"> French Doors </option>
@@ -23,7 +23,7 @@
       <!--staircasse type -->
       <h3> Staircase </h3>
       <label for="staircase" class="staircase">Select Staircase Design</label>
-      <select name="staircase" v-model="staircase">
+      <select name="staircase" v-model="design.staircase">
           <option value="straight"> Straight Staircase </option>
           <option value="floating"> Floating Straight Staircase </option>
           <option value="spiral"> Spiral Staircase </option>
@@ -33,7 +33,7 @@
 
       <h3> Kitchen Cabinets </h3>
       <label for ="kitchenCabinets" class="staircase"> Select Kitchen Cabinet Color </label>
-      <select name="kitchenCabinets" v-model="kitchenCabinets">
+      <select name="kitchenCabinets" v-model="design.kitchenCabinets">
         <option value="white"> White </option>
         <option value="gray"> Gray </option>
         <option value="black"> Black </option>
@@ -42,7 +42,7 @@
 
       <h3> Kitchen Island </h3>
       <label for="island" class="island"> Would you like a kitchen island? </label>
-      <select name="island" v-model="kitchenIsland">
+      <select name="island" v-model="design.kitchenIsland">
         <option value="yes"> Yes </option>
         <option value="no"> No </option>
           </select>
@@ -52,7 +52,7 @@
 
       <!--kitchen-->
       <label for="kitchenFlooring" class="kitchenFlooring"> Select Kitchen Flooring </label>
-        <select name="kitchenFlooring" v-model="kitchenFloor">
+        <select name="kitchenFlooring" v-model="design.kitchenFloor">
             <option value="ceramicTile"> Ceramic Tile </option>
             <option value="porcelainTile"> Porcelain Tile </option>
             <option value="hardwood"> Hardwood </option>
@@ -63,7 +63,7 @@
 
         <!--living room-->
         <label for="lrFlooring" class:=lrFlooring> Select Living Room Flooring </label>
-        <select name="lrFlooring" class="lrFlooring" v-model="livingRoomFloor">
+        <select name="lrFlooring" class="lrFlooring" v-model="design.livingRoomFloor">
             <option value="carpet"> Carpet </option>
             <option value="ceramicTile"> Ceramic Tile </option>
             <option value="porcelainTile"> Porcelain Tile </option>
@@ -75,7 +75,7 @@
 
           <!--bedfroom-->
         <label for="bedroomFlooring" class:=bedroomFlooring> Select Bedroom Flooring </label>
-        <select name="bedroomFlooring" class="bedroomFlooring" v-model="bedroomFloor">
+        <select name="bedroomFlooring" class="bedroomFlooring" v-model="design.bedroomFloor">
             <option value="carpet"> Carpet </option>
             <option value="ceramicTile"> Ceramic Tile </option>
             <option value="porcelainTile"> Porcelain Tile </option>
@@ -87,7 +87,7 @@
 
           <!--bathroom -->
         <label for="bathroomFlooring" class:=bathroomFlooring> Select Bathroom Flooring </label>
-        <select name="bathroomFlooring" class="bathroomFlooring" v-model="bathroomFloor">
+        <select name="bathroomFlooring" class="bathroomFlooring" v-model="design.bathroomFloor">
             <option value="ceramicTile"> Ceramic Tile </option>
             <option value="porcelainTile"> Porcelain Tile </option>
             <option value="hardwood"> Hardwood </option>
@@ -98,7 +98,7 @@
 
           <!--entertainment room-->
         <label for="entertainmentFlooring" class:=entertainmentFlooring v-if="$store.state.floorPlan.entertainmentRoom !== ''"> Select Entertainment Room Flooring </label>
-        <select name="entertainmentFlooring" class="entertainmentFlooring" v-model="entertainmentRoomFloor" v-if="$store.state.floorPlan.entertainmentRoom !== ''">
+        <select name="entertainmentFlooring" class="entertainmentFlooring" v-model="design.entertainmentRoomFloor" v-if="$store.state.floorPlan.entertainmentRoom !== ''">
             <option value="carpet"> Carpet </option>
             <option value="ceramicTile"> Ceramic Tile </option>
             <option value="porcelainTile"> Porcelain Tile </option>
@@ -110,7 +110,7 @@
 
         <!--spare room--> 
         <label for="spareRoomFlooring" class:=spareRoomFlooring v-if="$store.state.floorPlan.spareRoom !== ''"> Select Spare Room Flooring </label> <!--pull type from store-->
-        <select name="spareRoomFlooring" class="spareRoomFlooring" v-model="spareRoomFloor" v-if="$store.state.floorPlan.spareRoom !== ''">
+        <select name="spareRoomFlooring" class="spareRoomFlooring" v-model="design.spareRoomFloor" v-if="$store.state.floorPlan.spareRoom !== ''">
             <option value="carpet"> Carpet </option>
             <option value="ceramicTile"> Ceramic Tile </option>
             <option value="porcelainTile"> Porcelain Tile </option>
@@ -122,7 +122,7 @@
 
          <!--staircase-->
         <label for="staircaseFlooring" class:=staircaseFlooring> Select Staircase Flooring </label>
-        <select name="staircaseFlooring" class="staircaseFlooring" v-model="staircaseFloor">
+        <select name="staircaseFlooring" class="staircaseFlooring" v-model="design.staircaseFloor">
             <option value="carpet"> Carpet </option>
             <option value="ceramicTile"> Ceramic Tile </option>
             <option value="porcelainTile"> Porcelain Tile </option>
@@ -137,7 +137,7 @@
       <span class="btns">
       <button class="bck-btn" @click="goToPlanBuilder"> Previous
           </button>
-      <button class="next-btn" @click.prevent="storeData"> Next
+      <button class="next-btn" @click.prevent="storeDesignData"> Next
           </button>
         </span>
         </form>
@@ -151,18 +151,20 @@ export default {
   name: "roomDesign",
   data() {
     return {
-      floorOneLayout: "",
-      doors: "",
-      staircase: "",
-      kitchenCabinets: "",
-      kitchenIsland: "",
-      kitchenFloor: "",
-      livingRoomFloor: "",
-      bedroomFloor: "",
-      bathroomFloor: "",
-      entertainmentRoomFloor: "",
-      spareRoomFloor: "",
-      staircaseFloor: ""
+      design: {
+        floorOneLayout: "",
+        doors: "",
+        staircase: "",
+        kitchenCabinets: "",
+        kitchenIsland: "",
+        kitchenFloor: "",
+        livingRoomFloor: "",
+        bedroomFloor: "",
+        bathroomFloor: "",
+        entertainmentRoomFloor: "",
+        spareRoomFloor: "",
+        staircaseFloor: ""
+      }
       // roomDesign: {
       //   layout: "",
       //   staircase: "",
@@ -186,15 +188,14 @@ export default {
     };
   },
   methods: {
-    goToCost(){
-       this.$router.push("/cost-breakdown");
+    storeDesignData(){
+      this.$store.commit("STORE_DESIGNER", this.design);
+      console.log(this.$store.state.floorPlan);
+      this.$router.push("/cost-breakdown");
     },
     goToPlanBuilder() {
       this.$router.push("/plan-builder");
     },
-  },
-  created() {
-
   },
 };
 </script>
