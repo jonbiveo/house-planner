@@ -511,7 +511,7 @@
         </select>
 
       <!--Add floor -->
-        <label for="spare-room" class="spare-room"> Select ? Space</label>
+        <label for="spare-room" class="spare-room"> Select Spare Room</label>
         <select v-model="floorPlan.spareRoom" id="sr"
           v-on:change="updateSqFtUsage('sr')">
           <option value="16x18">Den</option>
@@ -606,10 +606,10 @@ export default {
         costHigh: 0,
         costLow: 0,
       },
-      bedroomCount: 0,
-      bathroomCount: 0,
-      bedrooms: [],
-      bathrooms: [],
+      // bedroomCount: 0,
+      // bathroomCount: 0,
+      // bedrooms: [],
+      // bathrooms: [],
     };
   },
   methods: {
@@ -691,7 +691,7 @@ button {
   padding: 1-px;
   min-width: 150px;
   height: 25px;
-  font-size: 16pt;
+  font-size: 16px;
   border-radius: 15px;
   border: none;
   background-color: #e76f51;

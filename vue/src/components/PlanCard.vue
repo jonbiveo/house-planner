@@ -17,7 +17,9 @@
           <span v-on:click="copyPlan">Share Plan</span>
         </div>
       </div>
-      <div class="card-image">image</div>
+      <div class="card-image">
+        <img src="@/assets/Floorplan.jpg" alt="Floor Plan" class="card-image">
+      </div>
       <div class="card-details">
         <strong>Plan Name</strong>: {{ planName }} <br />
         <br />
@@ -29,9 +31,13 @@
         <br />
         <strong>Sq Ft</strong>: {{ size }} <br />
         <br />
+        <strong>Total Cost: {{costs.total[0]}} - {{costs.total[1]}}</strong>
+        <br>
+        <br>
       </div>
-      <div class="card-breakdown">Breakdown:</div>
     </div>
+      <div>
+      </div>
   </div>
 </template>
 
@@ -46,6 +52,22 @@ export default {
       state: "",
       city: "",
       size: "",
+      multiplier: 0,
+      costs: {
+        lumber: [],
+        concrete: [],
+        drywall: [],
+        flooring: [],
+        siding: [],
+        constructionManager: [],
+        electrician: [],
+        roofer: [],
+        plumber: [],
+        concreteContractor: [],
+        framer: [],
+        other: [],
+        total: []
+      }
     };
   },
   created() {
@@ -55,6 +77,25 @@ export default {
       this.state = response.data.state;
       this.city = response.data.city;
       this.size = response.data.size;
+      console.log(this.city)
+      if (this.city === "Cleveland") {
+            this.multiplier = this.$store.state.multiplier.cleveland;
+        } else if (this.city === "Cincinnati") {
+            this.multiplier = this.$store.state.multiplier.cincinnati;
+        } else if (this.city === "Columbus") {
+            this.multiplier = this.$store.state.multiplier.columbus;
+        } else if (this.city === "Toledo") {
+            this.multiplier = this.$store.state.multiplier.toledo;
+        }
+
+        let formatter = new Intl.NumberFormat("en-US", {
+            style: "currency",
+                currency: "USD",
+                maximumFractionDigits: 2,
+                minimumFractionDigits: 2
+            });
+        this.costs.total.push(formatter.format(this.size * this.multiplier * this.$store.state.costLow.total));
+        this.costs.total.push(formatter.format(this.size * this.multiplier * this.$store.state.costHigh.total));
     });
   },
   methods: {
@@ -142,10 +183,9 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: darkgray;
-  height: 200px;
-  width: 200px;
-  margin: 5% 10% 0 25%;
+  height: 280px;
+  width: 320px;
+  margin: 5% 10% 15% 15%;
 }
 
 .card-details {
