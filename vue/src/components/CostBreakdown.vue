@@ -110,13 +110,13 @@ export default {
         this.city = this.$store.state.floorPlan.city;
         this.size = this.$store.state.floorPlan.squareFootage;
         
-        if (this.city === "cleveland") {
+        if (this.city === "Cleveland") {
             this.multiplier = this.$store.state.multiplier.cleveland;
-        } else if (this.city === "cincinnati") {
+        } else if (this.city === "Cincinnati") {
             this.multiplier = this.$store.state.multiplier.cincinnati;
-        } else if (this.city === "columbus") {
+        } else if (this.city === "Columbus") {
             this.multiplier = this.$store.state.multiplier.columbus;
-        } else if (this.city === "toledo") {
+        } else if (this.city === "Toledo") {
             this.multiplier = this.$store.state.multiplier.toledo;
         }
 

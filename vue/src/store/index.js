@@ -30,8 +30,38 @@ export default new Vuex.Store({
       floors: "",
       livingRoom: "",
       kitchen: "",
-      bedrooms:[],
-      bathrooms:[],
+      basement: "",
+      dinningRoom: "",
+      entertainmentRoom: "",
+      spareRoom: "",
+      floor: {
+        one: {
+          bedrooms: [],
+          bathrooms: []
+        },
+        two: {
+          bedrooms: [],
+          bathrooms: []
+        },
+        three: {
+          bedrooms: [],
+          bathrooms: []
+        }
+      },
+      design: {
+        floorOneLayout: "",
+        doors: "",
+        staircase: "",
+        kitchenCabinets: "",
+        kitchenIsland: "",
+        kitchenFloor: "",
+        livingRoomFloor: "",
+        bedroomFloor: "",
+        bathroomFloor: "",
+        entertainmentRoomFloor: "",
+        spareRoomFloor: "",
+        staircaseFloor: ""
+      },
       costHigh: "",
       costLow: ""
     },
@@ -112,16 +142,60 @@ export default new Vuex.Store({
       state.floorPlan.costLow = newPlan.costLow;
       state.squareFootageRemaining = newPlan.size;
     },
-    SQ_FT_USAGE(state, roomSize) {
-      state.squareFootageRemaining -= roomSize;
-    },
     SAVE_BUILDER(state, builderPlan){
       state.floorPlan.floors = builderPlan.floors;
-      state.floorPlan.livingRoom = builderPlan.livingRoom;
       state.floorPlan.kitchen = builderPlan.kitchen;
+      state.floorPlan.livingRoom = builderPlan.livingRoom;
       state.floorPlan.basement = builderPlan.basement;
       state.floorPlan.diningRoom = builderPlan.diningRoom;
       state.floorPlan.spareRoom = builderPlan.spareRoom;
+      state.floorPlan.entertainmentRoom = builderPlan.entertainmentRoom;
+
+      for (let [key, value] of Object.entries(builderPlan.floorOne.bedrooms)) {
+        if (value !== "") {
+          state.floorPlan.floor.one.bedrooms.push({key, value});
+        }
+      }
+      for (let [key, value] of Object.entries(builderPlan.floorOne.bathrooms)) {
+        if (value !== "") {
+          state.floorPlan.floor.one.bathrooms.push({key, value});
+        }
+      }
+      for (let [key, value] of Object.entries(builderPlan.floorTwo.bedrooms)) {
+        if (value !== "") {
+          state.floorPlan.floor.two.bedrooms.push({key, value});
+        }
+      }
+      for (let [key, value] of Object.entries(builderPlan.floorTwo.bathrooms)) {
+        if (value !== "") {
+          state.floorPlan.floor.two.bathrooms.push({key, value});
+        }
+      }
+      for (let [key, value] of Object.entries(builderPlan.floorThree.bedrooms)) {
+        if (value !== "") {
+          state.floorPlan.floor.three.bedrooms.push({key, value});
+        }
+      }
+      for (let [key, value] of Object.entries(builderPlan.floorThree.bathrooms)) {
+        if (value !== "") {
+          state.floorPlan.floor.three.bathrooms.push({key, value});
+        }
+      }
+    },
+    storeDesigner(state, designer) {
+      state.floorPlan.design.floorOneLayout = designer.floorOneLayout;
+      state.floorPlan.design.doors = designer.doors;
+      state.floorPlan.design.staircase = designer.staircase;
+      state.floorPlan.design.kitchenCabinets = designer.kitchenCabinets;
+      state.floorPlan.design.kitchenIsland = designer.kitchenIsland;
+      state.floorPlan.design.kitchenFloor = designer.kitchenFloor;
+      state.floorPlan.design.livingRoomFloor = designer.livingRoomFloor;
+      state.floorPlan.design.bedroomFloor = designer.bedroomFloor;
+      state.floorPlan.design.bathroomFloor = designer.bathroomFloor;
+      state.floorPlan.design.entertainmentRoomFloor = designer.entertainmentRoomFloor;
+      state.floorPlan.design.spareRoomFloor = designer.spareRoomFloor;
+      state.floorPlan.design.staircaseFloor = designer.staircaseFloor;
+
     }
   }
 })
