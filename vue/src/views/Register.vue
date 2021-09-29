@@ -83,8 +83,8 @@ export default {
   data() {
     return {
       userList: [],
-      usernameMatch: false,
-      emailMatch: false,
+      usernameMatch: true,
+      emailMatch: true,
       matchCounter: 0,
       user: {
         username: "",
@@ -106,6 +106,26 @@ export default {
     };
   },
   methods: {
+    // checkUsername(username) {
+    //   for (let i = 0; i < this.userList.length; i++) {
+    //     if (this.userList[i].username == username) {
+    //       this.usernameMatch = true;
+    //       this.usernameCheckPass = false;
+    //       this.usernameMsg = "Username already exists";
+    //       document.getElementById("user-err").classList.add("alert");
+    //       break;
+    //     }
+    //     this.matchCounter++;
+    //     console.log(this.matchCounter);
+    //   }
+
+    //   if (this.matchCounter >= this.userList.length) {
+    //     this.matchCounter = 0;
+    //     this.usernameMatch = false;
+    //     this.usernameCheckPass = true;
+    //     document.getElementById("user-err").classList.remove("alert");
+    //   }
+    // },
     register() {
       let passStr = this.user.password;
       if (
@@ -131,28 +151,65 @@ export default {
         document.getElementById("conf-err").classList.remove("alert");
       }
 
-      authService.getUserList(this.$route.params.id).then((response) => {
-        this.userList = response.data;
-        console.log(this.userList);
-      });
 
-      for (let i = 0; i < this.userList.length; i++) {
-        while (this.usernameMatch === false) {
-          if (this.userList[i].username === this.user.username) {
-            this.usernameMatch = true;
-            this.usernameCheckPass = false;
-            this.usernameMsg = "User already exists";
-            document.getElementById("user-err").classList.add("alert");
-          }
-          this.matchCounter++;
-        }
-      }
 
-      if (this.matchCounter >= this.userList.length) {
-        this.usernameMatch = false;
-        this.usernameCheckPass = true;
-        document.getElementById("user-err").classList.remove("alert");
-      }
+      // Username Check
+
+
+
+      // authService.getUserList(this.$route.params.id).then((response) => {
+      //   this.userList = response.data;
+      //   console.log(this.userList);
+
+      //   for (let i = 0; i < this.userList.length; i++) {
+      //     if (this.userList[i].username != this.user.username) {
+      //       this.usernameMatch = false;
+      //       this.matchCounter = 0;
+      //       this.usernameCheckPass = true;
+      //       console.log(this.userList[i].username + this.user.username);
+      //       document.getElementById("user-err").classList.remove("alert");
+      //     } else {
+      //       this.matchCounter++;
+      //       this.usernameMatch = true;
+      //       this.usernameCheckPass = false;
+      //       this.usernameMsg = "Username already exists";
+      //       console.log(this.userList[i].username);
+      //       document.getElementById("user-err").classList.add("alert");
+      //     }
+      //   }
+
+        // if (this.matchCounter >= this.userList.length) {
+        //   this.matchCounter = 0;
+        //   this.usernameMatch = false;
+        //   this.usernameCheckPass = true;
+        //   document.getElementById("user-err").classList.remove("alert");
+        // }
+      // });
+
+      // while ((this.usernameMatch === true)) {
+      //   console.log(this.user.username)
+      //   this.checkUsername(this.user.username);
+      // }
+      // while (this.usernameMatch === false) {
+      //   for (let i = 0; i < this.userList.length; i++) {
+      //     if (this.userList[i].username==this.user.username) {
+      //       this.usernameMatch = true;
+      //       this.usernameCheckPass = false;
+      //       this.usernameMsg = "Username already exists";
+      //       document.getElementById("user-err").classList.add("alert");
+      //       break;
+      //     }
+      //     this.matchCounter++;
+      //     console.log(this.matchCounter)
+      //   }
+      // }
+
+      // if (this.matchCounter >= this.userList.length) {
+      //   this.matchCounter=0;
+      //   this.usernameMatch = false;
+      //   this.usernameCheckPass = true;
+      //   document.getElementById("user-err").classList.remove("alert");
+      // }
       // .then((response) => {
       //   console.log(response)
       //   if (response.status == 200) {
@@ -167,7 +224,7 @@ export default {
       // });
 
       if (
-        this.usernameCheckPass &&
+        // this.usernameCheckPass &&
         // this.emailCheckPass &&
         this.passwordCheckPass &&
         this.confirmCheckPass
