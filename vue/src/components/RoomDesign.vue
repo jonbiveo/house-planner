@@ -10,7 +10,6 @@
       <option value="open"> Open Floor Plan</option>
       <option value="traditional">Traditional Floor Plan</option>
       </select>
-      <br>
 
       <h3> Doors </h3>
       <label for="doorway" class="doors">Select Door Style: </label>
@@ -49,7 +48,7 @@
 
       <!-- flooring material -->
       <h3> Flooring </h3>
-
+    
       <!--kitchen-->
       <label for="kitchenFlooring" class="kitchenFlooring"> Select Kitchen Flooring </label>
         <select name="kitchenFlooring" v-model="design.kitchenFloor">
@@ -59,7 +58,7 @@
             <option value="laminate"> Laminate </option>
             <option value="concrete"> Stained Concrete </option>
         </select>
-        <br>
+    
 
         <!--living room-->
         <label for="lrFlooring" class:=lrFlooring> Select Living Room Flooring </label>
@@ -71,9 +70,8 @@
             <option value="laminate"> Laminate </option>
             <option value="concrete"> Stained Concrete </option>
         </select>
-        <br>
-
-          <!--bedfroom-->
+        
+          <!--bedroom-->
         <label for="bedroomFlooring" class:=bedroomFlooring> Select Bedroom Flooring </label>
         <select name="bedroomFlooring" class="bedroomFlooring" v-model="design.bedroomFloor">
             <option value="carpet"> Carpet </option>
@@ -83,7 +81,6 @@
             <option value="laminate"> Laminate </option>
             <option value="concrete"> Stained Concrete </option>
         </select>
-        <br>
 
           <!--bathroom -->
         <label for="bathroomFlooring" class:=bathroomFlooring> Select Bathroom Flooring </label>
@@ -94,7 +91,6 @@
             <option value="laminate"> Laminate </option>
             <option value="concrete"> Stained Concrete </option>
         </select>
-        <br>
 
           <!--entertainment room-->
         <label for="entertainmentFlooring" class:=entertainmentFlooring v-if="$store.state.floorPlan.entertainmentRoom !== ''"> Select Entertainment Room Flooring </label>
@@ -106,7 +102,6 @@
             <option value="laminate"> Laminate </option>
             <option value="concrete"> Stained Concrete </option>
         </select>
-        <br>
 
         <!--spare room--> 
         <label for="spareRoomFlooring" class:=spareRoomFlooring v-if="$store.state.floorPlan.spareRoom !== ''"> Select Spare Room Flooring </label> <!--pull type from store-->
@@ -118,7 +113,7 @@
             <option value="laminate"> Laminate </option>
             <option value="concrete"> Stained Concrete </option>
         </select>
-        <br>
+        
 
          <!--staircase-->
         <label for="staircaseFlooring" class:=staircaseFlooring> Select Staircase Flooring </label>
@@ -130,7 +125,7 @@
             <option value="laminate"> Laminate </option>
             <option value="concrete"> Stained Concrete </option>
         </select>
-        <br>
+      
         
 
       <br/>
@@ -220,6 +215,7 @@ export default {
   background-color: #E9C46A;
   border-radius: 10px;
   color: black;
+
 } 
 
 .design-form {
