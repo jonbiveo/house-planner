@@ -1,8 +1,12 @@
 <template>
   <div class="landing">
+    <div class=frnt-img>
+    <img class="house" src="https://images.pexels.com/photos/280222/pexels-photo-280222.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"/>
+    </div>
     <hero/>
     <slideshow/>
     <contact/>
+
   </div>
 </template>
 
@@ -16,3 +20,17 @@ export default {
   name: "landing",
 };
 </script>
+<style>
+.frnt-img{
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  padding: 25px;
+}
+.house{
+  position: absolute;
+  height: 85%;
+  max-width: 85%;
+}
+
+</style>
