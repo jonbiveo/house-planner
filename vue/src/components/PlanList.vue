@@ -63,7 +63,6 @@ export default {
   display: flex;
   flex-direction: column;
   max-width: 60vw;
-  box-shadow: 0 3px 7px #E76F51;
 }
 .list-header {
   display: flex;

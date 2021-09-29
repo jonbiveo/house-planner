@@ -248,4 +248,12 @@ div.nav {
   height: 20px;
   padding-right: 3px;
 }
+
+.buttons > span {
+  cursor: pointer;
+}
+
+.nav > strong {
+  cursor: default;
+}
 </style>

@@ -104,7 +104,7 @@ const router = new Router({
       name:"room-design",
       component: RoomDesign,
       meta: {
-        requiresAuth: false,
+        requiresAuth: true,
       }
     }
   ]
