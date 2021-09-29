@@ -192,7 +192,6 @@ export default {
   grid-row: 2;
   display: flex;
   justify-content: center;
-  align-items: flex-start;
   max-height: 80%;
   margin: 5% 10% 15% 15%;
 }

@@ -20,21 +20,22 @@
         <select name="house-types" v-model="planBase.houseType" v-on:change="viewRange">
           <option value="single_family">Single-Family</option>
           <option value="multi_family">Multi-Family</option>
-          <option value="land">Empty Lot</option>
+          <!-- <option value="land">Empty Lot</option> -->
         </select>
-        <label for="square-foot" class='size'>Select Minimum Square Footage:</label>
+        <label for="square-foot" class='size'>Select Square Footage:</label>
         <select v-if="planBase.houseType !== 'land'" name="square-foot" v-model="planBase.size" v-on:change="viewRange" required >
           <option value="1000">1000</option>
           <option value="1500">1500</option>
           <option value="2000">2000</option>
           <option value="2500">2500</option>
+          <option value="3000">3000</option>
         </select>
-        <select v-if="planBase.houseType === 'land'" name="square-foot" v-model="planBase.size" v-on:change="viewRange" required>
+        <!-- <select v-if="planBase.houseType === 'land'" name="square-foot" v-model="planBase.size" v-on:change="viewRange" required>
           <option value="2000">2000</option>
           <option value="4000">4000</option>
           <option value="5000">5000</option>
           <option value="7500">7500</option>
-        </select>
+        </select> -->
         <button>Next</button>
       </form>
       <img

@@ -15,7 +15,7 @@
           v-bind:key="plan.planId"
           v-on:click="viewPlanDetails(plan.planId)"
         >
-          <div class="plan-image">plan icon</div>
+          <div class="plan-image"><img id="image">plan icon</div>
           <p class="list-plan-name">{{ plan.planName }}</p>
         </div>
       </div>
@@ -32,19 +32,32 @@ export default {
       userId: JSON.stringify(JSON.parse(localStorage.getItem("user")).id),
       planName: "",
       plans: [],
+      houseType:"",
+      img:"",
     };
   },
   created() {
     planService.getPlans(this.$route.params.id).then((response) => {
       this.planName = response.data.planName;
+      this.houseType = response.data.houseType;
       this.plans = response.data;
       console.log(JSON.stringify(JSON.parse(localStorage.getItem("user"))));
+
+      console.log(this.houseType)
+
+      this.getIconImage();
     });
   },
   methods: {
     viewPlanDetails(plandId) {
       this.$router.push(`plans/${plandId}`);
     },
+    getIconImage(){
+        switch(this.plans.houseType){
+          case "single":
+            document.getElementById('image').src = "../assets/home-solid.svg";
+        }
+    }
   },
 };
 </script>

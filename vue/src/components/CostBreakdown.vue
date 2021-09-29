@@ -122,10 +122,26 @@ export default {
     goToRoomDesign() {
       this.$router.push("/room-design");
     },
+
   },
   created() {
     console.log(this.$store.state.floorPlan.squareFootage);
     console.log(this.$store.state.floorPlan.city);
+
+    created() {
+        this.city = this.$store.state.floorPlan.city;
+        this.size = this.$store.state.floorPlan.squareFootage;
+        
+        if (this.city === "Cleveland") {
+            this.multiplier = this.$store.state.multiplier.cleveland;
+        } else if (this.city === "Cincinnati") {
+            this.multiplier = this.$store.state.multiplier.cincinnati;
+        } else if (this.city === "Columbus") {
+            this.multiplier = this.$store.state.multiplier.columbus;
+        } else if (this.city === "Toledo") {
+            this.multiplier = this.$store.state.multiplier.toledo;
+        }
+
 
     this.city = this.$store.state.floorPlan.city;
     this.size = this.$store.state.floorPlan.squareFootage;
