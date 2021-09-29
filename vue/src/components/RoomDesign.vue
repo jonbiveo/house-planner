@@ -1,7 +1,8 @@
 <template>
-  <div>
-      <!--form-->
-      <h1>Room Design</h1>
+<div class="main">
+  <div class="design-builder">
+      <form class="design-form">
+      <h2>Room Design</h2>
       
       <h3> Layout </h3>
       <label for="f1layout" class="f1layout">Select Floor 1 Layout Design: </label>
@@ -10,9 +11,14 @@
       <option value="traditional">Traditional Floor Plan</option>
       </select>
       <br>
-      <!--doorway size -->
-        <!--pocket door -->
-        <!--opening-->
+
+      <h3> Doors </h3>
+      <label for="doorway" class="doors">Select Door Style: </label>
+      <select name="doors" v-model="roomDesign.doors">
+      <option value="wood"> Standard Wood Doors </option>
+      <option value = "pocket"> Pocket Doors </option>
+      <option value = "french"> French Doors </option>
+        </select>
 
       <!--staircasse type -->
       <h3> Staircase </h3>
@@ -24,6 +30,22 @@
           <option value="l-shaped"> L-Shaped Staircase</option>
           </select> 
       <!--floor 2 staircase diff than floor 1-->
+
+      <h3> Kitchen Cabinets </h3>
+      <label for ="kitchenCabinets" class="staircase"> Select Kitchen Cabinet Color </label>
+      <select name="kitchenCabinets" v-model="roomDesign.kitchenCabinets">
+        <option value="white"> White </option>
+        <option value="gray"> Gray </option>
+        <option value="black"> Black </option>
+        <option value="wood">Solid Wood </option>
+      </select>
+
+      <h3> Kitchen Island </h3>
+      <label for="island" class="island"> Would you like a kitchen island? </label>
+      <select name="island" v-model="roomDesign.kitchenIsland">
+        <option value="yes"> Yes </option>
+        <option value="no"> No </option>
+          </select>
 
       <!-- flooring material -->
       <h3> Flooring </h3>
@@ -111,14 +133,17 @@
         <br>
         
 
-      <!--kitchen cabinets-->
-      <!--kitchen counter-->
-          <!--island-->
-
       <br/>
+      <span class="btns">
       <button class="bck-btn" @click="goToPlanBuilder"> Previous
           </button>
+      <button class="next-btn" @click.prevent="goToCost"> Next
+          </button>
+        </span>
+        </form>
       </div>
+      </div>
+      
 </template>
 
 <script>
@@ -149,29 +174,63 @@ export default {
     };
   },
   methods: {
+    goToCost(){
+       this.$router.push("/cost-breakdown");
+    },
     goToPlanBuilder() {
       this.$router.push("/plan-builder");
     },
   },
   created() {
-        console.log(this.$store.state.floorPlan.kitchen)
+        console.log(this.$store.state.floorPlan.kitchen) // ?? why do we need kitchen?
+
   },
 };
 </script>
 
 <style>
-div {
+.main{
+  display: grid;
+  height: 75vh;
+  margin-top: 50px;
+  grid-template-columns: 1fr;
+  grid-template-areas: "form";
+  justify-items: center;
+  align-items: center;
+}
+.design-builder{
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-areas: "form";
+  justify-items: center;
+  align-items: center;
+  width: 60vw;
+  background-color: #E9C46A;
+  border-radius: 10px;
   color: black;
+} 
+
+.design-form {
+  margin-top: 15px;
+  grid-area: form;
+  display: grid;
+  justify-content: center;
+  width: 50%;
 }
 button {
-  margin: 10px auto;
-  padding: 1-px;
+  margin: 5px;
+  padding: 0px;
   min-width: 150px;
   height: 25px;
-  font-size: 16pt;
+  font-size: 16px;
   border-radius: 15px;
   border: none;
-  background-color: #e76f51;
-  color: black;
+  background-color: #264653;
+  color:#f0e3c2;
 }
+
+h3{
+  margin: 5px;
+}
+
 </style>
