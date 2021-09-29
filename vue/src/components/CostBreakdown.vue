@@ -75,6 +75,7 @@
                     </tr> -->
                 </table>
                 <h3>Total Cost: {{costs.total[0]}} - {{costs.total[1]}}</h3>
+                <button v-on:click="addPlan">press me</button>
             </div>
         </div>
     </div>
@@ -82,6 +83,8 @@
 </template>
 
 <script>
+import PlanService from "../services/PlanService.js";
+
 export default {
     data() {
         return {
@@ -104,6 +107,16 @@ export default {
                 other: [],
                 total: []
             }
+        }
+    },
+    methods: {
+        addPlan() {
+            PlanService.create(this.$store.state.floorPlan).then(
+                () => {
+                    window.alert("plan Added");
+                    this.$router.push({name: "plans"});
+                }
+            )
         }
     },
     created() {

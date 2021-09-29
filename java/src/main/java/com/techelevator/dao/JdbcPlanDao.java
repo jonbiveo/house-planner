@@ -4,7 +4,6 @@ import com.techelevator.model.Plan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import javax.sql.DataSource;
@@ -48,12 +47,15 @@ public class JdbcPlanDao implements PlanDao{
 
     @Override
     public void createNewPlan(Plan newPlan) {
-        String sql = "INSERT INTO plans (user_id, plan_name, house_type, city, state, size) "
-                + "values (?, ?, ?, ?, ?, ?);";
+        String sql = "INSERT INTO plans (user_id, plan_name, city, state, house_type, square_footage, price_range_lower, price_range_upper) "
+                + "values (?, ?, ?, ?, ?, ?, ?, ?);";
 
         jdbcTemplate.update(sql, newPlan.getUserId(), newPlan.getPlanName(), newPlan.getHouseType(), newPlan.getCity(), newPlan.getState(),
-                newPlan.getSize());
+                newPlan.getSquareFootage(), newPlan.getPriceRangeLower(), newPlan.getPriceRangeUpper());
     }
+
+
+
 
     private Plan mapResultToPlan(SqlRowSet result) {
         Plan plan = new Plan();
@@ -64,7 +66,9 @@ public class JdbcPlanDao implements PlanDao{
         plan.setHouseType(result.getString("house_type"));
         plan.setCity(result.getString("city"));
         plan.setState(result.getString("state"));
-        plan.setSize(result.getInt("size"));
+        plan.setSquareFootage(result.getInt("square_footage"));
+        plan.setPriceRangeLower(result.getDouble("price_range_lower"));
+        plan.setPriceRangeUpper(result.getDouble("price_range_upper"));
 
         return plan;
     }

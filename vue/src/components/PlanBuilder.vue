@@ -601,7 +601,7 @@ export default {
         livingRoom: "",
         entertainmentRoom: "",
         kitchen: "",
-        basement:"0",
+        basement:"",
         spareRoom: "",
         diningRoom: "",
         costHigh: 0,
@@ -609,52 +609,52 @@ export default {
         floorOne: {
           numBedrooms: "",
           bedrooms: {
-            b1: "",
-            b2: "",
-            b3: "",
-            b4: "",
-            b5: "",
+            b1: "0x0",
+            b2: "0x0",
+            b3: "0x0",
+            b4: "0x0",
+            b5: "0x0",
           },
-          numBathrooms: "",
+          numBathrooms: "0x0",
           bathrooms: {
-            ba1: "",
-            ba2: "",
-            ba3: "",
-            ba4: "",
+            ba1: "0x0",
+            ba2: "0x0",
+            ba3: "0x0",
+            ba4: "0x0",
           }
         },
         floorTwo: {
           numBedrooms: "",
           bedrooms: {
-            b1: "",
-            b2: "",
-            b3: "",
-            b4: "",
-            b5: "",
+            b1: "0x0",
+            b2: "0x0",
+            b3: "0x0",
+            b4: "0x0",
+            b5: "0x0",
           },
           numBathrooms: "",
           bathrooms: {
-            ba1: "",
-            ba2: "",
-            ba3: "",
-            ba4: "",
+            ba1: "0x0",
+            ba2: "0x0",
+            ba3: "0x0",
+            ba4: "0x0",
           }
         },
         floorThree: {
           numBedrooms: "",
           bedrooms: {
-            b1: "",
-            b2: "",
-            b3: "",
-            b4: "",
-            b5: "",
+            b1: "0x0",
+            b2: "0x0",
+            b3: "0x0",
+            b4: "0x0",
+            b5: "0x0",
           },
           numBathrooms: "",
           bathrooms: {
-            ba1: "",
-            ba2: "",
-            ba3: "",
-            ba4: "",
+            ba1: "0x0",
+            ba2: "0x0",
+            ba3: "0x0",
+            ba4: "0x0",
           }
         },
       },
@@ -688,6 +688,12 @@ export default {
       let roomSize = parseInt(dimensions[0]) * parseInt(dimensions[1]);
       this.sqFtUsed += roomSize; 
      }, 
+     reduceSqFtUsage(id) {
+      let room = document.getElementById(id);
+      let dimensions = room.value.split("x");
+      let roomSize = parseInt(dimensions[0]) * parseInt(dimensions[1]);
+      this.sqFtUsed -= roomSize; 
+     },
      storeData() {
       //for () 
       if (this.sqFtUsed <= this.floorPlan.squareFootage) {
@@ -705,8 +711,8 @@ export default {
       this.floorPlan.city = this.$store.state.floorPlan.city;
       this.floorPlan.state = this.$store.state.floorPlan.state;
       this.floorPlan.squareFootage = this.$store.state.floorPlan.squareFootage;
-      this.floorPlan.costHigh = this.$store.state.floorPlan.costHigh;
-      this.floorPlan.costLow = this.$store.state.floorPlan.costLow;
+      this.floorPlan.costHigh = this.$store.state.floorPlan.priceRangeUpper;
+      this.floorPlan.costLow = this.$store.state.floorPlan.priceRangeLower;
 
       this.sqFtUsed = this.floorPlan.squareFootage * 0.05;
     }
