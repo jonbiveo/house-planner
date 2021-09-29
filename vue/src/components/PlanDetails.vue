@@ -2,7 +2,7 @@
   <div class = 'plan-details'>
     <div class="background">
       <form v-on:submit.prevent="saveBase" class='form-plan'>
-        <h3>Enter your desired home information below.</h3>
+        <h3>Enter your desired home information below.</h3><br>
         <label for="plan-name" class='plan-name'>Plan Name:</label>
         <input type="text" class='plan-name' v-model="planBase.planName" />
         <label for="State" class='state'>Select State:</label>
@@ -202,7 +202,7 @@ export default {
   background-color: #ffe9b3;
   border-radius: 10px;
   padding: 10px;
-  box-shadow: 5px 5px 5px #264653;
+  box-shadow: 0px 0px 7px #E76F51;
 }
 
 .form-plan {
@@ -261,6 +261,9 @@ width: 55%;
 
 .loading {
   max-height: 80px;
+}
+h3{
+  text-align: center;
 }
 
 </style>

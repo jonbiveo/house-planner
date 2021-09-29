@@ -1,5 +1,5 @@
 <template>
-  <div class='plans-main'>
+  <div class="plans-main">
     <div class="list-header">
       <h1>Welcome!</h1>
     </div>
@@ -35,9 +35,7 @@ export default {
     };
   },
   created() {
-    planService
-    .getPlans(this.$route.params.id)
-    .then((response) => {
+    planService.getPlans(this.$route.params.id).then((response) => {
       this.planName = response.data.planName;
       this.plans = response.data;
       console.log(JSON.stringify(JSON.parse(localStorage.getItem("user"))));
@@ -52,7 +50,7 @@ export default {
 </script>
 
 <style>
-.plans-main{
+.plans-main {
   display: grid;
   min-height: 100vh;
   grid-template-rows: 60px 1fr 100px;
@@ -60,27 +58,27 @@ export default {
   background-color: #ffe9b3;
 }
 
-.plans-body{
+.plans-body {
   justify-self: center;
   display: flex;
-flex-direction: column;
+  flex-direction: column;
   max-width: 60vw;
+  box-shadow: 0 3px 7px #E76F51;
 }
-.list-header{
+.list-header {
   display: flex;
   align-items: center;
   padding: 0 17.5%;
   background-color: #e76f51;
   height: 60px;
 }
-.list-nav{
-  background-color: #E9C46A;
+.list-nav {
+  background-color: #e9c46a;
   padding: 20px 10px;
   height: 40px;
-   min-width: 700px;
+  min-width: 720px;
   font-weight: bold;
-
-} 
+}
 
 .plans-box {
   display: flex;
@@ -88,8 +86,8 @@ flex-direction: column;
   padding: 10px 10px 10px 30px;
   gap: 0 40px;
   min-height: 250px;
-   min-width: 700px;
-  background-color: #E9C46A;
+  min-width: 700px;
+  background-color: #e9c46a;
 }
 
 .plan-icon {
@@ -117,13 +115,13 @@ flex-direction: column;
 }
 
 .plan-image {
-  background-color: #E76F51;
+  background-color: #e76f51;
   border-radius: 3px;
 }
 
 .plan-image:hover {
-  background-color: #F4A261;
-  border: 1px solid #2A9D8F;
+  background-color: #f4a261;
+  border: 1px solid #2a9d8f;
   width: 78px;
   height: 78px;
   box-shadow: 0 0 10px #264653;
@@ -150,9 +148,10 @@ a {
   color: rgb(13, 175, 216);
 }
 
-.list-nav>span{
+.list-nav > span {
   padding: 5px 10px;
-  border-radius:3px;
-  background-color:  #2A9D8F;
+  border-radius: 3px;
+  background-color: #2a9d8f;
 }
+
 </style>

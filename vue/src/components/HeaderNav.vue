@@ -5,7 +5,7 @@
         <h1 class="logo-name">LMTV</h1>
         <span class="tag">House Planner</span>
         <i class="fas fa-home"></i>
-        <img src="../../public/home-solid.svg" />
+        <img src="../assets/home-solid.svg" />
       </div>
     </router-link>
     <router-link :to="{name:'plans'}" v-if="$store.state.token !== ''">
@@ -13,7 +13,7 @@
         <h1 class="logo-name">LMTV</h1>
         <span class="tag">House Planner</span>
         <i class="fas fa-home"></i>
-        <img src="../../public/home-solid.svg" />
+        <img src="../assets/home-solid.svg" />
       </div>
     </router-link>
     <div class="nav-logged-out" v-if="$store.state.token === ''">
@@ -24,7 +24,7 @@
     </div>
     <div class="nav-logged-in" v-if="$store.state.token !== ''">
       <router-link class="btn register" :to="{ name: 'logout'}">Log Out</router-link> | 
-      <router-link :to="{name:'plans'}"> {{$store.state.user.username}} </router-link>
+      <router-link :to="{name:'plans'}"><img src="../assets/user-solid.svg" class="user-icon"> {{$store.state.user.username}} </router-link>
     </div>
   </div>
 </template>
@@ -90,9 +90,16 @@ export default {
   width: 30%;
   display: flex;
   justify-content: space-evenly;
+  align-items: center;
   min-width: 70px;
   max-width: 200px;
 }
+
+.user-icon{
+  height: 20px;
+  padding-right: 5px;
+}
+
 
 a {
   color: white;

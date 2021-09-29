@@ -1,24 +1,28 @@
 <template>
   <div class="card-body">
-    <div class="card-header">
-      
-    </div>
+    <div class="card-header"></div>
     <div class="card-detail-view">
       <div class="card-nav">
         <div class="nav">
           <router-link :to="{ name: 'plans' }">Dashboard</router-link> >
-          {{ planName }}
+          <strong>{{ planName }}</strong>
         </div>
         <div class="buttons">
-          <router-link class="btn edit" :to="{ name: 'plans' }">
-            Edit Plan
+          <router-link :to="{ name: 'plans' }"
+            ><img src="../assets/edit-solid.svg" class="btn-img" />
+            Edit
           </router-link>
-          <span v-on:click="copyPlan">Copy Plan</span>
-          <span v-on:click="copyPlan">Share Plan</span>
+          <span v-on:click="copyPlan"
+            ><img src="../assets/copy-regular.svg" class="btn-img" /> Copy</span
+          >
+          <span v-on:click="copyPlan"
+            ><img src="../assets/share-alt-solid.svg" class="btn-img" />
+            Share</span
+          >
         </div>
       </div>
       <div class="card-image">
-        <img src="@/assets/Floorplan.jpg" alt="Floor Plan" class="card-image">
+        <img src="@/assets/Floorplan.jpg" alt="Floor Plan" class="card-image" />
       </div>
       <div class="card-details">
         <strong>Plan Name</strong>: {{ planName }} <br />
@@ -31,13 +35,11 @@
         <br />
         <strong>Sq Ft</strong>: {{ size }} <br />
         <br />
-        <strong>Total Cost: {{costs.total[0]}} - {{costs.total[1]}}</strong>
-        <br>
-        <br>
+        <strong>Total Cost: </strong> {{ costs.total[0] }} -
+        {{ costs.total[1] }}
       </div>
     </div>
-      <div>
-      </div>
+    <div></div>
   </div>
 </template>
 
@@ -66,8 +68,8 @@ export default {
         concreteContractor: [],
         framer: [],
         other: [],
-        total: []
-      }
+        total: [],
+      },
     };
   },
   created() {
@@ -77,25 +79,33 @@ export default {
       this.state = response.data.state;
       this.city = response.data.city;
       this.size = response.data.size;
-      console.log(this.city)
+      console.log(this.city);
       if (this.city === "Cleveland") {
-            this.multiplier = this.$store.state.multiplier.cleveland;
-        } else if (this.city === "Cincinnati") {
-            this.multiplier = this.$store.state.multiplier.cincinnati;
-        } else if (this.city === "Columbus") {
-            this.multiplier = this.$store.state.multiplier.columbus;
-        } else if (this.city === "Toledo") {
-            this.multiplier = this.$store.state.multiplier.toledo;
-        }
+        this.multiplier = this.$store.state.multiplier.cleveland;
+      } else if (this.city === "Cincinnati") {
+        this.multiplier = this.$store.state.multiplier.cincinnati;
+      } else if (this.city === "Columbus") {
+        this.multiplier = this.$store.state.multiplier.columbus;
+      } else if (this.city === "Toledo") {
+        this.multiplier = this.$store.state.multiplier.toledo;
+      }
 
-        let formatter = new Intl.NumberFormat("en-US", {
-            style: "currency",
-                currency: "USD",
-                maximumFractionDigits: 2,
-                minimumFractionDigits: 2
-            });
-        this.costs.total.push(formatter.format(this.size * this.multiplier * this.$store.state.costLow.total));
-        this.costs.total.push(formatter.format(this.size * this.multiplier * this.$store.state.costHigh.total));
+      let formatter = new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD",
+        maximumFractionDigits: 2,
+        minimumFractionDigits: 2,
+      });
+      this.costs.total.push(
+        formatter.format(
+          this.size * this.multiplier * this.$store.state.costLow.total
+        )
+      );
+      this.costs.total.push(
+        formatter.format(
+          this.size * this.multiplier * this.$store.state.costHigh.total
+        )
+      );
     });
   },
   methods: {
@@ -129,19 +139,15 @@ export default {
 </script>
 
 <style>
-
-.card-body{
+.card-body {
   display: grid;
   min-height: 100vh;
+  grid-template-rows: 60px 1fr;
   height: auto;
-  align-items: flex-start;
-  justify-content: center;
   background-color: #ffe9b3;
 }
 
-.card-header{
-  display: flex;
-  align-items: center;
+.card-header {
   padding: 0 17.5%;
   background-color: #e76f51;
   height: 60px;
@@ -154,11 +160,11 @@ export default {
     "image details"
     "breakdown breakdown";
   grid-template-columns: 1fr 1fr;
-  background-color: lightskyblue;
+  grid-template-rows: 40px 500px 200px;
+  background-color: #e9c46a;
   justify-self: center;
-  gap: 40px ;
-  min-width: 600px;
-  width: 60vw;
+  gap: 40px;
+  
 }
 
 .card-nav {
@@ -168,40 +174,78 @@ export default {
   grid-column-start: 1;
   margin: 5px 5px;
   padding: 15px 20px;
+  max-height: 30px;
   justify-content: space-between;
 }
 
 .buttons {
-  width: 25%;
+  width: 20%;
+  min-width: 300px;
   display: flex;
   justify-content: space-between;
+  max-height: 30px;
 }
 
 .card-image {
   grid-area: image;
   grid-column: 1/2;
+  grid-row: 2;
   display: flex;
   justify-content: center;
-  align-items: center;
-  height: 280px;
-  width: 320px;
+  align-items: flex-start;
+  max-height: 80%;
   margin: 5% 10% 15% 15%;
 }
 
 .card-details {
   grid-area: details;
-  grid-column-start: 2;
+  grid-column: 2;
+  grid-row: 2;
   margin: 20px 0 0 0;
   font-size: 20px;
+  max-height: 300px;
+  padding: 10%;
+  background: #ffe9b3;
+  border-radius: 3px;
+  box-shadow: 5px 5px 0 #e76f51, -5px -5px 0 #f4a261;
 }
 
 .card-breakdown {
-  margin: 0 0 0 35px;
   grid-area: breakdown;
   grid-column: 1/3;
   grid-row: 3;
-  min-height: 100px;
+  max-height: 100px;
+  height: auto;
   font-size: 20px;
-  padding-left: 10%;
+  padding: 20px 30px;
+  background: #ffe9b3;
+  border-radius: 3px;
+  box-shadow: 5px 5px 0 #e76f51, -5px -5px 0 #f4a261;
+}
+
+div.nav {
+  height: 20px;
+  padding: 5px 10px;
+  border-radius: 3px;
+  background-color: #2a9d8f;
+}
+
+.buttons a.router-link-active:visited {
+  color: #264653;
+}
+
+.card-nav a:link {
+  color: #264653;
+}
+.card-nav a:visited {
+  color: #e9c46a;
+}
+.card-nav a:hover {
+  color: #e76f51;
+}
+
+.btn-img {
+  height: 20px;
+  padding-right: 3px;
 }
 </style>

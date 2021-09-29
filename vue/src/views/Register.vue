@@ -259,7 +259,7 @@ export default {
 <style scoped>
 .text-center {
   display: grid;
-  height: 89vh;
+  height: 100vh;
   grid-template-columns: 1fr;
   grid-template-areas: "form";
   justify-items: center;

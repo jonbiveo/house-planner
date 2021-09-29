@@ -182,7 +182,6 @@ export default {
     },
   },
   created() {
-        console.log(this.$store.state.floorPlan.kitchen) // ?? why do we need kitchen?
 
   },
 };
