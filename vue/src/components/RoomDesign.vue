@@ -1,11 +1,20 @@
 <template>
 <div class="main">
   <div class="design-builder">
+      <div class="icons">
+        <img  class="layout" src="../assets/floor-plan-icon.svg">
+        <img class="doors-icon" src="../assets/doors-icon.svg">
+        <img class="stairs" src="../assets/staircase.svg">
+        <img class="bathrooms" src="../assets/bathrooms.svg">
+        <img class="kitchen" src="../assets/kitchen-icon.svg">
+        <img class="floors" src="../assets/floors-icon.svg">
+        </div>
+
       <form class="design-form">
       <h2>Room Design</h2>
       
       <h3> Layout </h3>
-      <label for="f1layout" class="f1layout">Select Floor 1 Layout Design: </label>
+      <label for="f1layout" class="f1layout">Select Layout Design: </label>
       <select name ="f1layout" v-model="design.floorOneLayout">
       <option value="open"> Open Floor Plan</option>
       <option value="traditional">Traditional Floor Plan</option>
@@ -17,11 +26,11 @@
       <option value="wood"> Standard Wood Doors </option>
       <option value = "pocket"> Pocket Doors </option>
       <option value = "french"> French Doors </option>
-        </select>
+      </select>
 
-      <!--staircasse type -->
+      <!--staircase type -->
       <h3> Staircase </h3>
-      <label for="staircase" class="staircase">Select Staircase Design</label>
+      <label for="staircase" class="staircase">Select Staircase Design: </label>
       <select name="staircase" v-model="design.staircase">
           <option value="straight"> Straight Staircase </option>
           <option value="floating"> Floating Straight Staircase </option>
@@ -30,8 +39,26 @@
           </select> 
       <!--floor 2 staircase diff than floor 1-->
 
-      <h3> Kitchen Cabinets </h3>
-      <label for ="kitchenCabinets" class="staircase"> Select Kitchen Cabinet Color </label>
+     <!--Bathtubs-->
+      <h3> Bathroom </h3>
+       <label for ="bathroomCabinets" class="bathroomCabinets"> Select Bathroom Cabinet Color: </label>
+      <select name="kitchenCabinets" v-model="design.bathroomCabinets">
+        <option value="white"> White </option>
+        <option value="gray"> Gray </option>
+        <option value="black"> Black </option>
+        <option value="wood">Solid Wood </option>
+      </select>
+
+       <label for ="bathroomTub" class="bathroomTub"> Bath Options: </label>
+      <select name="bathroomTub" v-model="design.bathroomTub">
+        <option value="bathTub"> Bathtub </option>
+        <option value="standingShower"> Standing Shower </option>
+      </select>
+      
+      <!--Kitchen-->
+
+      <h3> Kitchen </h3>
+      <label for ="kitchenCabinets" class="kitchenCabinets"> Select Kitchen Cabinet Color: </label>
       <select name="kitchenCabinets" v-model="design.kitchenCabinets">
         <option value="white"> White </option>
         <option value="gray"> Gray </option>
@@ -39,18 +66,19 @@
         <option value="wood">Solid Wood </option>
       </select>
 
-      <h3> Kitchen Island </h3>
-      <label for="island" class="island"> Would you like a kitchen island? </label>
+      <label for="island" class="island"> Kitchen Island: </label>
       <select name="island" v-model="design.kitchenIsland">
         <option value="yes"> Yes </option>
-        <option value="no"> No </option>
+          <option value="no"> No </option>
           </select>
 
-      <!-- flooring material -->
-      <h3> Flooring </h3>
+          <!-- kitchen counters if time -->
+
+        <!-- flooring material -->
+        <h3> Flooring </h3>
     
-      <!--kitchen-->
-      <label for="kitchenFlooring" class="kitchenFlooring"> Select Kitchen Flooring </label>
+        <!--kitchen-->
+        <label for="kitchenFlooring" class="kitchenFlooring"> Select Kitchen Flooring: </label>
         <select name="kitchenFlooring" v-model="design.kitchenFloor">
             <option value="ceramicTile"> Ceramic Tile </option>
             <option value="porcelainTile"> Porcelain Tile </option>
@@ -61,7 +89,7 @@
     
 
         <!--living room-->
-        <label for="lrFlooring" class:=lrFlooring> Select Living Room Flooring </label>
+        <label for="lrFlooring" class:=lrFlooring> Select Living Room Flooring: </label>
         <select name="lrFlooring" class="lrFlooring" v-model="design.livingRoomFloor">
             <option value="carpet"> Carpet </option>
             <option value="ceramicTile"> Ceramic Tile </option>
@@ -72,7 +100,7 @@
         </select>
         
           <!--bedroom-->
-        <label for="bedroomFlooring" class:=bedroomFlooring> Select Bedroom Flooring </label>
+        <label for="bedroomFlooring" class:=bedroomFlooring> Select Bedroom Flooring: </label>
         <select name="bedroomFlooring" class="bedroomFlooring" v-model="design.bedroomFloor">
             <option value="carpet"> Carpet </option>
             <option value="ceramicTile"> Ceramic Tile </option>
@@ -83,7 +111,7 @@
         </select>
 
           <!--bathroom -->
-        <label for="bathroomFlooring" class:=bathroomFlooring> Select Bathroom Flooring </label>
+        <label for="bathroomFlooring" class:=bathroomFlooring> Select Bathroom Flooring: </label>
         <select name="bathroomFlooring" class="bathroomFlooring" v-model="design.bathroomFloor">
             <option value="ceramicTile"> Ceramic Tile </option>
             <option value="porcelainTile"> Porcelain Tile </option>
@@ -116,7 +144,7 @@
         
 
          <!--staircase-->
-        <label for="staircaseFlooring" class:=staircaseFlooring> Select Staircase Flooring </label>
+        <label for="staircaseFlooring" class:=staircaseFlooring> Select Staircase Flooring: </label>
         <select name="staircaseFlooring" class="staircaseFlooring" v-model="design.staircaseFloor">
             <option value="carpet"> Carpet </option>
             <option value="ceramicTile"> Ceramic Tile </option>
@@ -128,17 +156,18 @@
       
         
 
-      <br/>
-      <span class="btns">
-      <button class="bck-btn" @click="goToPlanBuilder"> Previous
+        <br>
+        <span class="btns">
+        <button class="bck-btn" @click="goToPlanBuilder"> Previous
           </button>
-      <button class="next-btn" @click.prevent="storeDesignData"> Next
+        <button class="next-btn" @click.prevent="storeDesignData"> Next
           </button>
         </span>
         </form>
       </div>
-      </div>
-      
+      <div>Icons made by <a href="https://smashicons.com/" title="Smashicons">Smashicons</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+    </div>
+    
 </template>
 
 <script>
@@ -150,6 +179,8 @@ export default {
         floorOneLayout: "",
         doors: "",
         staircase: "",
+        bathroomCabinets:"",
+        bathroomTub:"",
         kitchenCabinets: "",
         kitchenIsland: "",
         kitchenFloor: "",
@@ -195,35 +226,98 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .main{
   display: grid;
-  height: 75vh;
-  margin-top: 50px;
   grid-template-columns: 1fr;
-  grid-template-areas: "form";
+  grid-template-areas: "design";
   justify-items: center;
-  align-items: center;
+  max-width: 100%;
+  height: 100%;
+  
 }
+
+
+
 .design-builder{
   display: grid;
-  grid-template-columns: 1fr;
-  grid-template-areas: "form";
+  grid-area: "design";
+  grid-template-columns: 1fr 2fr;
+  grid-template-rows: 1fr;
+  grid-template-areas: "icons" "form";
   justify-items: center;
-  align-items: center;
-  width: 60vw;
+  align-content: center;
+  width: 70vw;
   background-color: #E9C46A;
-  border-radius: 10px;
+  border-radius: 25px;
   color: black;
-
+  margin-top: 25px;
 } 
+.icons{
+  display: grid;
+  grid-area: "icons";
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1.5fr;
+  grid-template-areas: 
+  "layout"
+  "doors"
+  "stairs"
+  "kitchen"
+  "bathroom"
+  "flooring";
+  justify-items: center;
+  color: black;
+  width: 40%;
+  margin-top: 75px;
+}
+.layout{
+  display: grid;
+  grid-area: "layout";
+  height: 10vh;
+  max-width: 10vw
+
+}
+.stairs{
+  display: grid;
+  grid-area: "stairs";
+  height: 10vh;
+  max-width: 10vw;
+}
+.kitchen {
+  display: grid;
+  grid-area: "kitchen";
+  height: 10vh;
+  max-width: 10vw;
+  }
+
+.doors-icon{
+   display: grid;
+  grid-area: "doors";
+  height: 10vh;
+  max-width: 10vw;
+}
+
+.floors{
+  display: grid;
+  grid-area: "floors";
+  height: 10vh;
+  max-width: 10vw;
+}
+
+.bathrooms{
+  display: grid;
+  grid-area: "bathrooms";
+  height: 10vh;
+  max-width: 10vw;
+
+}
 
 .design-form {
   margin-top: 15px;
-  grid-area: form;
+  grid-area: "form";
   display: grid;
-  justify-content: center;
-  width: 50%;
+  justify-items: center;
+  width: 100%;
 }
 button {
   margin: 5px;

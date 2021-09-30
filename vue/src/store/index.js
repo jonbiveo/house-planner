@@ -52,6 +52,8 @@ export default new Vuex.Store({
         floorOneLayout: "",
         doors: "",
         staircase: "",
+        bathroomCabinets:"",
+        bathroomTub:"",
         kitchenCabinets: "",
         kitchenIsland: "",
         kitchenFloor: "",
