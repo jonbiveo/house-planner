@@ -16,16 +16,5 @@ export default {
 };
 </script>
 <style>
-.frnt-img{
-  display: flex;
-  justify-content: center;
-  margin: auto;
-  padding: 20px;
-}
-.house{
-  position: absolute;
-  height: 82%;
-  max-width: 82%;
-}
 
 </style>
