@@ -121,7 +121,7 @@
         </select>
 
           <!--entertainment room-->
-        <label for="entertainmentFlooring" class:=entertainmentFlooring v-if="$store.state.floorPlan.entertainmentRoom !== ''"> Select Entertainment Room Flooring </label>
+        <label for="entertainmentFlooring" class:=entertainmentFlooring v-if="$store.state.floorPlan.entertainmentRoom !== ''"> Select Entertainment Room Flooring: </label>
         <select name="entertainmentFlooring" class="entertainmentFlooring" v-model="design.entertainmentRoomFloor" v-if="$store.state.floorPlan.entertainmentRoom !== ''">
             <option value="carpet"> Carpet </option>
             <option value="ceramicTile"> Ceramic Tile </option>
@@ -132,7 +132,7 @@
         </select>
 
         <!--spare room--> 
-        <label for="spareRoomFlooring" class:=spareRoomFlooring v-if="$store.state.floorPlan.spareRoom !== ''"> Select Spare Room Flooring </label> <!--pull type from store-->
+        <label for="spareRoomFlooring" class:=spareRoomFlooring v-if="$store.state.floorPlan.spareRoom !== ''"> Select Spare Room Flooring: </label> <!--pull type from store-->
         <select name="spareRoomFlooring" class="spareRoomFlooring" v-model="design.spareRoomFloor" v-if="$store.state.floorPlan.spareRoom !== ''">
             <option value="carpet"> Carpet </option>
             <option value="ceramicTile"> Ceramic Tile </option>

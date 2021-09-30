@@ -188,6 +188,8 @@ export default new Vuex.Store({
       state.floorPlan.design.floorOneLayout = designer.floorOneLayout;
       state.floorPlan.design.doors = designer.doors;
       state.floorPlan.design.staircase = designer.staircase;
+      //state.floorPlan.design.bathroomCabinets = designer.bathroomCabinets;
+      //state.floorPlan.design.bathroomTub = designer.bathroomTub;
       state.floorPlan.design.kitchenCabinets = designer.kitchenCabinets;
       state.floorPlan.design.kitchenIsland = designer.kitchenIsland;
       state.floorPlan.design.kitchenFloor = designer.kitchenFloor;

@@ -537,9 +537,8 @@
         <select v-model="floorPlan.basement" id="b"
           v-on:change="updateSqFtUsage('b')">
           <option value="0"> No basement </option>
-          <option value="15x15"> Unfinished Basement </option>
-          <!--idk value for finished vs unfinished? -->
-          <option value="15*15"> Finished Basement </option>
+          <option value="15x15"> Unfinished Basement: 15x15 </option>
+          <option value="15*15"> Finished Basement: 15x15</option>
           </select>
 
         <label for="dining-room" class="dining-room"> Select Dining Room</label>
@@ -563,8 +562,8 @@
         <label for="spare-room" class="spare-room"> Select Spare Room</label>
         <select v-model="floorPlan.spareRoom" id="sr"
           v-on:change="updateSqFtUsage('sr')">
-          <option value="16x18">Den</option>
-          <option value="16x18">Study</option>
+          <option value="16x18">Den: 16x18</option>
+          <option value="16x18">Study: 16x18</option>
         </select>
 
        <span>
