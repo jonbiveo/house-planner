@@ -2,6 +2,7 @@ package com.techelevator.controller;
 
 
 import com.techelevator.dao.PlanDao;
+import com.techelevator.model.Design;
 import com.techelevator.model.Plan;
 import com.techelevator.model.Room;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,5 +41,10 @@ public class PlannerController {
     @PostMapping("/newRoom")
     public void createRoom(@RequestBody Room room) {
         planDao.createNewRooms(room);
+    }
+
+    @PostMapping("/newDesign")
+    public void createDesign(@RequestBody Design design) {
+        planDao.createRoomDesign(design);
     }
 }

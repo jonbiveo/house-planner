@@ -1,5 +1,6 @@
 package com.techelevator.dao;
 
+import com.techelevator.model.Design;
 import com.techelevator.model.Plan;
 import com.techelevator.model.Room;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,6 +68,17 @@ public class JdbcPlanDao implements PlanDao{
         System.out.println(this.newId);
 
         jdbcTemplate.update(sql, this.newId, room.getFloor(), room.getRoomType(), room.getRoomSize());
+    }
+
+    @Override
+    public void createRoomDesign(Design design) {
+        String sql = "INSERT INTO design(plan_id, floor_one_layout, doors, staircase, kitchen_cabinets, kitchen_island, " +
+                "kitchen_floor, living_room_floor, bedroom_floor, bathroom_floor, entertainment_room_floor, spare_room_floor, staircase_floor)" +
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+        jdbcTemplate.update(sql, this.newId, design.getFloorOneLayout(), design.getDoors(), design.getStaircase(), design.getKitchenCabinets(),
+        design.getKitchenIsland(), design.getKitchenFloor(), design.getLivingRoomFloor(), design.getBedroomFloor(), design.getBathroomFloor(), design.getEntertainmentRoomFloor(),
+        design.getSpareRoomFloor(), design.getStaircaseFloor());
     }
 
 

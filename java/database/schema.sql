@@ -70,7 +70,7 @@ CREATE TABLE design (
 	doors varchar(50),
 	staircase varchar(50),
 	kitchen_cabinets varchar(50),
-	kitchen_island boolean,
+	kitchen_island varchar(50),
 	kitchen_floor varchar(50),
 	living_room_floor varchar(50),
 	bedroom_floor varchar(50),

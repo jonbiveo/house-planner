@@ -53,9 +53,7 @@
           <option value="5">5</option>
         </select>
 
-        <label for="f1bedroom1-size" class="bedroom-size">
-          Select Master Bedroom Size:</label
-        >
+        <label for="f1bedroom1-size" class="bedroom-size">Select Master Bedroom Size:</label>
         <select name="f1bedroom1-size" id="f1r1" v-model="floorPlan.floorOne.bedrooms.b1" required v-on:change="updateSqFtUsage('f1r1')">
           <option value="20x24">20x24</option>
           <option value="16x18">16x18</option>
@@ -66,8 +64,7 @@
           for="f1bedroom2-size"
           class="bedroom-size"
           v-if="floorPlan.floorOne.numBedrooms > 1"
-          >Select Bedroom Size:</label
-        >
+          >Select Bedroom Size:</label>
         <select
           name="f1bedroom2-size"
           v-model="floorPlan.floorOne.bedrooms.b2"
@@ -75,7 +72,6 @@
           id="f1r2"
           v-on:change="updateSqFtUsage('f1r2')"
         >
-          <option selected value="">-- select an option --</option>
           <option value="14x16">Large Bedroom: 14x16</option>
           <option value="11x12">Standard Bedroom: 11x12</option>
         </select>
@@ -141,7 +137,7 @@
           <option value="4">4</option>
         </select>
 
-        <label for="f1bathroom-size" class="bathroom-size">
+        <label for="f1bathroom1-size" class="bathroom-size">
           Select Master Bathroom Size:
         </label>
         <select
@@ -163,7 +159,7 @@
           Select Bathroom Size:</label
         >
         <select
-          name="bathroom-size"
+          name="f1bathroom2-size"
           v-model="floorPlan.floorOne.bathrooms.ba2"
           v-if="floorPlan.floorOne.numBathrooms > 1" required
           id="f1b2"
@@ -173,10 +169,10 @@
           <option value="4x6">Half Bath: 4x6</option></select
         >
 
-        <label for="f1bathroom2-size" class="bathroom-size"  v-if="floorPlan.floorOne.numBathrooms > 2">
+        <label for="f1bathroom3-size" class="bathroom-size"  v-if="floorPlan.floorOne.numBathrooms > 2">
           Select Bathroom Size:
         </label>
-        <select name="bathroom-size" v-model="floorPlan.floorOne.bathrooms.ba3" v-if="floorPlan.floorOne.numBathrooms > 2" required
+        <select name="f1bathroom3-size" v-model="floorPlan.floorOne.bathrooms.ba3" v-if="floorPlan.floorOne.numBathrooms > 2" required
           id="f1b3"
           v-on:change="updateSqFtUsage('f1b3')">
           <option value="6x10">Large Bathroom: 6x10</option>
@@ -184,10 +180,10 @@
           <option value="4x6">Half Bath: 4x6</option>
           </select>
 
-        <label for="f1bathroom3-size" class="bathroom-size" v-if="floorPlan.floorOne.numBathrooms > 3">
+        <label for="f1bathroom4-size" class="bathroom-size" v-if="floorPlan.floorOne.numBathrooms > 3">
         Select Bathroom Size:
         </label>
-        <select name="bathroom-size" v-model="floorPlan.floorOne.bathrooms.ba4" v-if="floorPlan.floorOne.numBathrooms > 3" required
+        <select name="f1bathroom4-size" v-model="floorPlan.floorOne.bathrooms.ba4" v-if="floorPlan.floorOne.numBathrooms > 3" required
           id="f1b4"
           v-on:change="updateSqFtUsage('f1b4')">
           <option value="6x10">Large Bathroom: 6x10</option>
@@ -222,7 +218,6 @@
           id="f2r1"
           v-on:change="updateSqFtUsage('f2r1')"
         >
-          <option selected value="">-- select an option --</option>
           <option value="14x16">Large Bedroom: 14x16</option>
           <option value="11x12">Standard Bedroom: 11x12</option>
         </select>
@@ -240,7 +235,6 @@
           id="f2r2"
           v-on:change="updateSqFtUsage('f2r2')"
         >
-          <option selected value="">-- select an option --</option>
           <option value="14x16">Large Bedroom: 14x16</option>
           <option value="11x12">Standard Bedroom: 11x12</option>
         </select>
@@ -286,7 +280,7 @@
           >Select Bedroom Size:</label
         >
         <select
-          name="f1bedroom5-size"
+          name="f2bedroom5-size"
           v-model="floorPlan.floorTwo.bedrooms.b5"
           v-if="floorPlan.floorTwo.numBedrooms > 4"
           id="f2r5"
@@ -305,7 +299,7 @@
           <option value="4">4</option>
         </select>
 
-        <label for="f2bathroom2-size" class="bathroom-size"
+        <label for="f2bathroom1-size" class="bathroom-size"
           v-if="floorPlan.floorTwo.numBathrooms > 0"
         > Select Bathroom Size:</label>
         <select
@@ -408,7 +402,6 @@
          <select name ="f3bedroom2-size" v-model="floorPlan.floorThree.bedrooms.b2" v-if="floorPlan.floorThree.numBedrooms > 1"
             id="f3r2"
             v-on:change="updateSqFtUsage('f3r2')">
-             <option selected value> -- select an option -- </option>
              <option value = "14x16">Large Bedroom: 14x16</option>
              <option value = "11x12">Standard Bedroom: 11x12</option>
          </select>
@@ -456,7 +449,7 @@
         </select>
 
         <label
-          for="f3bathroom-size"
+          for="f3bathroom1-size"
           class="bathroom-size"
           v-if="floorPlan.floorThree.numBathrooms > 0"
         >
@@ -541,9 +534,8 @@
         <select v-model="floorPlan.basement" id="b"
           v-on:change="updateSqFtUsage('b')">
           <option value="0"> No basement </option>
-          <option value="15x15"> Unfinished Basement </option>
-          <!--idk value for finished vs unfinished? -->
-          <option value="15*15"> Finished Basement </option>
+          <option value="15x15"> Unfinished Basement: 15x15 </option>
+          <option value="15*15"> Finished Basement: 15x15</option>
           </select>
 
         <label for="dining-room" class="dining-room"> Select Dining Room</label>
@@ -567,8 +559,8 @@
         <label for="spare-room" class="spare-room"> Select Spare Room</label>
         <select v-model="floorPlan.spareRoom" id="sr"
           v-on:change="updateSqFtUsage('sr')">
-          <option value="16x18">Den</option>
-          <option value="16x18">Study</option>
+          <option value="16x18">Den: 16x18</option>
+          <option value="16x18">Study: 16x18</option>
         </select>
 
        <span>
