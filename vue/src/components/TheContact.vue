@@ -43,7 +43,7 @@ export default {
 .body-contact {
   background-color: #e76f51;
   min-height: 170px;
-  min-width: 98vw;
+  min-width: 750px;
   box-shadow: 0 -3px 5px darkgrey;
 }
 h2{display: flex;
