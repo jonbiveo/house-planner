@@ -218,7 +218,6 @@
           id="f2r1"
           v-on:change="updateSqFtUsage('f2r1')"
         >
-          <option selected value="">-- select an option --</option>
           <option value="14x16">Large Bedroom: 14x16</option>
           <option value="11x12">Standard Bedroom: 11x12</option>
         </select>
@@ -236,7 +235,6 @@
           id="f2r2"
           v-on:change="updateSqFtUsage('f2r2')"
         >
-          <option selected value="">-- select an option --</option>
           <option value="14x16">Large Bedroom: 14x16</option>
           <option value="11x12">Standard Bedroom: 11x12</option>
         </select>
@@ -404,7 +402,6 @@
          <select name ="f3bedroom2-size" v-model="floorPlan.floorThree.bedrooms.b2" v-if="floorPlan.floorThree.numBedrooms > 1"
             id="f3r2"
             v-on:change="updateSqFtUsage('f3r2')">
-             <option selected value> -- select an option -- </option>
              <option value = "14x16">Large Bedroom: 14x16</option>
              <option value = "11x12">Standard Bedroom: 11x12</option>
          </select>
