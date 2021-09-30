@@ -40,7 +40,7 @@ export default {
     };
   },
   created() {
-    planService.getPlans(this.$route.params.id).then((response) => {
+    planService.getPlans().then((response) => {
       this.plans.planName = response.data.planName;
       this.plans.houseType = response.data.houseType;
       this.plans = response.data;
