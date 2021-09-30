@@ -18,7 +18,7 @@
     </router-link>
     <div class="nav-logged-out" v-if="$store.state.token === ''">
       <router-link to="/about">About</router-link> | 
-      <router-link to="/">Contact</router-link> | 
+      <router-link to="/contact">Contact</router-link> | 
       <router-link :to="{ name: 'login' }">Log In</router-link> | 
       <router-link class="btn register" :to="{ name: 'register' }">Register</router-link>
     </div>

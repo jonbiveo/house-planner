@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="main-about">
       <p class="team-members"> Team of 4 Tech Elevator Java Bootcamp Student <br>
           Logan <br>
           Molly <br>
@@ -16,8 +16,14 @@ export default {
 }
 </script>
 
-<style>
-.team-members{
-  color: black;
+<style scoped>
+.main-about{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-areas: "contactForm";
+    text-align: center;
+    color: #264653; 
+    font-size: 20px;
 }
+
 </style>
