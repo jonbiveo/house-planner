@@ -144,7 +144,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .card-body {
   display: grid;
   min-height: 100vh;
@@ -198,7 +198,6 @@ export default {
   grid-row: 2;
   display: flex;
   justify-content: center;
-  align-items: flex-start;
   max-height: 80%;
   margin: 5% 10% 15% 15%;
 }
@@ -253,5 +252,13 @@ div.nav {
 .btn-img {
   height: 20px;
   padding-right: 3px;
+}
+
+.buttons > span {
+  cursor: pointer;
+}
+
+.nav > strong {
+  cursor: default;
 }
 </style>

@@ -11,6 +11,8 @@ import Plans from '../views/Plans.vue'
 import Card from '../views/Card.vue'
 import CostBreakdown from "../views/CostBreakdown.vue"
 import RoomDesign from "../views/Design.vue"
+import AboutTeam from "../views/About.vue"
+import ContactInfo from "../views/Contact.vue"
 
 Vue.use(Router)
 
@@ -104,9 +106,25 @@ const router = new Router({
       name:"room-design",
       component: RoomDesign,
       meta: {
-        requiresAuth: false,
+        requiresAuth: true,
       }
-    }
+    },
+    {
+      path:"/about",
+      name:"about",
+      component: AboutTeam,
+      meta: {
+        requiresAuth: false
+     }
+  },
+  {
+      path:"/contact",
+      name:"contact",
+      component: ContactInfo,
+      meta: {
+        requiresAuth: false
+      }
+  }
   ]
 })
 
