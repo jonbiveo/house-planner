@@ -127,18 +127,49 @@ export default {
         addPlan() {
             PlanService.create(this.$store.state.floorPlan).then(
                 () => {
-                    window.alert("plan Added");
-            if (this.$store.state.floorPlan.floor.one.bedrooms.length > 0) {
-                this.$store.state.floorPlan.floor.one.bedrooms.forEach(
-                    (room) => { 
-                        PlanService.createRooms(room).then(
-                            () => {
-                                window.alert("room created");
+                    if (this.$store.state.floorPlan.floor.one.bedrooms.length > 0) {
+                        this.$store.state.floorPlan.floor.one.bedrooms.forEach(
+                            (room) => { 
+                                PlanService.createRooms(room)
                             }
                         )
                     }
-                )
-            }
+                    if (this.$store.state.floorPlan.floor.one.bathrooms.length > 0) {
+                        this.$store.state.floorPlan.floor.one.bathrooms.forEach(
+                            (room) => { 
+                                PlanService.createRooms(room)
+                            }
+                        )
+                    }
+                    if (this.$store.state.floorPlan.floor.two.bedrooms.length > 0) {
+                        this.$store.state.floorPlan.floor.two.bedrooms.forEach(
+                            (room) => { 
+                                PlanService.createRooms(room)
+                            }
+                        )
+                    }
+                    if (this.$store.state.floorPlan.floor.two.bathrooms.length > 0) {
+                        this.$store.state.floorPlan.floor.two.bathrooms.forEach(
+                            (room) => { 
+                                PlanService.createRooms(room)
+                            }
+                        )
+                    }
+                    if (this.$store.state.floorPlan.floor.three.bedrooms.length > 0) {
+                        this.$store.state.floorPlan.floor.three.bedrooms.forEach(
+                            (room) => { 
+                                PlanService.createRooms(room)
+                            }
+                        )
+                    }
+                    if (this.$store.state.floorPlan.floor.three.bathrooms.length > 0) {
+                        this.$store.state.floorPlan.floor.three.bathrooms.forEach(
+                            (room) => { 
+                                PlanService.createRooms(room)
+                            }
+                        )
+                    }
+                    PlanService.createDesign(this.$store.state.floorPlan.design);
                 }
             )
                     this.$router.push({name: "plans"});

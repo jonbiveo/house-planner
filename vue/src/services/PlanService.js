@@ -13,6 +13,9 @@ export default{
     createRooms(room) {
       return axios.post("/newRoom", room);
     },
+    createDesign(design) {
+      return axios.post("/newDesign", design);
+    },
     setPropertyInfo(info) {
       return {
         method: 'GET',
