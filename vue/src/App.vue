@@ -21,6 +21,10 @@ body, select, input{
   
 }
 
+body{
+  overflow-x:hidden;
+}
+
 a{
   text-decoration: none;
 }

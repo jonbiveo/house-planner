@@ -15,7 +15,9 @@
           v-bind:key="plan.planId"
           v-on:click="viewPlanDetails(plan.planId)"
         >
-          <div class="plan-image"><img id="image">plan icon</div>
+          <div class="plan-image">
+            <img id="image" :src="require('../assets/'+plan.houseType+'.svg')" />
+          </div>
           <p class="list-plan-name">{{ plan.planName }}</p>
         </div>
       </div>
@@ -32,32 +34,40 @@ export default {
       userId: JSON.stringify(JSON.parse(localStorage.getItem("user")).id),
       planName: "",
       plans: [],
-      houseType:"",
-      img:"",
+      icons: [
+        { type: "single", iconImg: "../assets/home-solid.svg" },
+        { type: "townhouse", iconImg: "../assets/noun_townhouse_3821366.svg" },
+      ],
     };
   },
   created() {
     planService.getPlans(this.$route.params.id).then((response) => {
-      this.planName = response.data.planName;
-      this.houseType = response.data.houseType;
+      this.plans.planName = response.data.planName;
+      this.plans.houseType = response.data.houseType;
       this.plans = response.data;
       console.log(JSON.stringify(JSON.parse(localStorage.getItem("user"))));
 
-      console.log(this.houseType)
-
-      this.getIconImage();
+      console.log(this.plans.houseType);
     });
   },
-  methods: {
-    viewPlanDetails(plandId) {
-      this.$router.push(`plans/${plandId}`);
+  computed: {
+    // getImage(type) {
+    //   let img=''
+    //   for (let i = 0; i < this.icons.length; i++) {
+    //     if (this.icons.type == type) {
+    //       console.log(this.icons.type);
+    //       console.log(type);
+    //       console.log(this.icons.iconImg);
+    //       img= this.icons.iconImg;
+    //     }
+    //   }
+    //   return img
+    //},
+    methods: {
+      viewPlanDetails(plandId) {
+        this.$router.push(`plans/${plandId}`);
+      },
     },
-    getIconImage(){
-        switch(this.plans.houseType){
-          case "single":
-            document.getElementById('image').src = "../assets/home-solid.svg";
-        }
-    }
   },
 };
 </script>
@@ -165,5 +175,4 @@ a {
   border-radius: 3px;
   background-color: #2a9d8f;
 }
-
 </style>

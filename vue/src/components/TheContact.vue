@@ -5,21 +5,18 @@
       <div class="creator" v-for="creator in creators" v-bind:key="creator.id">
         <span>{{ creator.name }}</span
         ><br />
-         <img class="con-img" src="../assets/linkedin-brands.svg" />
+        <div class="con-links">
+          <a id="linkedin" :href="creator.linked" target="_blank"
+            ><img class="con-img" src="../assets/linkedin-brands.svg"
+          /></a>
+          <a id="github" :href="creator.git" target="_blank"
+            ><img class="con-img" src="../assets/github-brands.svg"
+          /></a>
+          <a id="email" :href="'mailto:' + creator.email" target="_blank"
+            ><img class="con-img" src="../assets/envelope-solid.svg"
+          /></a>
+        </div>
       </div>
-      <!-- <div class="creator">
-        <span>Logan Edmonds</span><br><img class="con-img" src="../assets/linkedin-brands.svg" />
-      </div>
-      <div class="creator">
-        <span>Molly Akers</span><br><img class="con-img" src="../assets/linkedin-brands.svg" />
-      </div>
-      <div class="creator">
-        <span>Tyler Vicari</span><br><img class="con-img" src="../assets/linkedin-brands.svg" />
-      </div>
-      <div class="creator">
-        <span>Vellencia Knightly</span
-        ><br><img class="con-img" src="../assets/linkedin-brands.svg" />
-      </div> -->
     </div>
   </div>
 </template>
@@ -29,12 +26,36 @@ export default {
   data() {
     return {
       creators: [
-        { name: "Logan Edmonds", linked: "" },
-        { name: "Molly Akers", linked: "" },
-        { name: "Tyler Vicari", linked: "" },
-        { name: "Vellencia Knightly", linked: "" },
+        {
+          name: "Logan Edmonds",
+          linked: "https://www.linkedin.com/in/logantedmonds/",
+          git: "https://github.com/jonbiveo",
+          email: "LoganTEdmonds@gmail.com",
+        },
+        {
+          name: "Molly Akers",
+          linked: "www.linkedin.com/in/mollyakers",
+          git: "https://github.com/akersm",
+          email: "mollyakers@gmail.com",
+        },
+        {
+          name: "Tyler Vicari",
+          linked: "https://www.linkedin.com/in/tyler-vicari/",
+          git: "https://github.com/tjordanv",
+          email: "tylervicari@gmail.com",
+        },
+        {
+          name: "Vellencia Knightly",
+          linked: "https://www.linkedin.com/in/vknightly/",
+          git: "https://github.com/VenBenvolio",
+          email: "vellencia.knightly@gmail.com",
+        },
       ],
     };
+  },
+  computed: {
+  },
+  methods: {
   },
 };
 </script>
@@ -46,17 +67,18 @@ export default {
   min-width: 750px;
   box-shadow: 0 -3px 5px darkgrey;
 }
-h2{display: flex;
+h2 {
+  display: flex;
   justify-content: center;
   padding: 20px 0 10px 0;
-  color:  #264653;
-  width: 98vw
+  color: #264653;
+  width: 98vw;
 }
 
-h2>span{
+h2 > span {
   width: 25%;
   text-align: center;
-  border-bottom: 3px solid #F4A261;
+  border-bottom: 3px solid #f4a261;
 }
 
 .creators {
@@ -71,14 +93,20 @@ h2>span{
   align-items: center;
   font-size: 1.1em;
   min-width: 150px;
-  border-left: 2px solid #F4A261;
+  border-left: 2px solid #f4a261;
 }
 
-.creator:nth-child(1){
+.creator:nth-child(1) {
   border-left: 0px;
 }
 
 .con-img {
   height: 2.2em;
+}
+
+.con-links {
+  display: flex;
+  width: 200px;
+  justify-content: space-evenly;
 }
 </style>
