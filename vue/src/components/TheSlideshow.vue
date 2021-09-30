@@ -10,7 +10,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .body-slide{
     background-color: #e9c46a;
     height:300px;

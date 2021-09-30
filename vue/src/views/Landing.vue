@@ -1,36 +1,20 @@
 <template>
   <div class="landing">
-    <div class=frnt-img>
-    <img class="house" src="https://images.pexels.com/photos/280222/pexels-photo-280222.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"/>
-    </div>
-    <hero/>
-    <slideshow/>
-    <contact/>
-
+    
+    <hero id="about"/>
+    <contact id="contact"/>
   </div>
 </template>
 
 <script>
 import Contact from '../components/TheContact.vue';
 import Hero from '../components/TheHero.vue';
-import Slideshow from '../components/TheSlideshow.vue';
 
 export default {
-  components: {Hero, Slideshow, Contact},
+  components: {Hero, Contact},
   name: "landing",
 };
 </script>
 <style>
-.frnt-img{
-  display: flex;
-  justify-content: center;
-  margin: auto;
-  padding: 25px;
-}
-.house{
-  position: absolute;
-  height: 85%;
-  max-width: 85%;
-}
 
 </style>

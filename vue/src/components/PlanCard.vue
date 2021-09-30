@@ -144,7 +144,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .card-body {
   display: grid;
   min-height: 100vh;

@@ -18,6 +18,11 @@ body, select, input{
   margin:0;
   font-family: "Nunito", sans-serif;
   color: #264653;
+  
+}
+
+a{
+  text-decoration: none;
 }
 
 </style>

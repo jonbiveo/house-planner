@@ -62,7 +62,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .plans-main {
   display: grid;
   min-height: 100vh;
