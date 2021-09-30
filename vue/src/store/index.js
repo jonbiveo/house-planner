@@ -152,33 +152,33 @@ export default new Vuex.Store({
       state.floorPlan.entertainmentRoom = builderPlan.entertainmentRoom;
 
       for (let [key, value] of Object.entries(builderPlan.floorOne.bedrooms)) {
-        if (value !== "") {
-          state.floorPlan.floor.one.bedrooms.push({key, value});
+        if (value !== "" && key !== "") {
+          state.floorPlan.floor.one.bedrooms.push({roomSize: value, floor: 1, roomType: "bedroom"});
         }
       }
       for (let [key, value] of Object.entries(builderPlan.floorOne.bathrooms)) {
-        if (value !== "") {
-          state.floorPlan.floor.one.bathrooms.push({key, value});
+        if (value  !== "" && key !== "") {
+          state.floorPlan.floor.one.bathrooms.push({roomSize: value, floor: 1, roomType: "bathroom"});
         }
       }
       for (let [key, value] of Object.entries(builderPlan.floorTwo.bedrooms)) {
-        if (value !== "") {
-          state.floorPlan.floor.two.bedrooms.push({key, value});
+        if (value !== "" && key !== "") {
+          state.floorPlan.floor.two.bedrooms.push({roomSize: value, floor: 2, roomType: "bedroom"});
         }
       }
       for (let [key, value] of Object.entries(builderPlan.floorTwo.bathrooms)) {
-        if (value !== "") {
-          state.floorPlan.floor.two.bathrooms.push({key, value});
+        if (value !== "" && key !== "") {
+          state.floorPlan.floor.two.bathrooms.push({roomSize: value, floor: 2, roomType: "bathroom"});
         }
       }
       for (let [key, value] of Object.entries(builderPlan.floorThree.bedrooms)) {
-        if (value !== "") {
-          state.floorPlan.floor.three.bedrooms.push({key, value});
+        if (value !== "" && key !== "") {
+          state.floorPlan.floor.three.bedrooms.push({roomSize: value, floor: 3, roomType: "bedroom"});
         }
       }
       for (let [key, value] of Object.entries(builderPlan.floorThree.bathrooms)) {
-        if (value !== "") {
-          state.floorPlan.floor.three.bathrooms.push({key, value});
+        if (value !== "" && key !== "") {
+          state.floorPlan.floor.three.bathrooms.push({roomSize: value, floor: 3, roomType: "bathroom"});
         }
       }
     },

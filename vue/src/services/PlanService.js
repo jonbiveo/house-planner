@@ -10,6 +10,9 @@ export default{
     create(planBase) {
         return axios.post('/newPlan', planBase);
       },
+    createRooms(room) {
+      return axios.post("/newRoom", room);
+    },
     setPropertyInfo(info) {
       return {
         method: 'GET',

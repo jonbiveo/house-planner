@@ -114,9 +114,22 @@ export default {
             PlanService.create(this.$store.state.floorPlan).then(
                 () => {
                     window.alert("plan Added");
-                    this.$router.push({name: "plans"});
+            if (this.$store.state.floorPlan.floor.one.bedrooms.length > 0) {
+                this.$store.state.floorPlan.floor.one.bedrooms.forEach(
+                    (room) => { 
+                        PlanService.createRooms(room).then(
+                            () => {
+                                window.alert("room created");
+                            }
+                        )
+                    }
+                )
+            }
                 }
             )
+                    this.$router.push({name: "plans"});
+        },
+        addRooms() {
         }
     },
     created() {

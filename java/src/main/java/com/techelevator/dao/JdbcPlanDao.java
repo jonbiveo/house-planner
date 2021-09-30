@@ -1,6 +1,7 @@
 package com.techelevator.dao;
 
 import com.techelevator.model.Plan;
+import com.techelevator.model.Room;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
@@ -10,6 +11,7 @@ import javax.sql.DataSource;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class JdbcPlanDao implements PlanDao{
@@ -17,6 +19,7 @@ public class JdbcPlanDao implements PlanDao{
     JdbcUserDao userDao;
 
     private JdbcTemplate jdbcTemplate;
+    private Integer newId;
 
     public JdbcPlanDao(DataSource datasource) {
         jdbcTemplate = new JdbcTemplate(datasource);
@@ -48,13 +51,23 @@ public class JdbcPlanDao implements PlanDao{
     @Override
     public void createNewPlan(Plan newPlan) {
         String sql = "INSERT INTO plans (user_id, plan_name, city, state, house_type, square_footage, price_range_lower, price_range_upper) "
-                + "values (?, ?, ?, ?, ?, ?, ?, ?);";
+                + "values (?, ?, ?, ?, ?, ?, ?, ?) RETURNING plan_id";
 
-        jdbcTemplate.update(sql, newPlan.getUserId(), newPlan.getPlanName(), newPlan.getHouseType(), newPlan.getCity(), newPlan.getState(),
+        this.newId = jdbcTemplate.queryForObject(sql, Integer.class, newPlan.getUserId(), newPlan.getPlanName(), newPlan.getHouseType(), newPlan.getCity(), newPlan.getState(),
                 newPlan.getSquareFootage(), newPlan.getPriceRangeLower(), newPlan.getPriceRangeUpper());
+
+        System.out.println(this.newId);
+
     }
 
+    @Override
+    public void createNewRooms(Room room) {
+        String sql = "INSERT INTO rooms(plan_id, floor, room_type, room_size)" +
+                "values (?, ?, ?, ?)";
+        System.out.println(this.newId);
 
+        jdbcTemplate.update(sql, this.newId, room.getFloor(), room.getRoomType(), room.getRoomSize());
+    }
 
 
     private Plan mapResultToPlan(SqlRowSet result) {

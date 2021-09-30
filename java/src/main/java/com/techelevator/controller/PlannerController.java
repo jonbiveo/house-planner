@@ -3,6 +3,7 @@ package com.techelevator.controller;
 
 import com.techelevator.dao.PlanDao;
 import com.techelevator.model.Plan;
+import com.techelevator.model.Room;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +17,7 @@ import java.util.List;
 public class PlannerController {
     @Autowired
     PlanDao planDao;
+    private int planId;
 
     @GetMapping("/plans")
     public List<Plan> getAllPlans(Principal principal){
@@ -33,5 +35,10 @@ public class PlannerController {
     public void createPlan(@RequestBody Plan newPlan){
         planDao.createNewPlan(newPlan);
         System.out.println("User ID "+newPlan.getUserId() + " created a new plan");
+    }
+
+    @PostMapping("/newRoom")
+    public void createRoom(@RequestBody Room room) {
+        planDao.createNewRooms(room);
     }
 }
