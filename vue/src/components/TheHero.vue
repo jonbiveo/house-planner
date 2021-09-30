@@ -1,6 +1,12 @@
 <template>
   <div class="body-hero">
-      <p class="welcome">Welcome to LMTV Home Builder</p>
+      <h2 class="welcome">Welcome to LMTV Home Builder</h2>
+      <p class="description"> Design and share your dream home <br>
+        <br><br><br><br><br><br><br><br><br>
+        <br><br><br><br><br><br><br><br><br>
+        <span class="register-hero">To save and share your design please register for an account</span>
+      </p>
+
   </div>
 </template>
 
@@ -19,8 +25,19 @@ export default {
   /* display: flex;
   justify-content: center; */
   color: white;
-  font-size: 28px;
   font-weight: bold;
   position: absolute;
 }
+.description{
+   color: white;
+   font-size: 20px;
+   position: absolute;
+   margin: 15px;
+   padding: 40px;
+   text-align: center;
+}
+.register-hero{
+   font-size: 18px;
+}
+
 </style>
