@@ -27,9 +27,9 @@ CREATE TABLE plans (
 	city varchar(50) NOT NULL,
 	state varchar(20) NOT NULL,
 	house_type varchar(50) NOT NULL,
-	size int NOT NULL,
+	square_footage int NOT NULL,
 	price_range_lower int NOT NULL,
-	price_range_higher int NOT NULL,   
+	price_range_upper int NOT NULL,   
 	
 	CONSTRAINT PK_plan PRIMARY KEY (plan_id),
 	CONSTRAINT fk_plans_users FOREIGN KEY (user_id) references users (user_id)
@@ -41,7 +41,7 @@ INSERT INTO users (username,email,password_hash,role) VALUES ('AnotherUser', 'te
 INSERT INTO users (username,email,password_hash,role) VALUES ('OhNoAUser', 'test4@email.com', '$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_USER');
 
 
-INSERT INTO plans (user_id, plan_name, house_type, city, state, size, price_range_lower, price_range_higher)  
+INSERT INTO plans (user_id, plan_name, house_type, city, state, square_footage, price_range_lower, price_range_upper)  
 VALUES (1, 'Plan 1 (frUser)', 'single', 'Toledo', 'Ohio', 1000, 75415, 90498),
         (2, 'Plan 2 (frAnoth)', 'detached', 'Cleveland', 'Ohio', 2000, 129284, 158001),
         (3, 'Plan 3(frOh)', 'townhouse', 'Cincinnati', 'Ohio', 2500, 372587, 447105),
@@ -61,6 +61,26 @@ CREATE TABLE rooms (
 
 	CONSTRAINT PK_rooms PRIMARY KEY (room_id),
 	CONSTRAINT fk_room_plan FOREIGN KEY (plan_id) references plans (plan_id)
+);
+
+CREATE TABLE design (
+	design_id serial NOT NULL,
+	plan_id int NOT NULL,
+	floorOneLayout varchar(50),
+	doors varchar(50),
+	staircase varchar(50),
+	kitchenCabinets varchar(50),
+	kitchenIsland varchar(50),
+	kitchenFloor varchar(50),
+	livingRoomFloor varchar(50),
+	bedroomFloor varchar(50),
+	bathroomFloor varchar(50),
+	entertainmentRoomFloor varchar(50),
+	spareRoomFloor varchar(50),
+	staircaseFloor varchar(50),
+
+	CONSTRAINT PK_design PRIMARY KEY (design_id),
+	CONSTRAINT fk_design_plan FOREIGN KEY (plan_id) references plans (plan_id)
 );
 
 COMMIT TRANSACTION;

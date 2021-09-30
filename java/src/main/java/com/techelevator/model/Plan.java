@@ -7,19 +7,37 @@ public class Plan {
     private String houseType;
     private String state;
     private String city;
-    private int size;
+    private int squareFootage;
+    private double priceRangeLower;
+    private double priceRangeUpper;
+
+    public double getPriceRangeLower() {
+        return priceRangeLower;
+    }
+
+    public void setPriceRangeLower(double priceRangeLower) {
+        this.priceRangeLower = priceRangeLower;
+    }
+
+    public double getPriceRangeUpper() {
+        return priceRangeUpper;
+    }
+
+    public void setPriceRangeUpper(double priceRangeUpper) {
+        this.priceRangeUpper = priceRangeUpper;
+    }
 
     public Plan() {
     }
 
-    public Plan(int planId, int userId, String planName, String houseType, String city, String state, int size) {
+    public Plan(int planId, int userId, String planName, String houseType, String city, String state, int squareFootage) {
         this.planId = planId;
         this.userId = userId;
         this.planName = planName;
         this.houseType = houseType;
         this.state = state;
         this.city = city;
-        this.size = size;
+        this.squareFootage = squareFootage;
     }
 
     @Override
@@ -31,7 +49,7 @@ public class Plan {
                 ", houseType='" + houseType + '\'' +
                 ", state='" + state + '\'' +
                 ", city='" + city + '\'' +
-                ", size=" + size +
+                ", size=" + squareFootage +
                 '}';
     }
 
@@ -83,11 +101,11 @@ public class Plan {
         this.city = city;
     }
 
-    public int getSize() {
-        return size;
+    public int getSquareFootage() {
+        return squareFootage;
     }
 
-    public void setSize(int size) {
-        this.size = size;
+    public void setSquareFootage(int squareFootage) {
+        this.squareFootage = squareFootage;
     }
 }

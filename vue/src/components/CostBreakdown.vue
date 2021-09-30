@@ -85,15 +85,17 @@
                         <td>{{costs.total[0]}} - {{costs.total[1]}}</td>
                         <td>{{costs.total[2]}} - {{costs.total[3]}}</td>
                     </tr> -->
-        </table>
-        <h3>Total Cost: {{ costs.total[0] }} - {{ costs.total[1] }}</h3>
-        <button class="bck-btn" @click="goToRoomDesign">Previous</button>
-      </div>
+                </table>
+                <h3>Total Cost: {{costs.total[0]}} - {{costs.total[1]}}</h3>
+                <button v-on:click="addPlan">press me</button>
+            </div>
+        </div>
     </div>
-  </div>
 </template>
 
 <script>
+import PlanService from "../services/PlanService.js";
+
 export default {
   data() {
     return {
@@ -122,271 +124,276 @@ export default {
     goToRoomDesign() {
       this.$router.push("/room-design");
     },
-
-  },
-  created() {
-    console.log(this.$store.state.floorPlan.squareFootage);
-    console.log(this.$store.state.floorPlan.city);
-
+    methods: {
+      addPlan() {
+        PlanService.create(this.$store.state.floorPlan).then(() => {
+          window.alert("plan Added");
+          this.$router.push({ name: "plans" });
+        });
+      },
+    },
     created() {
-        this.city = this.$store.state.floorPlan.city;
-        this.size = this.$store.state.floorPlan.squareFootage;
-        
-        if (this.city === "Cleveland") {
-            this.multiplier = this.$store.state.multiplier.cleveland;
-        } else if (this.city === "Cincinnati") {
-            this.multiplier = this.$store.state.multiplier.cincinnati;
-        } else if (this.city === "Columbus") {
-            this.multiplier = this.$store.state.multiplier.columbus;
-        } else if (this.city === "Toledo") {
-            this.multiplier = this.$store.state.multiplier.toledo;
-        }
+      this.city = this.$store.state.floorPlan.city;
+      this.size = this.$store.state.floorPlan.squareFootage;
 
+      if (this.city === "Cleveland") {
+        this.multiplier = this.$store.state.multiplier.cleveland;
+      } else if (this.city === "Cincinnati") {
+        this.multiplier = this.$store.state.multiplier.cincinnati;
+      } else if (this.city === "Columbus") {
+        this.multiplier = this.$store.state.multiplier.columbus;
+      } else if (this.city === "Toledo") {
+        this.multiplier = this.$store.state.multiplier.toledo;
+      }
 
-    this.city = this.$store.state.floorPlan.city;
-    this.size = this.$store.state.floorPlan.squareFootage;
+      this.city = this.$store.state.floorPlan.city;
+      this.size = this.$store.state.floorPlan.squareFootage;
 
+      if (this.city === "cleveland") {
+        this.multiplier = this.$store.state.multiplier.cleveland;
+      } else if (this.city === "cincinnati") {
+        this.multiplier = this.$store.state.multiplier.cincinnati;
+      } else if (this.city === "columbus") {
+        this.multiplier = this.$store.state.multiplier.columbus;
+      } else if (this.city === "toledo") {
+        this.multiplier = this.$store.state.multiplier.toledo;
+      }
 
-    if (this.city === "cleveland") {
-      this.multiplier = this.$store.state.multiplier.cleveland;
-    } else if (this.city === "cincinnati") {
-      this.multiplier = this.$store.state.multiplier.cincinnati;
-    } else if (this.city === "columbus") {
-      this.multiplier = this.$store.state.multiplier.columbus;
-    } else if (this.city === "toledo") {
-      this.multiplier = this.$store.state.multiplier.toledo;
-    }
+      let formatter = new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD",
+        maximumFractionDigits: 2,
+        minimumFractionDigits: 2,
+      });
 
-    let formatter = new Intl.NumberFormat("en-US", {
-      style: "currency",
-      currency: "USD",
-      maximumFractionDigits: 2,
-      minimumFractionDigits: 2,
-    });
+      // I would just like to apologize to all for this terrible terrible block of code. MVP. sincerely, -Tyler
+      this.costs.lumber.push(
+        formatter.format(this.multiplier * this.$store.state.costLow.lumber)
+      );
+      this.costs.lumber.push(
+        formatter.format(this.multiplier * this.$store.state.costHigh.lumber)
+      );
+      this.costs.lumber.push(
+        formatter.format(
+          this.size * this.multiplier * this.$store.state.costLow.lumber
+        )
+      );
+      this.costs.lumber.push(
+        formatter.format(
+          this.size * this.multiplier * this.$store.state.costHigh.lumber
+        )
+      );
+      this.costs.concrete.push(
+        formatter.format(this.multiplier * this.$store.state.costLow.concrete)
+      );
+      this.costs.concrete.push(
+        formatter.format(this.multiplier * this.$store.state.costHigh.concrete)
+      );
+      this.costs.concrete.push(
+        formatter.format(
+          this.size * this.multiplier * this.$store.state.costLow.concrete
+        )
+      );
+      this.costs.concrete.push(
+        formatter.format(
+          this.size * this.multiplier * this.$store.state.costHigh.concrete
+        )
+      );
+      this.costs.drywall.push(
+        formatter.format(this.multiplier * this.$store.state.costHigh.drywall)
+      );
+      this.costs.drywall.push(
+        formatter.format(this.multiplier * this.$store.state.costHigh.drywall)
+      );
+      this.costs.drywall.push(
+        formatter.format(
+          this.size * this.multiplier * this.$store.state.costHigh.drywall
+        )
+      );
+      this.costs.drywall.push(
+        formatter.format(
+          this.size * this.multiplier * this.$store.state.costHigh.drywall
+        )
+      );
+      this.costs.flooring.push(
+        formatter.format(this.multiplier * this.$store.state.costLow.flooring)
+      );
+      this.costs.flooring.push(
+        formatter.format(this.multiplier * this.$store.state.costHigh.flooring)
+      );
+      this.costs.flooring.push(
+        formatter.format(
+          this.size * this.multiplier * this.$store.state.costLow.flooring
+        )
+      );
+      this.costs.flooring.push(
+        formatter.format(
+          this.size * this.multiplier * this.$store.state.costHigh.flooring
+        )
+      );
+      this.costs.siding.push(
+        formatter.format(this.multiplier * this.$store.state.costLow.siding)
+      );
+      this.costs.siding.push(
+        formatter.format(this.multiplier * this.$store.state.costHigh.siding)
+      );
+      this.costs.siding.push(
+        formatter.format(
+          this.size * this.multiplier * this.$store.state.costLow.siding
+        )
+      );
+      this.costs.siding.push(
+        formatter.format(
+          this.size * this.multiplier * this.$store.state.costHigh.siding
+        )
+      );
+      this.costs.constructionManager.push(
+        formatter.format(
+          this.multiplier * this.$store.state.costLow.constructionManager
+        )
+      );
+      this.costs.constructionManager.push(
+        formatter.format(
+          this.multiplier * this.$store.state.costHigh.constructionManager
+        )
+      );
+      this.costs.constructionManager.push(
+        formatter.format(
+          this.size *
+            this.multiplier *
+            this.$store.state.costLow.constructionManager
+        )
+      );
+      this.costs.constructionManager.push(
+        formatter.format(
+          this.size *
+            this.multiplier *
+            this.$store.state.costHigh.constructionManager
+        )
+      );
+      this.costs.electrician.push(
+        formatter.format(
+          this.multiplier * this.$store.state.costHigh.electrician
+        )
+      );
+      this.costs.electrician.push(
+        formatter.format(
+          this.multiplier * this.$store.state.costHigh.electrician
+        )
+      );
+      this.costs.electrician.push(
+        formatter.format(
+          this.size * this.multiplier * this.$store.state.costHigh.electrician
+        )
+      );
+      this.costs.electrician.push(
+        formatter.format(
+          this.size * this.multiplier * this.$store.state.costHigh.electrician
+        )
+      );
+      this.costs.roofer.push(
+        formatter.format(this.multiplier * this.$store.state.costLow.roofer)
+      );
+      this.costs.roofer.push(
+        formatter.format(this.multiplier * this.$store.state.costHigh.roofer)
+      );
+      this.costs.roofer.push(
+        formatter.format(
+          this.size * this.multiplier * this.$store.state.costLow.roofer
+        )
+      );
+      this.costs.roofer.push(
+        formatter.format(
+          this.size * this.multiplier * this.$store.state.costHigh.roofer
+        )
+      );
+      this.costs.plumber.push(
+        formatter.format(this.multiplier * this.$store.state.costLow.plumber)
+      );
+      this.costs.plumber.push(
+        formatter.format(this.multiplier * this.$store.state.costHigh.plumber)
+      );
+      this.costs.plumber.push(
+        formatter.format(
+          this.size * this.multiplier * this.$store.state.costLow.plumber
+        )
+      );
+      this.costs.plumber.push(
+        formatter.format(
+          this.size * this.multiplier * this.$store.state.costHigh.plumber
+        )
+      );
+      this.costs.concreteContractor.push(
+        formatter.format(
+          this.multiplier * this.$store.state.costLow.concreteContractor
+        )
+      );
+      this.costs.concreteContractor.push(
+        formatter.format(
+          this.multiplier * this.$store.state.costHigh.concreteContractor
+        )
+      );
+      this.costs.concreteContractor.push(
+        formatter.format(
+          this.size *
+            this.multiplier *
+            this.$store.state.costLow.concreteContractor
+        )
+      );
+      this.costs.concreteContractor.push(
+        formatter.format(
+          this.size *
+            this.multiplier *
+            this.$store.state.costHigh.concreteContractor
+        )
+      );
+      this.costs.framer.push(
+        formatter.format(this.multiplier * this.$store.state.costHigh.framer)
+      );
+      this.costs.framer.push(
+        formatter.format(this.multiplier * this.$store.state.costHigh.framer)
+      );
+      this.costs.framer.push(
+        formatter.format(
+          this.size * this.multiplier * this.$store.state.costHigh.framer
+        )
+      );
+      this.costs.framer.push(
+        formatter.format(
+          this.size * this.multiplier * this.$store.state.costHigh.framer
+        )
+      );
+      this.costs.other.push(
+        formatter.format(this.multiplier * this.$store.state.costLow.other)
+      );
+      this.costs.other.push(
+        formatter.format(this.multiplier * this.$store.state.costHigh.other)
+      );
+      this.costs.other.push(
+        formatter.format(
+          this.size * this.multiplier * this.$store.state.costLow.other
+        )
+      );
+      this.costs.other.push(
+        formatter.format(
+          this.size * this.multiplier * this.$store.state.costHigh.other
+        )
+      );
 
-    // I would just like to apologize to all for this terrible terrible block of code. MVP. sincerely, -Tyler
-    this.costs.lumber.push(
-      formatter.format(this.multiplier * this.$store.state.costLow.lumber)
-    );
-    this.costs.lumber.push(
-      formatter.format(this.multiplier * this.$store.state.costHigh.lumber)
-    );
-    this.costs.lumber.push(
-      formatter.format(
-        this.size * this.multiplier * this.$store.state.costLow.lumber
-      )
-    );
-    this.costs.lumber.push(
-      formatter.format(
-        this.size * this.multiplier * this.$store.state.costHigh.lumber
-      )
-    );
-    this.costs.concrete.push(
-      formatter.format(this.multiplier * this.$store.state.costLow.concrete)
-    );
-    this.costs.concrete.push(
-      formatter.format(this.multiplier * this.$store.state.costHigh.concrete)
-    );
-    this.costs.concrete.push(
-      formatter.format(
-        this.size * this.multiplier * this.$store.state.costLow.concrete
-      )
-    );
-    this.costs.concrete.push(
-      formatter.format(
-        this.size * this.multiplier * this.$store.state.costHigh.concrete
-      )
-    );
-    this.costs.drywall.push(
-      formatter.format(this.multiplier * this.$store.state.costHigh.drywall)
-    );
-    this.costs.drywall.push(
-      formatter.format(this.multiplier * this.$store.state.costHigh.drywall)
-    );
-    this.costs.drywall.push(
-      formatter.format(
-        this.size * this.multiplier * this.$store.state.costHigh.drywall
-      )
-    );
-    this.costs.drywall.push(
-      formatter.format(
-        this.size * this.multiplier * this.$store.state.costHigh.drywall
-      )
-    );
-    this.costs.flooring.push(
-      formatter.format(this.multiplier * this.$store.state.costLow.flooring)
-    );
-    this.costs.flooring.push(
-      formatter.format(this.multiplier * this.$store.state.costHigh.flooring)
-    );
-    this.costs.flooring.push(
-      formatter.format(
-        this.size * this.multiplier * this.$store.state.costLow.flooring
-      )
-    );
-    this.costs.flooring.push(
-      formatter.format(
-        this.size * this.multiplier * this.$store.state.costHigh.flooring
-      )
-    );
-    this.costs.siding.push(
-      formatter.format(this.multiplier * this.$store.state.costLow.siding)
-    );
-    this.costs.siding.push(
-      formatter.format(this.multiplier * this.$store.state.costHigh.siding)
-    );
-    this.costs.siding.push(
-      formatter.format(
-        this.size * this.multiplier * this.$store.state.costLow.siding
-      )
-    );
-    this.costs.siding.push(
-      formatter.format(
-        this.size * this.multiplier * this.$store.state.costHigh.siding
-      )
-    );
-    this.costs.constructionManager.push(
-      formatter.format(
-        this.multiplier * this.$store.state.costLow.constructionManager
-      )
-    );
-    this.costs.constructionManager.push(
-      formatter.format(
-        this.multiplier * this.$store.state.costHigh.constructionManager
-      )
-    );
-    this.costs.constructionManager.push(
-      formatter.format(
-        this.size *
-          this.multiplier *
-          this.$store.state.costLow.constructionManager
-      )
-    );
-    this.costs.constructionManager.push(
-      formatter.format(
-        this.size *
-          this.multiplier *
-          this.$store.state.costHigh.constructionManager
-      )
-    );
-    this.costs.electrician.push(
-      formatter.format(this.multiplier * this.$store.state.costHigh.electrician)
-    );
-    this.costs.electrician.push(
-      formatter.format(this.multiplier * this.$store.state.costHigh.electrician)
-    );
-    this.costs.electrician.push(
-      formatter.format(
-        this.size * this.multiplier * this.$store.state.costHigh.electrician
-      )
-    );
-    this.costs.electrician.push(
-      formatter.format(
-        this.size * this.multiplier * this.$store.state.costHigh.electrician
-      )
-    );
-    this.costs.roofer.push(
-      formatter.format(this.multiplier * this.$store.state.costLow.roofer)
-    );
-    this.costs.roofer.push(
-      formatter.format(this.multiplier * this.$store.state.costHigh.roofer)
-    );
-    this.costs.roofer.push(
-      formatter.format(
-        this.size * this.multiplier * this.$store.state.costLow.roofer
-      )
-    );
-    this.costs.roofer.push(
-      formatter.format(
-        this.size * this.multiplier * this.$store.state.costHigh.roofer
-      )
-    );
-    this.costs.plumber.push(
-      formatter.format(this.multiplier * this.$store.state.costLow.plumber)
-    );
-    this.costs.plumber.push(
-      formatter.format(this.multiplier * this.$store.state.costHigh.plumber)
-    );
-    this.costs.plumber.push(
-      formatter.format(
-        this.size * this.multiplier * this.$store.state.costLow.plumber
-      )
-    );
-    this.costs.plumber.push(
-      formatter.format(
-        this.size * this.multiplier * this.$store.state.costHigh.plumber
-      )
-    );
-    this.costs.concreteContractor.push(
-      formatter.format(
-        this.multiplier * this.$store.state.costLow.concreteContractor
-      )
-    );
-    this.costs.concreteContractor.push(
-      formatter.format(
-        this.multiplier * this.$store.state.costHigh.concreteContractor
-      )
-    );
-    this.costs.concreteContractor.push(
-      formatter.format(
-        this.size *
-          this.multiplier *
-          this.$store.state.costLow.concreteContractor
-      )
-    );
-    this.costs.concreteContractor.push(
-      formatter.format(
-        this.size *
-          this.multiplier *
-          this.$store.state.costHigh.concreteContractor
-      )
-    );
-    this.costs.framer.push(
-      formatter.format(this.multiplier * this.$store.state.costHigh.framer)
-    );
-    this.costs.framer.push(
-      formatter.format(this.multiplier * this.$store.state.costHigh.framer)
-    );
-    this.costs.framer.push(
-      formatter.format(
-        this.size * this.multiplier * this.$store.state.costHigh.framer
-      )
-    );
-    this.costs.framer.push(
-      formatter.format(
-        this.size * this.multiplier * this.$store.state.costHigh.framer
-      )
-    );
-    this.costs.other.push(
-      formatter.format(this.multiplier * this.$store.state.costLow.other)
-    );
-    this.costs.other.push(
-      formatter.format(this.multiplier * this.$store.state.costHigh.other)
-    );
-    this.costs.other.push(
-      formatter.format(
-        this.size * this.multiplier * this.$store.state.costLow.other
-      )
-    );
-    this.costs.other.push(
-      formatter.format(
-        this.size * this.multiplier * this.$store.state.costHigh.other
-      )
-    );
-
-    // this.costs.total.push(formatter.format(this.multiplier * this.$store.state.costLow.total));
-    // this.costs.total.push(formatter.format(this.multiplier * this.$store.state.costHigh.total));
-    this.costs.total.push(
-      formatter.format(
-        this.size * this.multiplier * this.$store.state.costLow.total
-      )
-    );
-    this.costs.total.push(
-      formatter.format(
-        this.size * this.multiplier * this.$store.state.costHigh.total
-      )
-    );
-    // Again, sorry for this mess. I will fix it eventually. Maybe.
+      // this.costs.total.push(formatter.format(this.multiplier * this.$store.state.costLow.total));
+      // this.costs.total.push(formatter.format(this.multiplier * this.$store.state.costHigh.total));
+      this.costs.total.push(
+        formatter.format(
+          this.size * this.multiplier * this.$store.state.costLow.total
+        )
+      );
+      this.costs.total.push(
+        formatter.format(
+          this.size * this.multiplier * this.$store.state.costHigh.total
+        )
+      );
+      // Again, sorry for this mess. I will fix it eventually. Maybe.
+    },
   },
 };
 </script>

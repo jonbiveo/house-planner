@@ -62,8 +62,8 @@ export default new Vuex.Store({
         spareRoomFloor: "",
         staircaseFloor: ""
       },
-      costHigh: "",
-      costLow: ""
+      priceRangeUpper: "",
+      priceRangeLower: ""
     },
     costLow: {
       lumber: 16.2,
@@ -138,8 +138,8 @@ export default new Vuex.Store({
       state.floorPlan.city = newPlan.city;
       state.floorPlan.state = newPlan.state;
       state.floorPlan.squareFootage = newPlan.size;
-      state.floorPlan.costHigh = newPlan.costHigh;
-      state.floorPlan.costLow = newPlan.costLow;
+      state.floorPlan.priceRangeUpper = newPlan.costHigh;
+      state.floorPlan.priceRangeLower = newPlan.costLow;
       state.squareFootageRemaining = newPlan.size;
     },
     SAVE_BUILDER(state, builderPlan){

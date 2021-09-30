@@ -35,8 +35,8 @@
         <br />
         <strong>Sq Ft</strong>: {{ size }} <br />
         <br />
-        <strong>Total Cost: </strong> {{ costs.total[0] }} -
-        {{ costs.total[1] }}
+        <strong>Total Cost: </strong> {{ priceRangeLower }} -
+        {{ priceRangeUpper }}
       </div>
     </div>
     <div></div>
@@ -55,6 +55,8 @@ export default {
       city: "",
       size: "",
       multiplier: 0,
+      priceRangeUpper: 0,
+      priceRangeLower: 0,
       costs: {
         lumber: [],
         concrete: [],
@@ -74,38 +76,42 @@ export default {
   },
   created() {
     planService.getPlan(this.$route.params.id).then((response) => {
-      this.planName = response.data.planName;
-      this.houseType = response.data.houseType;
-      this.state = response.data.state;
-      this.city = response.data.city;
-      this.size = response.data.size;
-      console.log(this.city);
-      if (this.city === "Cleveland") {
-        this.multiplier = this.$store.state.multiplier.cleveland;
-      } else if (this.city === "Cincinnati") {
-        this.multiplier = this.$store.state.multiplier.cincinnati;
-      } else if (this.city === "Columbus") {
-        this.multiplier = this.$store.state.multiplier.columbus;
-      } else if (this.city === "Toledo") {
-        this.multiplier = this.$store.state.multiplier.toledo;
-      }
-
       let formatter = new Intl.NumberFormat("en-US", {
         style: "currency",
         currency: "USD",
         maximumFractionDigits: 2,
         minimumFractionDigits: 2,
       });
-      this.costs.total.push(
-        formatter.format(
-          this.size * this.multiplier * this.$store.state.costLow.total
-        )
-      );
-      this.costs.total.push(
-        formatter.format(
-          this.size * this.multiplier * this.$store.state.costHigh.total
-        )
-      );
+
+      console.log(response.data);
+      this.planName = response.data.planName;
+      this.houseType = response.data.houseType;
+      this.state = response.data.state;
+      this.city = response.data.city;
+      this.size = response.data.squareFootage;
+      this.priceRangeUpper = formatter.format(response.data.priceRangeUpper);
+      this.priceRangeLower = formatter.format(response.data.priceRangeLower);
+      // if (this.city === "Cleveland") {
+      //   this.multiplier = this.$store.state.multiplier.cleveland;
+      // } else if (this.city === "Cincinnati") {
+      //   this.multiplier = this.$store.state.multiplier.cincinnati;
+      // } else if (this.city === "Columbus") {
+      //   this.multiplier = this.$store.state.multiplier.columbus;
+      // } else if (this.city === "Toledo") {
+      //   this.multiplier = this.$store.state.multiplier.toledo;
+      // }
+
+      
+      // this.costs.total.push(
+      //   formatter.format(
+      //     this.size * this.multiplier * this.$store.state.costLow.total
+      //   )
+      // );
+      // this.costs.total.push(
+      //   formatter.format(
+      //     this.size * this.multiplier * this.$store.state.costHigh.total
+      //   )
+      // );
     });
   },
   methods: {
