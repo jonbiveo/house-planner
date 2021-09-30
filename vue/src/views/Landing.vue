@@ -25,12 +25,12 @@ export default {
   display: flex;
   justify-content: center;
   margin: auto;
-  padding: 25px;
+  padding: 20px;
 }
 .house{
   position: absolute;
-  height: 85%;
-  max-width: 85%;
+  height: 82%;
+  max-width: 82%;
 }
 
 </style>
