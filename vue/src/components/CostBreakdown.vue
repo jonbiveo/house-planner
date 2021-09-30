@@ -1,40 +1,41 @@
 <template>
   <div class="pageAlignment">
     <div class="background">
+      <h1>Cost Breakdown</h1>  
       <div class="materialTable">
         <table>
           <tr>
-            <th></th>
-            <th>SqFt</th>
-            <th>Total</th>
+            <th id="blank"></th>
+            <th class="label">SqFt</th>
+            <th class="label">Total</th>
           </tr>
-          <tr>
-            <td>Lumber</td>
+          <tr class="row">
+            <td class="label">Lumber</td>
             <td>{{ costs.lumber[0] }} - {{ costs.lumber[1] }}</td>
             <td>{{ costs.lumber[2] }} - {{ costs.lumber[3] }}</td>
           </tr>
-          <tr>
-            <td>Concrete</td>
+          <tr class="row">
+            <td class="label">Concrete</td>
             <td>{{ costs.concrete[0] }} - {{ costs.concrete[1] }}</td>
             <td>{{ costs.concrete[2] }} - {{ costs.concrete[3] }}</td>
           </tr>
-          <tr>
-            <td>Drywall</td>
+          <tr class="row">
+            <td class="label">Drywall</td>
             <td>{{ costs.drywall[0] }} - {{ costs.drywall[1] }}</td>
             <td>{{ costs.drywall[2] }} - {{ costs.drywall[3] }}</td>
           </tr>
-          <tr>
-            <td>Flooring</td>
+          <tr class="row">
+            <td class="label">Flooring</td>
             <td>{{ costs.flooring[0] }} - {{ costs.flooring[1] }}</td>
             <td>{{ costs.flooring[2] }} - {{ costs.flooring[3] }}</td>
           </tr>
-          <tr>
-            <td>Siding</td>
+          <tr class="row">
+            <td class="label">Siding</td>
             <td>{{ costs.siding[0] }} - {{ costs.siding[1] }}</td>
             <td>{{ costs.siding[2] }} - {{ costs.siding[3] }}</td>
           </tr>
-          <tr>
-            <td>Construction Manager</td>
+          <tr class="row">
+            <td class="label">Construction Manager</td>
             <td>
               {{ costs.constructionManager[0] }} -
               {{ costs.constructionManager[1] }}
@@ -44,23 +45,23 @@
               {{ costs.constructionManager[3] }}
             </td>
           </tr>
-          <tr>
-            <td>Electrician</td>
+          <tr class="row">
+            <td class="label">Electrician</td>
             <td>{{ costs.electrician[0] }} - {{ costs.electrician[1] }}</td>
             <td>{{ costs.electrician[2] }} - {{ costs.electrician[3] }}</td>
           </tr>
-          <tr>
-            <td>Roofer</td>
+          <tr class="row">
+            <td class="label">Roofer</td>
             <td>{{ costs.roofer[0] }} - {{ costs.roofer[1] }}</td>
             <td>{{ costs.roofer[2] }} - {{ costs.roofer[3] }}</td>
           </tr>
-          <tr>
-            <td>Plumber</td>
+          <tr class="row">
+            <td class="label">Plumber</td>
             <td>{{ costs.plumber[0] }} - {{ costs.plumber[1] }}</td>
             <td>{{ costs.plumber[2] }} - {{ costs.plumber[3] }}</td>
           </tr>
-          <tr>
-            <td>Concrete Contractor</td>
+          <tr class="row">
+            <td class="label">Concrete Contractor</td>
             <td>
               {{ costs.concreteContractor[0] }} -
               {{ costs.concreteContractor[1] }}
@@ -70,13 +71,13 @@
               {{ costs.concreteContractor[3] }}
             </td>
           </tr>
-          <tr>
-            <td>Framer</td>
+          <tr class="row">
+            <td class="label">Framer</td>
             <td>{{ costs.framer[0] }} - {{ costs.framer[1] }}</td>
             <td>{{ costs.framer[2] }} - {{ costs.framer[3] }}</td>
           </tr>
-          <tr>
-            <td>Other</td>
+          <tr class="row">
+            <td class="label">Other</td>
             <td>{{ costs.other[0] }} - {{ costs.other[1] }}</td>
             <td>{{ costs.other[2] }} - {{ costs.other[3] }}</td>
           </tr>
@@ -87,7 +88,10 @@
                     </tr> -->
                 </table>
                 <h3>Total Cost: {{costs.total[0]}} - {{costs.total[1]}}</h3>
-                <button v-on:click="addPlan">press me</button>
+            </div>
+            <div class="buttons">
+                <button v-on:click="goToRoomDesign">Previous</button>
+                <button v-on:click="addPlan">Save</button>
             </div>
         </div>
     </div>
@@ -458,15 +462,23 @@ export default {
   justify-items: center;
   align-items: center;
   width: 60vw;
-  min-height: 500px;
   background-color: #ffe9b3;
   border-radius: 10px;
   padding: 10px;
   box-shadow: 5px 5px 5px #264653;
 }
 
+h1 {
+    align-self: center;
+    color: #e76f51;
+}
+
 table {
   border-spacing: 10px;
+}
+
+.row:hover {
+  background-color: #e76f51;
 }
 
 table,
@@ -475,6 +487,42 @@ td {
   border: 2px solid #264653;
   border-collapse: collapse;
   color: #264653;
-  font-size: 14pt;
+  font-size: 12pt;
+}
+
+.label {
+    font-size: 14pt;
+}
+
+td:nth-child(2),
+th:nth-child(2) {
+    min-width:130px;
+}
+
+td:nth-child(3),
+th:nth-child(3) {
+    min-width:230px;
+}
+
+#blank{
+  border-top: hidden;
+  border-left: hidden;
+}
+
+.buttons {
+    align-self: center;
+    display: flex; 
+    justify-content: space-between;
+    min-width: 240px;
+}
+
+button {
+    background-color: #e76f51;
+    color: white;
+    border-radius: 15px;
+    font-size: 16pt;
+    border: none;
+    min-width: 100px;
+    height: 35px;
 }
 </style>

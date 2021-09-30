@@ -2,7 +2,7 @@
   <div class = 'plan-details'>
     <div class="background">
       <form v-on:submit.prevent="saveBase" class='form-plan'>
-        <h3>Enter your desired home information below.</h3><br>
+        <h2>Enter your desired home information below.</h2><br>
         <label for="plan-name" class='plan-name'>Plan Name:</label>
         <input type="text" class='plan-name' v-model="planBase.planName" />
         <label for="State" class='state'>Select State:</label>
