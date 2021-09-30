@@ -37,20 +37,20 @@ CREATE TABLE plans (
 
 INSERT INTO users (username,email,password_hash,role) VALUES ('user','test@email.com','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_USER');
 INSERT INTO users (username,email,password_hash,role) VALUES ('admin', 'test2@email.com', '$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_ADMIN');
-INSERT INTO users (username,email,password_hash,role) VALUES ('AnotherUser', 'test3@email.com', '$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_USER');
-INSERT INTO users (username,email,password_hash,role) VALUES ('OhNoAUser', 'test4@email.com', '$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_USER');
+INSERT INTO users (username,email,password_hash,role) VALUES ('user2', 'test3@email.com', '$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_USER');
+INSERT INTO users (username,email,password_hash,role) VALUES ('user3', 'test4@email.com', '$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_USER');
 
 
-INSERT INTO plans (user_id, plan_name, house_type, city, state, square_footage, price_range_lower, price_range_upper)  
-VALUES (1, 'Plan 1 (frUser)', 'single', 'Toledo', 'Ohio', 1000, 75415, 90498),
-        (2, 'Plan 2 (frAnoth)', 'detached', 'Cleveland', 'Ohio', 2000, 129284, 158001),
-        (3, 'Plan 3(frOh)', 'townhouse', 'Cincinnati', 'Ohio', 2500, 372587, 447105),
-        (1, 'Plan 4 (frUser)', 'single', 'Toledo', 'Ohio', 2500, 320000, 380000),
-        (2, 'Plan 5 (frAnoth)', 'detached', 'Toledo', 'Ohio', 2000, 433000, 540000),
-        (3, 'Plan 6(frOh)', 'townhouse', 'Cleveland', 'Ohio', 2000, 800000, 900000),
-        (1, 'Plan 7 (frUser)', 'single', 'Cincinnati', 'Ohio', 1500, 300000, 380000),
-        (2, 'Plan 8 (frAnoth)', 'detached', 'Columbus', 'Ohio', 1000, 250000, 300000),
-        (3, 'Plan 9 (frOh)', 'townhouse', 'Cleveland', 'Ohio', 1500, 280000, 320000);
+INSERT INTO plans (user_id, plan_name, city, state, house_type, square_footage, price_range_lower, price_range_upper)  
+VALUES (1, 'Plan 1 (frUser)', 'Toledo', 'Ohio', 'single_family', 1000, 75415, 90498),
+        (2, 'Plan 2 (frAnoth)', 'Cleveland', 'Ohio', 'multi-family', 2000, 129284, 158001),
+        (3, 'Plan 3(frOh)', 'Cincinnati', 'Ohio', 'multi-family', 2500, 372587, 447105),
+        (1, 'Plan 4 (frUser)', 'Toledo', 'Ohio', 'single_family', 2500, 320000, 380000),
+        (2, 'Plan 5 (frAnoth)', 'Toledo', 'Ohio', 'multi-family', 2000, 433000, 540000),
+        (3, 'Plan 6(frOh)', 'Cleveland', 'Ohio', 'single_family', 2000, 800000, 900000),
+        (1, 'Plan 7 (frUser)', 'Cincinnati', 'Ohio', 'single_family', 1500, 300000, 380000),
+        (2, 'Plan 8 (frAnoth)', 'Columbus', 'Ohio', 'single_family', 1000, 250000, 300000),
+        (3, 'Plan 9 (frOh)', 'Cleveland', 'Ohio', 'single_family', 1500, 280000, 320000);
 
 CREATE TABLE rooms (
 	room_id serial NOT NULL,

@@ -170,6 +170,8 @@ export default {
   background-color: #e9c46a;
   justify-self: center;
   gap: 40px;
+  width: 60vw;
+  min-width: 900px;
   
 }
 
@@ -213,6 +215,7 @@ export default {
   background: #ffe9b3;
   border-radius: 3px;
   box-shadow: 5px 5px 0 #e76f51, -5px -5px 0 #f4a261;
+  min-width: 300px;
 }
 
 .card-breakdown {
@@ -226,6 +229,7 @@ export default {
   background: #ffe9b3;
   border-radius: 3px;
   box-shadow: 5px 5px 0 #e76f51, -5px -5px 0 #f4a261;
+  margin:0 0 0 10%;
 }
 
 div.nav {

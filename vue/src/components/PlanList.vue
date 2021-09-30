@@ -16,7 +16,10 @@
           v-on:click="viewPlanDetails(plan.planId)"
         >
           <div class="plan-image">
-            <img id="image" :src="require('../assets/'+plan.houseType+'.svg')" />
+            <img
+              id="image"
+              :src="require('../assets/list_' + plan.houseType + '.svg')"
+            />
           </div>
           <p class="list-plan-name">{{ plan.planName }}</p>
         </div>
@@ -34,10 +37,6 @@ export default {
       userId: JSON.stringify(JSON.parse(localStorage.getItem("user")).id),
       planName: "",
       plans: [],
-      icons: [
-        { type: "single", iconImg: "../assets/home-solid.svg" },
-        { type: "townhouse", iconImg: "../assets/noun_townhouse_3821366.svg" },
-      ],
     };
   },
   created() {
@@ -63,10 +62,10 @@ export default {
     //   }
     //   return img
     //},
-    methods: {
-      viewPlanDetails(plandId) {
-        this.$router.push(`plans/${plandId}`);
-      },
+  },
+  methods: {
+    viewPlanDetails(plandId) {
+      this.$router.push(`plans/${plandId}`);
     },
   },
 };
@@ -85,7 +84,7 @@ export default {
   justify-self: center;
   display: flex;
   flex-direction: column;
-  max-width: 60vw;
+  width: 60vw;
 }
 .list-header {
   display: flex;

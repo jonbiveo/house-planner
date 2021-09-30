@@ -568,7 +568,7 @@
           </button>
 
         <button class="next-btn" type="submit" @click.prevent="storeData"> Next
-        </button>
+         </button>
         <p class="sizeError" v-if="this.sqFtUsed >= this.floorPlan.squareFootage">You will not have enough space to fit all of these rooms.
         You are currently at {{this.sqFtUsed}} of a possible square feet.{{this.floorPlan.squareFootage}}</p>
         </span>
@@ -714,8 +714,7 @@ export default {
 <style scoped>
 .main {
   display: grid;
-  height: 75vh;
-  margin-top: 50px;
+  margin: 50px 0;
   grid-template-columns: 1fr;
   grid-template-areas: "form";
   justify-items: center;
