@@ -124,11 +124,10 @@ export default {
     goToRoomDesign() {
       this.$router.push("/room-design");
     },
-    methods: {
-      addPlan() {
-        PlanService.create(this.$store.state.floorPlan).then(() => {
-          window.alert("plan Added");
-          this.$router.push({ name: "plans" });
+    addPlan() {
+      PlanService.create(this.$store.state.floorPlan).then(() => {
+        window.alert("plan Added");
+        this.$router.push({ name: "plans" });
         });
       },
     },
@@ -394,8 +393,7 @@ export default {
       );
       // Again, sorry for this mess. I will fix it eventually. Maybe.
     },
-  },
-};
+  };
 </script>
 
 <style>
