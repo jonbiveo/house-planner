@@ -15,4 +15,5 @@ public interface PlanDao {
     void createNewPlan(Plan newPlan);
     void createNewRooms(Room room);
     void createRoomDesign(Design design);
+    void deletePlan(int id);
 }

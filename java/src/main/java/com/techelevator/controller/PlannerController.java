@@ -35,7 +35,7 @@ public class PlannerController {
     @PostMapping("/newPlan")
     public void createPlan(@RequestBody Plan newPlan){
         planDao.createNewPlan(newPlan);
-        System.out.println("User ID "+newPlan.getUserId() + " created a new plan");
+        System.out.println("--User ID "+newPlan.getUserId() + " created a new plan--");
     }
 
     @PostMapping("/newRoom")
@@ -46,5 +46,11 @@ public class PlannerController {
     @PostMapping("/newDesign")
     public void createDesign(@RequestBody Design design) {
         planDao.createRoomDesign(design);
+    }
+
+    @DeleteMapping("/removePlan/{id}")
+    public void removePlan (@PathVariable int id){
+        planDao.deletePlan(id);
+        System.out.println("--User deleted plan "+id+"--");
     }
 }

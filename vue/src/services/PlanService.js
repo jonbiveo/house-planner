@@ -35,6 +35,10 @@ export default{
       //   console.error(error);
       // });
     },
+
+    deletePlan(id) {
+      return axios.delete(`/removePlan/${id}`);
+    }
    
       
 }

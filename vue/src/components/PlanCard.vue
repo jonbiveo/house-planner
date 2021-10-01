@@ -8,16 +8,20 @@
           <strong>{{ planName }}</strong>
         </div>
         <div class="buttons">
-          <router-link :to="{ name: 'plans' }"
-            ><img src="../assets/edit-solid.svg" class="btn-img" />
+          <router-link :to="{ name: 'plans' }" class="card-btn"
+            ><img src="../assets/button-edit.svg" class="btn-img" />
             Edit
           </router-link>
-          <span v-on:click="copyPlan"
-            ><img src="../assets/copy-regular.svg" class="btn-img" /> Copy</span
+          <span v-on:click="copyPlan" class="card-btn"
+            ><img src="../assets/button-copy.svg" class="btn-img" /> Copy</span
           >
-          <span v-on:click="copyPlan"
-            ><img src="../assets/share-alt-solid.svg" class="btn-img" />
+          <span v-on:click="copyPlan" class="card-btn"
+            ><img src="../assets/button-share.svg" class="btn-img" />
             Share</span
+          >
+          <span v-on:click="deletePlan" class="card-btn delete"
+            ><img src="../assets/button-delete.svg" class="btn-img delete" />
+            Delete</span
           >
         </div>
       </div>
@@ -49,6 +53,7 @@ export default {
   data() {
     return {
       planDetails: [],
+      planId: "",
       planName: "",
       houseType: "",
       state: "",
@@ -84,6 +89,7 @@ export default {
       });
 
       console.log(response.data);
+      this.planId = response.data.planId;
       this.planName = response.data.planName;
       this.houseType = response.data.houseType;
       this.state = response.data.state;
@@ -101,7 +107,6 @@ export default {
       //   this.multiplier = this.$store.state.multiplier.toledo;
       // }
 
-      
       // this.costs.total.push(
       //   formatter.format(
       //     this.size * this.multiplier * this.$store.state.costLow.total
@@ -140,6 +145,17 @@ export default {
           this.$router.push("/plans");
       });
     },
+    deletePlan() {
+      planService.deletePlan(this.planId).then((response) => {
+        if (response.status === 200) {
+          this.$router.push("/plans");
+        }
+      }).catch((error)=>{
+        if(error.response){
+          alert("Error deleting plan.")
+        }
+      });
+    },
   },
 };
 </script>
@@ -172,7 +188,6 @@ export default {
   gap: 40px;
   width: 60vw;
   min-width: 900px;
-  
 }
 
 .card-nav {
@@ -187,7 +202,7 @@ export default {
 }
 
 .buttons {
-  width: 20%;
+  width: 30%;
   min-width: 300px;
   display: flex;
   justify-content: space-between;
@@ -229,7 +244,7 @@ export default {
   background: #ffe9b3;
   border-radius: 3px;
   box-shadow: 5px 5px 0 #e76f51, -5px -5px 0 #f4a261;
-  margin:0 0 0 10%;
+  margin: 0 0 0 10%;
 }
 
 div.nav {
@@ -255,7 +270,7 @@ div.nav {
 
 .btn-img {
   height: 20px;
-  padding-right: 3px;
+  padding-right: 5px;
 }
 
 .buttons > span {
@@ -264,5 +279,18 @@ div.nav {
 
 .nav > strong {
   cursor: default;
+}
+
+.btn-img.delete {
+  height: 1.5em;
+}
+
+.card-btn {
+  display: flex;
+  align-items: center;
+}
+
+.card-btn.delete {
+  color: #d3502f;
 }
 </style>

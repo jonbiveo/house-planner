@@ -97,7 +97,7 @@ export default {
       registrationErrorMsg: "",
       usernameCheckPass: false,
       usernameMsg: "",
-      emailCheckPass: false,
+      emailCheckPass: true,
       emailMsg: "",
       passwordCheckPass: false,
       passwordMsg: "",

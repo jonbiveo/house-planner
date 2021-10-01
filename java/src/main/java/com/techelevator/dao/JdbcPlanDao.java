@@ -81,6 +81,14 @@ public class JdbcPlanDao implements PlanDao{
         design.getSpareRoomFloor(), design.getStaircaseFloor());
     }
 
+    @Override
+    public void deletePlan(int id) {
+        String sql = "DELETE FROM rooms WHERE plan_id = ?; "+
+                    "DELETE FROM design WHERE plan_id = ?; "+
+                    "DELETE FROM plans WHERE plan_id = ?;";
+        jdbcTemplate.update(sql, id, id, id);
+    }
+
 
     private Plan mapResultToPlan(SqlRowSet result) {
         Plan plan = new Plan();
