@@ -11,7 +11,7 @@
         </div>
 
       <form class="design-form">
-      <h2>Room Design</h2>
+      <h2 class="header">Room Design</h2>
       
       <h3> Layout </h3>
       <label for="f1layout" class="f1layout">Select Layout Design: </label>
@@ -240,11 +240,11 @@ export default {
 .design-builder{
   display: grid;
   grid-area: "design";
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: 1fr 3fr;
   grid-template-rows: 1fr;
   grid-template-areas: "icons" "form";
   justify-items: center;
-  align-content: center;
+  /* align-content: center; */
   width: 70vw;
   max-width: 800px;
   background-color: #E9C46A;
@@ -264,11 +264,8 @@ export default {
   "bathroom"
   "kitchen"
   "flooring";
-  justify-items: center;
-  /* align-items: start; */
+  justify-items: end;
   width: 40%;
-  /* margin-top: 15px;
-  padding: 15px; */
 }
 .layout{
   display: grid;
@@ -332,11 +329,11 @@ export default {
   width: 100%;
 }
 button {
-  margin: 5px;
-  padding: 0px;
+  margin: 10px;
+  padding: 5px; 
   min-width: 150px;
-  height: 25px;
-  font-size: 16px;
+  height: 35px;
+  font-size: 18px;
   border-radius: 15px;
   border: none;
   background-color: #264653;
@@ -346,5 +343,19 @@ button {
 h3{
   margin: 5px;
 }
+.header{
+  justify-self: start;
+  margin-left: 50px;
+  padding-left: 50px;
+}
+
+.btns{
+  justify-self: start;
+  margin-left: 25px;
+  padding-left: 20px;
+
+}
+
+
 
 </style>

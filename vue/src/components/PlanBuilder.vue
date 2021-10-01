@@ -752,13 +752,13 @@ h1 {
 } */
 
 button {
-  margin: 10px auto;
-  padding: 1-px;
-  min-width: 150px;
-  height: 25px;
-  font-size: 16px;
+  margin: 10px;
+  min-width: 75px;
+  height: 35px;
+  font-size: 18px;
   border-radius: 15px;
   border: none;
+  text-emphasis: bold;
   background-color: #e76f51;
   color: black;
 }
