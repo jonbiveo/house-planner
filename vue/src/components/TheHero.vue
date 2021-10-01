@@ -2,7 +2,7 @@
   <div class="body-hero">
     <div class="hero-container">
       <span class="home-title"><p>A simple way to plan your house.</p></span>
-      <span class="home-text"><p>LMTV House Planner is a web application that helps you in the process of designing your future home, from struture to finish, while pulling in real-time data regarding current market trends for similar houses in your area.</p> </span>
+      <span class="home-text"><p>LMTV House Planner is a web application that helps you in the process of designing your future home, from structure to finish, while pulling in real-time data regarding current market trends for similar houses in your area.</p> </span>
       <!-- <img
         class="hero-img"
         src="https://images.pexels.com/photos/280222/pexels-photo-280222.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"

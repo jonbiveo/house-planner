@@ -130,4 +130,5 @@ export default {
 a {
   color: white;
 }
+
 </style>
