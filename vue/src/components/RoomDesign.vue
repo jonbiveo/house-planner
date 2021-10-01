@@ -265,12 +265,7 @@ export default {
   "kitchen"
   "flooring";
   justify-items: center;
-<<<<<<< Updated upstream
-  color: #264653;
-=======
   /* align-items: start; */
-  color: black;
->>>>>>> Stashed changes
   width: 40%;
   /* margin-top: 15px;
   padding: 15px; */
