@@ -98,6 +98,7 @@ export default {
   height: 40px;
   min-width: 720px;
   font-weight: bold;
+  box-shadow: 0 5px 5px #437081;
 }
 
 .plans-box {
@@ -108,6 +109,7 @@ export default {
   min-height: 250px;
   min-width: 700px;
   background-color: #e9c46a;
+  box-shadow: 0 5px 5px #437081;
 }
 
 .plan-icon {
