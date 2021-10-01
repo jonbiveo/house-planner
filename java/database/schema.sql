@@ -69,6 +69,8 @@ CREATE TABLE design (
 	floor_one_layout varchar(50),
 	doors varchar(50),
 	staircase varchar(50),
+	bathroom_cabinets varchar(50),
+	bathroom_tub varchar(50),
 	kitchen_cabinets varchar(50),
 	kitchen_island varchar(50),
 	kitchen_floor varchar(50),

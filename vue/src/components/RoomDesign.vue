@@ -256,58 +256,76 @@ export default {
   display: grid;
   grid-area: "icons";
   grid-template-columns: 1fr;
-  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1.5fr;
+  grid-template-rows: 20px 20px 20px 20px 20px 40px;
   grid-template-areas: 
   "layout"
   "doors"
   "stairs"
-  "kitchen"
   "bathroom"
+  "kitchen"
   "flooring";
   justify-items: center;
+<<<<<<< Updated upstream
   color: #264653;
+=======
+  /* align-items: start; */
+  color: black;
+>>>>>>> Stashed changes
   width: 40%;
-  margin-top: 75px;
+  /* margin-top: 15px;
+  padding: 15px; */
 }
 .layout{
   display: grid;
   grid-area: "layout";
-  height: 10vh;
-  max-width: 10vw
+  height: 7vh;
+  max-width: 7vw;
+  margin-top: 100px;
 
 }
 .stairs{
   display: grid;
   grid-area: "stairs";
-  height: 10vh;
-  max-width: 10vw;
+  height: 7vh;
+  max-width: 7vw;
+  margin-top: 120px;
+  padding-top: 120px;
 }
 .kitchen {
   display: grid;
   grid-area: "kitchen";
-  height: 10vh;
-  max-width: 10vw;
+  height: 7vh;
+  max-width: 7vw;
+  margin-top: 200px;
+  padding-top: 235px;
   }
 
 .doors-icon{
-   display: grid;
+  display: grid;
   grid-area: "doors";
-  height: 10vh;
-  max-width: 10vw;
+  height: 7vh;
+  max-width: 7vw;
+  margin-top: 95px;
+  padding-top: 75px;
 }
 
 .floors{
   display: grid;
   grid-area: "floors";
-  height: 10vh;
-  max-width: 10vw;
+  height: 7vh;
+  max-width: 7vw;
+  align-self: start;
+  margin-top: 300px;
+  padding-top: 300px;
 }
 
 .bathrooms{
   display: grid;
   grid-area: "bathrooms";
-  height: 10vh;
-  max-width: 10vw;
+  height: 7vh;
+  max-width: 7vw;
+  margin-top: 160px;
+  padding-top: 165px;
 
 }
 

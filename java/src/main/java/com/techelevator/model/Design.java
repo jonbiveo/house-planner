@@ -4,6 +4,8 @@ public class Design {
     private String floorOneLayout;
     private String doors;
     private String staircase;
+    private String bathroomCabinets;
+    private String bathroomTub;
     private String kitchenCabinets;
     private String kitchenIsland;
     private String kitchenFloor;
@@ -36,6 +38,22 @@ public class Design {
 
     public void setStaircase(String staircase) {
         this.staircase = staircase;
+    }
+
+    public String getBathroomCabinets() {
+        return bathroomCabinets;
+    }
+
+    public void setBathroomCabinets(String bathroomCabinets) {
+        this.bathroomCabinets = bathroomCabinets;
+    }
+
+    public String getBathroomTub() {
+        return bathroomTub;
+    }
+
+    public void setBathroomTub(String bathroomTub) {
+        this.bathroomTub = bathroomTub;
     }
 
     public String getKitchenCabinets() {

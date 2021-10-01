@@ -72,11 +72,11 @@ public class JdbcPlanDao implements PlanDao{
 
     @Override
     public void createRoomDesign(Design design) {
-        String sql = "INSERT INTO design(plan_id, floor_one_layout, doors, staircase, kitchen_cabinets, kitchen_island, " +
+        String sql = "INSERT INTO design(plan_id, floor_one_layout, doors, staircase, bathroom_cabinets, bathroom_tub, kitchen_cabinets, kitchen_island, " +
                 "kitchen_floor, living_room_floor, bedroom_floor, bathroom_floor, entertainment_room_floor, spare_room_floor, staircase_floor)" +
                 "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-        jdbcTemplate.update(sql, this.newId, design.getFloorOneLayout(), design.getDoors(), design.getStaircase(), design.getKitchenCabinets(),
+        jdbcTemplate.update(sql, this.newId, design.getFloorOneLayout(), design.getDoors(), design.getStaircase(), design.getBathroomCabinets(), design.getBathroomTub(), design.getKitchenCabinets(),
         design.getKitchenIsland(), design.getKitchenFloor(), design.getLivingRoomFloor(), design.getBedroomFloor(), design.getBathroomFloor(), design.getEntertainmentRoomFloor(),
         design.getSpareRoomFloor(), design.getStaircaseFloor());
     }
