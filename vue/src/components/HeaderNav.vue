@@ -118,7 +118,7 @@ export default {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  min-width: 250px;
+  min-width: 350px;
   max-width: 375px;
 }
 

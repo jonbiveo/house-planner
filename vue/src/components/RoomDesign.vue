@@ -237,8 +237,6 @@ export default {
   
 }
 
-
-
 .design-builder{
   display: grid;
   grid-area: "design";
@@ -248,9 +246,10 @@ export default {
   justify-items: center;
   align-content: center;
   width: 70vw;
+  max-width: 800px;
   background-color: #E9C46A;
   border-radius: 25px;
-  color: black;
+  color: #264653;
   margin-top: 25px;
 } 
 .icons{
@@ -266,7 +265,7 @@ export default {
   "bathroom"
   "flooring";
   justify-items: center;
-  color: black;
+  color: #264653;
   width: 40%;
   margin-top: 75px;
 }

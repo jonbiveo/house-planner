@@ -43,10 +43,10 @@ INSERT INTO users (username,email,password_hash,role) VALUES ('user3', 'test4@em
 
 INSERT INTO plans (user_id, plan_name, city, state, house_type, square_footage, price_range_lower, price_range_upper)  
 VALUES (1, 'Plan 1 (frUser)', 'Toledo', 'Ohio', 'single_family', 1000, 75415, 90498),
-        (2, 'Plan 2 (frAnoth)', 'Cleveland', 'Ohio', 'multi-family', 2000, 129284, 158001),
-        (3, 'Plan 3(frOh)', 'Cincinnati', 'Ohio', 'multi-family', 2500, 372587, 447105),
+        (2, 'Plan 2 (frAnoth)', 'Cleveland', 'Ohio', 'multi_family', 2000, 129284, 158001),
+        (3, 'Plan 3(frOh)', 'Cincinnati', 'Ohio', 'multi_family', 2500, 372587, 447105),
         (1, 'Plan 4 (frUser)', 'Toledo', 'Ohio', 'single_family', 2500, 320000, 380000),
-        (2, 'Plan 5 (frAnoth)', 'Toledo', 'Ohio', 'multi-family', 2000, 433000, 540000),
+        (2, 'Plan 5 (frAnoth)', 'Toledo', 'Ohio', 'multi_family', 2000, 433000, 540000),
         (3, 'Plan 6(frOh)', 'Cleveland', 'Ohio', 'single_family', 2000, 800000, 900000),
         (1, 'Plan 7 (frUser)', 'Cincinnati', 'Ohio', 'single_family', 1500, 300000, 380000),
         (2, 'Plan 8 (frAnoth)', 'Columbus', 'Ohio', 'single_family', 1000, 250000, 300000),

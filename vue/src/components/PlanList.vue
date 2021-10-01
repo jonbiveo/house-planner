@@ -16,8 +16,7 @@
           v-on:click="viewPlanDetails(plan.planId)"
         >
           <div class="plan-image">
-            <img
-              id="image"
+            <img clas="icon-img"
               :src="require('../assets/list_' + plan.houseType + '.svg')"
             />
           </div>
@@ -174,4 +173,6 @@ a {
   border-radius: 3px;
   background-color: #2a9d8f;
 }
+
+
 </style>

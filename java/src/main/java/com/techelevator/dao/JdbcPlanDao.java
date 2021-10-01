@@ -54,7 +54,7 @@ public class JdbcPlanDao implements PlanDao{
         String sql = "INSERT INTO plans (user_id, plan_name, city, state, house_type, square_footage, price_range_lower, price_range_upper) "
                 + "values (?, ?, ?, ?, ?, ?, ?, ?) RETURNING plan_id";
 
-        this.newId = jdbcTemplate.queryForObject(sql, Integer.class, newPlan.getUserId(), newPlan.getPlanName(), newPlan.getCity(), newPlan.getState(), newPlan.getHouseType(),
+        this.newId = jdbcTemplate.queryForObject(sql, Integer.class, newPlan.getUserId(), newPlan.getPlanName(), newPlan.getHouseType(), newPlan.getCity(), newPlan.getState(),
                 newPlan.getSquareFootage(), newPlan.getPriceRangeLower(), newPlan.getPriceRangeUpper());
 
         System.out.println(this.newId);

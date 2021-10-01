@@ -446,7 +446,7 @@ export default {
   };
 </script>
 
-<style>
+<style scoped>
 .pageAlignment {
   display: grid;
   height: 50vh;
@@ -479,6 +479,10 @@ table {
 
 .row:hover {
   background-color: #e76f51;
+}
+
+.row:hover>td{
+  color:#ffe9b3;
 }
 
 table,

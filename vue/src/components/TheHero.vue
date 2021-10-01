@@ -1,5 +1,5 @@
  <template>
-   <div class="body-hero">
+  <div class="body-hero">
     <div class="hero-container">
       <span class="home-title"><p>A simple way to plan your house.</p></span>
       <span class="home-text"><p>LMTV House Planner</p> </span>
@@ -11,28 +11,34 @@
         <img src="../assets/noun_home_layout_3292658.svg" />
       </div>
     </div>
-   </div>
- </template>
+  </div>
+</template>
  
  <script>
 export default {};
- </script>
+</script>
  
 
 <style scoped>
 .body-hero {
-  min-height: 80vh;
+  max-height: 80vh;
+  min-height: 500px;
   min-width: 750px;
 }
 
 .hero-container {
   display: grid;
-  grid-template-columns: 50% 50%;
-  grid-template-rows: 50% 50%;
+   grid-template-columns: 50% 50%;
+  grid-template-rows: 50% 50%; 
+  grid-template-areas:
+  "title img"
+  "text img";
   padding: 0 10%;
+  height: 80vh;
 }
 
 .home-title {
+  grid-area: title;
   grid-column: 1;
   display: flex;
   align-items: flex-end;
@@ -40,19 +46,22 @@ export default {};
   padding: 0 0 0 6%;
   font-weight: bold;
 }
-.home-text{
+.home-text {
+  grid-area: text;
   grid-column: 1;
   padding: 0 0 0 6%;
-
 }
 
-.home-title>p, .home-text>p{
-  max-width: 400px;
+.home-title > p,
+.home-text > p {
+  max-width: 700px;
 }
 
-.hero-img{
+
+.hero-img > img{
+  grid-area: img;
   grid-column: 2;
-  grid-row: 1/2;
-  padding: 20% 10% 0 5%;
- }
- </style>
+  grid-row: 1/3;
+  padding: 10%;
+}
+</style>
