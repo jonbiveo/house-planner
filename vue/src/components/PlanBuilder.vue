@@ -569,8 +569,8 @@
 
         <button class="next-btn" type="submit" @click.prevent="storeData"> Next
          </button>
-        <p class="sizeError" v-if="this.sqFtUsed >= this.floorPlan.squareFootage">You will not have enough space to fit all of these rooms.
-        You are currently at {{this.sqFtUsed}} of a possible square feet.{{this.floorPlan.squareFootage}}</p>
+        <p class="sizeError" v-if="sqFtUsed >= floorPlan.squareFootage">You will not have enough space to fit all of these rooms.
+        You are currently at {{sqFtUsed}} of a possible {{floorPlan.squareFootage}} square feet.</p>
         </span>
       </form>
     </div>
@@ -775,6 +775,7 @@ span{
 .sizeError {
   align-self: center;
   grid-area: sizeError;
+  color: white;
 }  
 </style>
 
